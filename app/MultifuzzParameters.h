@@ -13,6 +13,7 @@ class MultifuzzParameters
 {
 public:
 	MultifuzzParameters(Multifuzz* plugin);
+	~MultifuzzParameters();
 	list<Parameter>* GetParameters();
 
 private:

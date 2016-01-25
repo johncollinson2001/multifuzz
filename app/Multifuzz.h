@@ -20,6 +20,7 @@ class Multifuzz : public IPlug
 {
 public:
 	Multifuzz(IPlugInstanceInfo instanceInfo);
+	~Multifuzz();
 
 	void Reset();
 	void OnParamChange(int paramIdx);

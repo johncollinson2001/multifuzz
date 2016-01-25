@@ -4,6 +4,9 @@
 MultifuzzEditor::MultifuzzEditor(Multifuzz* plugin) :
 	mPlugin(plugin) { }
 
+// Destruct
+MultifuzzEditor::~MultifuzzEditor() { }
+
 // Make the editor graphics
 IGraphics* MultifuzzEditor::Make(IGraphics* graphics) {
 	// Make the component parts, order is essential

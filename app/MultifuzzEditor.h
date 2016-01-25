@@ -12,6 +12,7 @@ class MultifuzzEditor
 {
 public:
 	MultifuzzEditor(Multifuzz* plugin);
+	~MultifuzzEditor();
 	IGraphics* Make(IGraphics* graphics);
 
 private:

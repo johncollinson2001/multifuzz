@@ -11,9 +11,15 @@ Multifuzz::Multifuzz(IPlugInstanceInfo instanceInfo)
 	TRACE;	
 
 	CreateParameters();
-
 	CreatePresets();
 	CreateGraphics();
+}
+
+// Destruct
+Multifuzz::~Multifuzz() {
+	delete mMultifuzzParameters;
+	delete mMultifuzzPresets;
+	delete mMultifuzzEditor;
 }
 
 // Processes audio information at the sample rate (nFrames)
