@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Multifuzz.cpp" />
+    <ClCompile Include="..\wdl-ol\WDL\IPlug\IPlugVST.cpp">
+      <Filter>vst2</Filter>
+    </ClCompile>
+    <ClCompile Include="MultifuzzEditor.cpp" />
+    <ClCompile Include="MultifuzzPresets.cpp" />
+    <ClCompile Include="MultifuzzParameters.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h">
+      <Filter>vst2</Filter>
+    </ClInclude>
+    <ClInclude Include="EParameters.h">
+      <Filter>Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="LayoutConstants.h">
+      <Filter>Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Multifuzz.h" />
+    <ClInclude Include="MultifuzzEditor.h" />
+    <ClInclude Include="MultifuzzPresets.h" />
+    <ClInclude Include="Preset.h">
+      <Filter>Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="MultifuzzParameters.h" />
+    <ClInclude Include="Parameter.h">
+      <Filter>Structs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="vst2">
+      <UniqueIdentifier>{ea16de74-9d15-4c60-ba09-d0924088d3e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enums">
+      <UniqueIdentifier>{efb14d12-53d4-43bb-a965-336ebcbe019c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{1c2b4d1d-f572-4613-b94f-778efc91ae27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Constants">
+      <UniqueIdentifier>{14a5fc7c-1a6f-4292-9aef-ec45b8297b3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Structs">
+      <UniqueIdentifier>{b7ca4a29-8062-4a12-9e5a-5bbe2cd56915}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Multifuzz.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
