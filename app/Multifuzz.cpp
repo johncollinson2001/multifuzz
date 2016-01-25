@@ -11,6 +11,7 @@ Multifuzz::Multifuzz(IPlugInstanceInfo instanceInfo)
 	TRACE;	
 
 	CreateParameters();
+
 	CreatePresets();
 	CreateGraphics();
 }
