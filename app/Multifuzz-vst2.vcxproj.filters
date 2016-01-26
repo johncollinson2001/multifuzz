@@ -8,6 +8,9 @@
     <ClCompile Include="MultifuzzEditor.cpp" />
     <ClCompile Include="MultifuzzPresets.cpp" />
     <ClCompile Include="MultifuzzParameters.cpp" />
+    <ClCompile Include="PeakMeter.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h">
@@ -30,6 +33,9 @@
     <ClInclude Include="Parameter.h">
       <Filter>Structs</Filter>
     </ClInclude>
+    <ClInclude Include="PeakMeter.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="vst2">
@@ -46,6 +52,9 @@
     </Filter>
     <Filter Include="Structs">
       <UniqueIdentifier>{b7ca4a29-8062-4a12-9e5a-5bbe2cd56915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{ef2afd98-e848-4742-a2b9-41510793c4de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

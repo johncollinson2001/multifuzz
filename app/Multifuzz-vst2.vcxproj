@@ -251,6 +251,7 @@
     <ClInclude Include="MultifuzzParameters.h" />
     <ClInclude Include="MultifuzzPresets.h" />
     <ClInclude Include="Parameter.h" />
+    <ClInclude Include="PeakMeter.h" />
     <ClInclude Include="Preset.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -260,6 +261,7 @@
     <ClCompile Include="MultifuzzEditor.cpp" />
     <ClCompile Include="MultifuzzParameters.cpp" />
     <ClCompile Include="MultifuzzPresets.cpp" />
+    <ClCompile Include="PeakMeter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Multifuzz.rc" />

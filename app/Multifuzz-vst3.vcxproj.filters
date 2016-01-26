@@ -44,6 +44,9 @@
     <ClCompile Include="MultifuzzEditor.cpp" />
     <ClCompile Include="MultifuzzPresets.cpp" />
     <ClCompile Include="MultifuzzParameters.cpp" />
+    <ClCompile Include="PeakMeter.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\VST3_SDK\pluginterfaces\base\falignpop.h">
@@ -159,6 +162,9 @@
     <ClInclude Include="Parameter.h">
       <Filter>Structs</Filter>
     </ClInclude>
+    <ClInclude Include="PeakMeter.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="vst3">
@@ -202,6 +208,9 @@
     </Filter>
     <Filter Include="Structs">
       <UniqueIdentifier>{3210ebf7-2d33-4a78-ae84-e061dc678710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{5f7dbd6e-520c-422c-9a19-902b0a7937f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

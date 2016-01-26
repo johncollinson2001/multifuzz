@@ -22,6 +22,9 @@
     <Filter Include="Structs">
       <UniqueIdentifier>{8da4581e-ddcc-4a32-a827-d39e6a8d8593}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{cefcbc6a-e0f2-48b2-8127-63e0ef3a8574}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.h">
@@ -77,6 +80,9 @@
     <ClInclude Include="EParameters.h">
       <Filter>Enums</Filter>
     </ClInclude>
+    <ClInclude Include="PeakMeter.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.cpp">
@@ -107,6 +113,9 @@
     <ClCompile Include="MultifuzzEditor.cpp" />
     <ClCompile Include="MultifuzzPresets.cpp" />
     <ClCompile Include="MultifuzzParameters.cpp" />
+    <ClCompile Include="PeakMeter.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Multifuzz.rc">
