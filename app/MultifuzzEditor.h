@@ -5,6 +5,7 @@
 #include "LayoutConstants.h"
 #include "EParameters.h"
 #include "PeakMeter.h"
+#include "MultifuzzKnob.h"
 
 // Forward declarations
 class Multifuzz;
@@ -23,5 +24,5 @@ private:
 	void MakeTitle(IGraphics* graphics);
 	void MakeGainControls(IGraphics* graphics);
 	void MakeDistortionControls(IGraphics* graphics);
-	void MakeKnob(IGraphics* graphics, int x, int y, EParameters parameter);
+	void MakeKnob(IGraphics* graphics, int x, int y, EParameters parameter, char* label);
 };

@@ -6,8 +6,8 @@
 using namespace std;
 
 namespace LayoutConstants {
-	const int GuiWidth = GUI_WIDTH;
-	const int GuiHeight = GUI_HEIGHT;
-	const string GlobalFont = "Courier New";
-	const int KnobFrames = 60; // The number of frames in the knob sprite
+	const int kGuiWidth = GUI_WIDTH;
+	const int kGuiHeight = GUI_HEIGHT;
+	const string kGlobalFont = "Courier New";
+	const int kKnobFrames = 60; // The number of frames in the knob sprite
 }

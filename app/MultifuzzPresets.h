@@ -12,7 +12,7 @@ using namespace std;
 class MultifuzzPresets
 {
 public:
-	static const int NumberOfPresets = 5;
+	static const int kNumberOfPresets = 5;
 
 	MultifuzzPresets(Multifuzz* plugin);
 	list<Preset>* GetPresets();

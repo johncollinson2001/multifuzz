@@ -245,10 +245,13 @@
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h" />
     <ClInclude Include="EParameters.h" />
+    <ClInclude Include="GainController.h" />
+    <ClInclude Include="IParameterListener.h" />
     <ClInclude Include="LayoutConstants.h" />
     <ClInclude Include="Multifuzz.h" />
     <ClInclude Include="MultifuzzEditor.h" />
-    <ClInclude Include="MultifuzzParameters.h" />
+    <ClInclude Include="MultifuzzKnob.h" />
+    <ClInclude Include="MultifuzzParameterManager.h" />
     <ClInclude Include="MultifuzzPresets.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="PeakMeter.h" />
@@ -257,9 +260,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\IPlug\IPlugVST.cpp" />
+    <ClCompile Include="GainController.cpp" />
     <ClCompile Include="Multifuzz.cpp" />
     <ClCompile Include="MultifuzzEditor.cpp" />
-    <ClCompile Include="MultifuzzParameters.cpp" />
+    <ClCompile Include="MultifuzzKnob.cpp" />
+    <ClCompile Include="MultifuzzParameterManager.cpp" />
     <ClCompile Include="MultifuzzPresets.cpp" />
     <ClCompile Include="PeakMeter.cpp" />
   </ItemGroup>

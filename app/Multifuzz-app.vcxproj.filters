@@ -25,6 +25,12 @@
     <Filter Include="Controls">
       <UniqueIdentifier>{cefcbc6a-e0f2-48b2-8127-63e0ef3a8574}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dsp">
+      <UniqueIdentifier>{75c6aae2-ca57-4616-a7f9-28039b4a3c26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{3e3c30d3-0109-4be6-b5b7-ce2fd0ab8956}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.h">
@@ -73,7 +79,6 @@
     <ClInclude Include="MultifuzzEditor.h" />
     <ClInclude Include="Multifuzz.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="MultifuzzParameters.h" />
     <ClInclude Include="Parameter.h">
       <Filter>Structs</Filter>
     </ClInclude>
@@ -82,6 +87,16 @@
     </ClInclude>
     <ClInclude Include="PeakMeter.h">
       <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="MultifuzzKnob.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GainController.h">
+      <Filter>Dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="MultifuzzParameterManager.h" />
+    <ClInclude Include="IParameterListener.h">
+      <Filter>Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -112,10 +127,16 @@
     </ClCompile>
     <ClCompile Include="MultifuzzEditor.cpp" />
     <ClCompile Include="MultifuzzPresets.cpp" />
-    <ClCompile Include="MultifuzzParameters.cpp" />
     <ClCompile Include="PeakMeter.cpp">
       <Filter>Controls</Filter>
     </ClCompile>
+    <ClCompile Include="MultifuzzKnob.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GainController.cpp">
+      <Filter>Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="MultifuzzParameterManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Multifuzz.rc">

@@ -5,16 +5,18 @@
 
 #include <list>
 #include "IPlug_include_in_plug_hdr.h"
-#include "MultifuzzParameters.h"
+#include "MultifuzzParameterManager.h"
 #include "MultifuzzPresets.h"
 #include "MultifuzzEditor.h"
 #include "LayoutConstants.h"
 #include "EParameters.h"
+#include "GainController.h"
 
 // Forward declarations
 class MultifuzzEditor;
 class MultifuzzPresets;
-class MultifuzzParameters;
+class MultifuzzParameterManager;
+class GainController;
 
 class Multifuzz : public IPlug
 {
@@ -23,14 +25,17 @@ public:
 	~Multifuzz();
 
 	void Reset();
-	void OnParamChange(int paramIdx);
+	void OnParamChange(int parameterIndex);
 	void ProcessDoubleReplacing(double** inputs, double** outputs, int nFrames);	
 
 private:
 	double mOverdrive = 0;
-	MultifuzzParameters* mMultifuzzParameters;
+	MultifuzzParameterManager* mMultifuzzParameterManager;
 	MultifuzzPresets* mMultifuzzPresets;
 	MultifuzzEditor* mMultifuzzEditor;
+
+	// DSPs - TODO: move to audio processor class
+	GainController* mInputGainController;
 
 	void CreateParameters();
 	void CreatePresets();

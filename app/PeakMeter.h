@@ -10,8 +10,8 @@ public:
 	virtual bool Draw(IGraphics* graphics);
 
 private:
-	const int NumberOfBlocks = 20;
-	const int LowSectionUpperBound = 11;
-	const int MidSectionUpperBound = 18;	
+	const int kNumberOfBlocks = 20;
+	const int kLowSectionUpperBound = 11;
+	const int kMidSectionUpperBound = 18;	
 };
 

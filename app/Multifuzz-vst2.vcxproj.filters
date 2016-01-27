@@ -7,9 +7,15 @@
     </ClCompile>
     <ClCompile Include="MultifuzzEditor.cpp" />
     <ClCompile Include="MultifuzzPresets.cpp" />
-    <ClCompile Include="MultifuzzParameters.cpp" />
     <ClCompile Include="PeakMeter.cpp">
       <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="MultifuzzKnob.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="MultifuzzParameterManager.cpp" />
+    <ClCompile Include="GainController.cpp">
+      <Filter>Dsp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -29,12 +35,21 @@
     <ClInclude Include="Preset.h">
       <Filter>Structs</Filter>
     </ClInclude>
-    <ClInclude Include="MultifuzzParameters.h" />
     <ClInclude Include="Parameter.h">
       <Filter>Structs</Filter>
     </ClInclude>
     <ClInclude Include="PeakMeter.h">
       <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="MultifuzzKnob.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="MultifuzzParameterManager.h" />
+    <ClInclude Include="IParameterListener.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="GainController.h">
+      <Filter>Dsp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +70,12 @@
     </Filter>
     <Filter Include="Controls">
       <UniqueIdentifier>{ef2afd98-e848-4742-a2b9-41510793c4de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{7696952b-18b1-4b83-9ea7-df91c10f910e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dsp">
+      <UniqueIdentifier>{51052f97-e759-4769-b157-3e847f1eca6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
