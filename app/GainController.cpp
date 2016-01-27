@@ -14,8 +14,9 @@ GainController::GainController(Multifuzz* plugin, MultifuzzParameterManager* par
 GainController::~GainController() { }
 
 // Process audio
-double GainController::ProcessAudio(double input) {
-	return input * mGain;
+void GainController::ProcessAudio(double* input, double* output) {
+	// Value pointed to by output = value pointed to by input multiplied by mGain
+	*output = *input * mGain;
 }
 
 // Handle parameter changes

@@ -46,7 +46,8 @@ void Multifuzz::ProcessDoubleReplacing(double **inputs, double **outputs, int nF
 			//}
 			//*output /= mOverdrive;
 
-			*output = mInputGainController->ProcessAudio(*input);
+			//*output = mInputGainController->ProcessAudio(*input);
+			mInputGainController->ProcessAudio(input, output);
 		}
 	}
 }

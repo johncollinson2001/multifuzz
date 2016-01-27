@@ -18,7 +18,7 @@ class GainController : IParameterListener
 public:
 	GainController(Multifuzz* plugin, MultifuzzParameterManager* parameterManager);
 	virtual ~GainController();
-	double ProcessAudio(double input);
+	void ProcessAudio(double* input, double* output);
 	virtual void OnParamChange(int parameterIndex);
 
 private:
