@@ -71,19 +71,19 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics) {
 	IText lblText = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()),
 		IText::EStyle::kStyleNormal, IText::EAlign::kAlignCenter);
 
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(90, 110, 195, 130), &lblText, "Input"));
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(200, 110, 305, 130), &lblText, "Output"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(90, 125, 195, 150), &lblText, "Input"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(200, 125, 305, 150), &lblText, "Output"));
 	
 	// Attach the VU Meter bitmaps
 	IBitmap vuMeterBitmap = graphics->LoadIBitmap(VUMETER_ID, VUMETER_FN);
-	graphics->AttachControl(new IBitmapControl(mPlugin, 90, 146, &vuMeterBitmap));
-	graphics->AttachControl(new IBitmapControl(mPlugin, 200, 146, &vuMeterBitmap));
+	graphics->AttachControl(new IBitmapControl(mPlugin, 90, 152, &vuMeterBitmap));
+	graphics->AttachControl(new IBitmapControl(mPlugin, 200, 152, &vuMeterBitmap));
 
 	// Add the vu meters
-	mInputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(115, 148, 136, 334)));
-	mInputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(150, 153, 171, 334)));
-	mOutputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(225, 153, 246, 334)));
-	mOutputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(260, 153, 281, 334)));
+	mInputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(115, 158, 136, 340)));
+	mInputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(150, 158, 171, 340)));
+	mOutputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(225, 158, 246, 340)));
+	mOutputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(260, 158, 281, 340)));
 
 	// Add knobs
 	MakeKnob(graphics, 115, 380, EParameters::InputGain, "gain");
@@ -97,21 +97,21 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics) {
 		IText::EStyle::kStyleBold, IText::EAlign::kAlignCenter);
 
 	// Band 1 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(350, 24, 398, 40), &lblText, "Band 1"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(350, 24, 414, 40), &lblText, "Band 1"));
 	MakeKnob(graphics, 350, 80, EParameters::BandOneOverdrive, "overdrive");
 	MakeKnob(graphics, 350, 180, EParameters::BandOneFrequency, "frequency");
 	MakeKnob(graphics, 350, 280, EParameters::BandOneWidth, "width");
 	MakeKnob(graphics, 350, 380, EParameters::BandOneResonance, "resonance");
 
 	// Band 2 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(450, 24, 498, 40), &lblText, "Band 2"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(450, 24, 514, 40), &lblText, "Band 2"));
 	MakeKnob(graphics, 450, 80, EParameters::BandTwoOverdrive, "overdrive");
 	MakeKnob(graphics, 450, 180, EParameters::BandTwoFrequency, "frequency");
 	MakeKnob(graphics, 450, 280, EParameters::BandTwoWidth, "width");
 	MakeKnob(graphics, 450, 380, EParameters::BandTwoResonance, "resonance");
 
 	// Band 3 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(550, 24, 598, 40), &lblText, "Band 3"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(550, 24, 614, 40), &lblText, "Band 3"));
 	MakeKnob(graphics, 550, 80, EParameters::BandThreeOverdrive, "overdrive");
 	MakeKnob(graphics, 550, 180, EParameters::BandThreeFrequency, "frequency");
 	MakeKnob(graphics, 550, 280, EParameters::BandThreeWidth, "width");
@@ -121,6 +121,6 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics) {
 // Make a knob
 void MultifuzzEditor::MakeKnob(IGraphics* graphics, int x, int y, EParameters parameter, char* label) {
 	IBitmap knob = graphics->LoadIBitmap(KNOB_ID, KNOB_FN, LayoutConstants::kKnobFrames);
-	IText text = IText(14, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()));
-	graphics->AttachControl(new MultifuzzKnob(mPlugin, IRECT(x, y, x + 48, y + 48 + 20), parameter, &knob, &text, label));
+	IText text = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()));
+	graphics->AttachControl(new MultifuzzKnob(mPlugin, IRECT(x, y, x + 64, y + 64 + 15), parameter, &knob, &text, label));
 }

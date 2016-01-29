@@ -60,7 +60,7 @@ instrument determined by PLUG _IS _INST
 #define VUMETER_ID 104
 
 // Image resource locations for this plug.
-#define KNOB_FN "resources/img/knob.png"
+#define KNOB_FN "resources/img/org_amp.png"
 #define BACKGROUND_FN "resources/img/background.png"
 #define HANDLE_FN "resources/img/handle.png"
 #define VUMETER_FN "resources/img/vumeter.png"
