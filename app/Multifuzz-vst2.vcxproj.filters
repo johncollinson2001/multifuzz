@@ -51,6 +51,9 @@
     <ClInclude Include="GainController.h">
       <Filter>Dsp</Filter>
     </ClInclude>
+    <ClInclude Include="IAudioProcessor.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="vst2">

@@ -277,8 +277,13 @@
     <ClInclude Include="..\wdl-ol\WDL\rtaudiomidi\RtMidi.h" />
     <ClInclude Include="app_wrapper\app_main.h" />
     <ClInclude Include="app_wrapper\app_resource.h" />
+    <ClInclude Include="BandDistortion.h" />
+    <ClInclude Include="BandPass.h" />
+    <ClInclude Include="EFilterType.h" />
     <ClInclude Include="EParameters.h" />
+    <ClInclude Include="Filter.h" />
     <ClInclude Include="GainController.h" />
+    <ClInclude Include="IAudioProcessor.h" />
     <ClInclude Include="IParameterListener.h" />
     <ClInclude Include="LayoutConstants.h" />
     <ClInclude Include="Multifuzz.h" />
@@ -290,6 +295,7 @@
     <ClInclude Include="PeakMeter.h" />
     <ClInclude Include="Preset.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Distortion.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\ASIO_SDK\asio.cpp" />
@@ -300,6 +306,9 @@
     <ClCompile Include="..\wdl-ol\WDL\rtaudiomidi\RtMidi.cpp" />
     <ClCompile Include="app_wrapper\app_dialog.cpp" />
     <ClCompile Include="app_wrapper\app_main.cpp" />
+    <ClCompile Include="BandDistortion.cpp" />
+    <ClCompile Include="BandPass.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="GainController.cpp" />
     <ClCompile Include="Multifuzz.cpp" />
     <ClCompile Include="MultifuzzEditor.cpp" />
@@ -307,6 +316,7 @@
     <ClCompile Include="MultifuzzParameterManager.cpp" />
     <ClCompile Include="MultifuzzPresets.cpp" />
     <ClCompile Include="PeakMeter.cpp" />
+    <ClCompile Include="Distortion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Multifuzz.rc" />

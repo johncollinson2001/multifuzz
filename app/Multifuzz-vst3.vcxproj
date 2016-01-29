@@ -326,6 +326,7 @@ if exist "%programfiles(x86)%" (copy /y "$(TargetPath)" "$(VST3_64_PATH)\Multifu
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST3.h" />
     <ClInclude Include="EParameters.h" />
     <ClInclude Include="GainController.h" />
+    <ClInclude Include="IAudioProcessor.h" />
     <ClInclude Include="IParameterListener.h" />
     <ClInclude Include="LayoutConstants.h" />
     <ClInclude Include="Multifuzz.h" />

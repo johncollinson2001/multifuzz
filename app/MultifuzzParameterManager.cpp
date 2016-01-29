@@ -27,20 +27,6 @@ list<Parameter> MultifuzzParameterManager::GetParameters() {
 		result.insert(result.end(), iterator->second->begin(), iterator->second->end());		
 	}
 
-	//// Overdrive
-	//// TODO: Remove into it's own dsp class
-	//Parameter overdrive;
-	//overdrive.Id = EParameters::Overdrive;
-	//overdrive.Name = "Overdrive";
-	//overdrive.DefaultValue = 100.0;
-	//overdrive.MinValue = 0.01;
-	//overdrive.MaxValue = 100.0;
-	//overdrive.Step = 0.01;
-	//overdrive.Label = "%";
-	//overdrive.Group = "";
-	//overdrive.Shape = 1.0;
-	//result.push_back(overdrive);
-
 	return result;
 }
 
@@ -65,7 +51,7 @@ void MultifuzzParameterManager::OnParamChange(int parameterIndex) {
 			// If the listener is interested in this parameter index, then call the listener
 			Parameter parameter = (*paramIterator);
 			if (parameter.Id == parameterIndex) {
-				listener->OnParamChange(parameterIndex);
+				listener->OnParamChange(parameterIndex, mPlugin->GetParam(parameterIndex)->Value());
 			}
 		}
 	}

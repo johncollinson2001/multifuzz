@@ -246,6 +246,7 @@
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h" />
     <ClInclude Include="EParameters.h" />
     <ClInclude Include="GainController.h" />
+    <ClInclude Include="IAudioProcessor.h" />
     <ClInclude Include="IParameterListener.h" />
     <ClInclude Include="LayoutConstants.h" />
     <ClInclude Include="Multifuzz.h" />
