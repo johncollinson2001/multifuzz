@@ -86,8 +86,8 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics) {
 	mOutputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(260, 158, 281, 340)));
 
 	// Add knobs
-	MakeKnob(graphics, 115, 380, EParameters::InputGain, "gain");
-	MakeKnob(graphics, 225, 380, EParameters::OutputGain, "gain");
+	MakeKnob(graphics, 111, 380, EParameters::InputGain, "gain");
+	MakeKnob(graphics, 221, 380, EParameters::OutputGain, "gain");
 }
 
 // Make the distortion controls
