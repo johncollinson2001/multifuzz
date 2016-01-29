@@ -4,6 +4,17 @@
 enum EParameters {
 	InputGain,
 	OutputGain,
-	Overdrive,
+	BandOneOverdrive,
+	BandOneFrequency,
+	BandOneWidth,
+	BandOneResonance,
+	BandTwoOverdrive,
+	BandTwoFrequency,
+	BandTwoWidth,
+	BandTwoResonance,
+	BandThreeOverdrive,
+	BandThreeFrequency,
+	BandThreeWidth,
+	BandThreeResonance,
 	NumberOfParameters
 };
