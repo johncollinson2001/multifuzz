@@ -7,6 +7,17 @@ MultifuzzEditor::MultifuzzEditor(Multifuzz* plugin) :
 // Destruct
 MultifuzzEditor::~MultifuzzEditor() { }
 
+// Receive a notification that the peak values have changed
+void MultifuzzEditor::NotifyOfPeakChange(double inPeakL, double inPeakR, double outPeakL, double outPeakR) {
+	if (mPlugin->GetGUI())
+	{
+		mPlugin->GetGUI()->SetControlFromPlug(mInputPeakIdxL, inPeakL);
+		mPlugin->GetGUI()->SetControlFromPlug(mInputPeakIdxR, inPeakR);
+		mPlugin->GetGUI()->SetControlFromPlug(mOutputPeakIdxL, outPeakL);
+		mPlugin->GetGUI()->SetControlFromPlug(mOutputPeakIdxR, outPeakR);
+	}
+}
+
 // Make the editor graphics
 IGraphics* MultifuzzEditor::Make(IGraphics* graphics) {
 	// Make the component parts, order is essential
@@ -69,10 +80,10 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics) {
 	graphics->AttachControl(new IBitmapControl(mPlugin, 200, 141, &vuMeterBitmap));
 
 	// Add the vu meters
-	graphics->AttachControl(new PeakMeter(mPlugin, IRECT(115, 148, 136, 329)));
-	graphics->AttachControl(new PeakMeter(mPlugin, IRECT(150, 148, 171, 329)));
-	graphics->AttachControl(new PeakMeter(mPlugin, IRECT(225, 148, 246, 329)));
-	graphics->AttachControl(new PeakMeter(mPlugin, IRECT(260, 148, 281, 329)));
+	mInputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(115, 148, 136, 329)));
+	mInputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(150, 148, 171, 329)));
+	mOutputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(225, 148, 246, 329)));
+	mOutputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(260, 148, 281, 329)));
 
 	// Add knobs
 	MakeKnob(graphics, 115, 375, EParameters::InputGain, "Gain");

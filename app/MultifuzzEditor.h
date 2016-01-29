@@ -16,8 +16,10 @@ public:
 	MultifuzzEditor(Multifuzz* plugin);
 	~MultifuzzEditor();
 	IGraphics* Make(IGraphics* graphics);
+	void NotifyOfPeakChange(double inPeakL, double inPeakR, double outPeakL, double outPeakR);
 
 private:
+	int mInputPeakIdxL = 0, mInputPeakIdxR = 0, mOutputPeakIdxL = 0, mOutputPeakIdxR = 0;
 	Multifuzz* mPlugin;
 	void MakeBackground(IGraphics* graphics);
 	void MakeHandles(IGraphics* graphics);

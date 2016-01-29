@@ -36,6 +36,7 @@ private:
 
 	// DSPs - TODO: move to audio processor class
 	GainController* mInputGainController;
+	GainController* mOutputGainController;
 
 	void CreateParameters();
 	void CreatePresets();

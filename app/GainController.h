@@ -16,13 +16,15 @@ using namespace std;
 class GainController : IParameterListener
 {
 public:
-	GainController(Multifuzz* plugin, MultifuzzParameterManager* parameterManager);
+	GainController(Multifuzz* plugin, MultifuzzParameterManager* parameterManager, char* name, EParameters parameter);
 	virtual ~GainController();
-	void ProcessAudio(double* input, double* output);
+	void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
 	virtual void OnParamChange(int parameterIndex);
 
 private:
 	double mGain = 0;
+	EParameters mParameter;
+	char* mName;
 	Multifuzz* mPlugin;
 	MultifuzzParameterManager* mParameterManager;
 	list<Parameter> mParameters = list<Parameter>();

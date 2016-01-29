@@ -1,8 +1,8 @@
 #include "GainController.h"
 
 // Construct
-GainController::GainController(Multifuzz* plugin, MultifuzzParameterManager* parameterManager) 
-	: mPlugin(plugin), mParameterManager(parameterManager)
+GainController::GainController(Multifuzz* plugin, MultifuzzParameterManager* parameterManager, char* name, EParameters parameter) 
+	: mPlugin(plugin), mParameterManager(parameterManager), mParameter(parameter), mName(name)
 {
 	InitialiseParameters();
 
@@ -14,17 +14,18 @@ GainController::GainController(Multifuzz* plugin, MultifuzzParameterManager* par
 GainController::~GainController() { }
 
 // Process audio
-void GainController::ProcessAudio(double* input, double* output) {
+void GainController::ProcessAudio(double* inL, double* inR, double* outL, double* outR) {
 	// Value pointed to by output = value pointed to by input multiplied by mGain
-	*output = *input * mGain;
+	*outL = *inL * mGain;
+	*outR = *inR * mGain;
 }
 
 // Handle parameter changes
 void GainController::OnParamChange(int parameterIndex) {
 	// Ensure the parameter that has changed is overdrive
-	if (parameterIndex == EParameters::InputGain) {
+	if (parameterIndex == mParameter) {
 		// Set the gain member
-		mGain = mPlugin->GetParam(EParameters::InputGain)->DBToAmp();
+		mGain = mPlugin->GetParam(mParameter)->DBToAmp();
 	}
 }
 
@@ -32,8 +33,8 @@ void GainController::OnParamChange(int parameterIndex) {
 void GainController::InitialiseParameters() {
 	// Input Gain
 	Parameter inputGain;
-	inputGain.Id = EParameters::InputGain;
-	inputGain.Name = "Input Gain";
+	inputGain.Id = mParameter;
+	inputGain.Name = mName;
 	inputGain.DefaultValue = 0.0;
 	inputGain.MinValue = -48.0;
 	inputGain.MaxValue = 10.0;

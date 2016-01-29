@@ -7,7 +7,8 @@ Multifuzz::Multifuzz(IPlugInstanceInfo instanceInfo)
 	mMultifuzzParameterManager(new MultifuzzParameterManager(this)),
 	mMultifuzzPresets(new MultifuzzPresets(this)),
 	mMultifuzzEditor(new MultifuzzEditor(this)),
-	mInputGainController(new GainController(this, mMultifuzzParameterManager))
+	mInputGainController(new GainController(this, mMultifuzzParameterManager, "Input Gain", EParameters::InputGain)),
+	mOutputGainController(new GainController(this, mMultifuzzParameterManager, "Output Gain", EParameters::OutputGain))
 {
 	TRACE;	
 
@@ -21,35 +22,58 @@ Multifuzz::~Multifuzz() {
 	delete mMultifuzzParameterManager;
 	delete mMultifuzzPresets;
 	delete mMultifuzzEditor;
+	delete mInputGainController;
+	delete mOutputGainController;
 }
 
 // Processes audio information at the sample rate (nFrames)
 void Multifuzz::ProcessDoubleReplacing(double **inputs, double **outputs, int nFrames)
 {
 	// Mutex is already locked for us.
+	
+	// Pull out values 
+	double* inL = inputs[0];
+	double* inR = inputs[1];
+	double* outL = outputs[0];
+	double* outR = outputs[1];
+	double inPeakL = 0.0, inPeakR = 0.0, outPeakL = 0.0, outPeakR = 0.0;
+	
+	// Iterate samples
+	for (int s = 0; s < nFrames; ++s, ++inL, ++inR, ++outL, ++outR) {
+		// TODO: Move into the disortion dsp class
+		//if (*input >= 0) {
+		//	// Make sure positive values can't go above the threshold:
+		//	*output = fmin(*input, mOverdrive);
+		//}
+		//else {
+		//	// Make sure negative values can't go below the threshold:
+		//	*output = fmax(*input, -mOverdrive);
+		//}
+		//*output /= mOverdrive;
 
-	int const channelCount = 2;
+		// Grab the sample
+		double* sampleL = inL;
+		double* sampleR = inR;
 
-	for (int i = 0; i < channelCount; i++) {
-		double* input = inputs[i];
-		double* output = outputs[i];
+		// Process input gain and capture peaks
+		mInputGainController->ProcessAudio(sampleL, sampleR, sampleL, sampleR);
+		inPeakL = IPMAX(inPeakL, fabs(*sampleL));
+		inPeakR = IPMAX(inPeakR, fabs(*sampleR));
 
-		for (int s = 0; s < nFrames; ++s, ++input, ++output) {
-			// TODO: Move into the disortion dsp class
-			//if (*input >= 0) {
-			//	// Make sure positive values can't go above the threshold:
-			//	*output = fmin(*input, mOverdrive);
-			//}
-			//else {
-			//	// Make sure negative values can't go below the threshold:
-			//	*output = fmax(*input, -mOverdrive);
-			//}
-			//*output /= mOverdrive;
+		// Process band distortions
 
-			//*output = mInputGainController->ProcessAudio(*input);
-			mInputGainController->ProcessAudio(input, output);
-		}
+		// Process output gain and capture peaks
+		mOutputGainController->ProcessAudio(sampleL, sampleR, sampleL, sampleR);
+		outPeakL = IPMAX(outPeakL, fabs(*sampleL));
+		outPeakR = IPMAX(outPeakR, fabs(*sampleR));
+
+		// Assign the sample to the output
+		*outL = *sampleL;
+		*outR = *sampleR;			
 	}
+
+	// Send peaks to the 
+	mMultifuzzEditor->NotifyOfPeakChange(inPeakL, inPeakR, outPeakL, outPeakR);
 }
 
 // Triggered when sample rate changed
