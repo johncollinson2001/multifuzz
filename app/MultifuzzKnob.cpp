@@ -2,7 +2,8 @@
 
 // Construct
 MultifuzzKnob::MultifuzzKnob(IPlugBase* plugin, IRECT rectangle, EParameters parameter, IBitmap* bitmap, IText* text, char* label)
-	: IKnobControl(plugin, rectangle, parameter), mBitmap(*bitmap) {
+	: IKnobControl(plugin, rectangle, parameter), mBitmap(*bitmap) 
+{
 	mText = *text;
 	mDisablePrompt = false;
 
@@ -13,9 +14,7 @@ MultifuzzKnob::MultifuzzKnob(IPlugBase* plugin, IRECT rectangle, EParameters par
 }
 
 // Destruct
-MultifuzzKnob::~MultifuzzKnob()
-{
-}
+MultifuzzKnob::~MultifuzzKnob() { }
 
 // Draws the control
 bool MultifuzzKnob::Draw(IGraphics* graphics)

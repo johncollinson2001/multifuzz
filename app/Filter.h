@@ -1,37 +1,36 @@
 #pragma once
 
-#include "Multifuzz.h"
-#include "MultifuzzParameterManager.h"
-#include "EParameters.h"
 #include "EFilterType.h"
-#include "Parameter.h"
 #include "IAudioProcessor.h"
 
 class Filter : IAudioProcessor
 {
 public:
-	Filter(EFilterType filterType, int sampleRate, double frequency, double resonance);
+	Filter(EFilterType filterType, int sampleRate);
 	virtual ~Filter();
 	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
+	void SetSampleRate(int sampleRate);
+	void SetFrequency(double frequency);
+	void SetResonance(double resonance);
 
 private:
 	const int LowestFrequency = 20;
 	const int HighestFrequency = 22000;
-	double mFrequency = 0;
+	double mFrequency = LowestFrequency;
 	double mResonance = 0;
 	int mSampleRate = 0;
 	EFilterType mFilterType;
 
 	// Array of input values, latest are in front
-	double mInputHistoryLeft[2];
-	double mInputHistoryRight[2];
+	double mInHistoryL[2] = {};
+	double mInHistoryR[2] = {};
 	// Array of output values, latest are in front
-	double mOutputHistoryLeft[2];
-	double mOutputHistoryRight[2];
+	double mOutHistoryL[2] = {};
+	double mOutHistoryR[2] = {};
 
 	// Coefficients
-	double mA0, mA1, mA2, mA3, mA4;
+	double mA0 = 0, mA1 = 0, mA2 = 0, mA3 = 0, mA4 = 0;
 
-	void ProcessChannel(double* in, double* out, double inputHistory[], double outputHistory[]);
+	void ProcessChannel(double* in, double* out, double inHistory[], double outHistory[]);
 	void UpdateCoefficients();
 };

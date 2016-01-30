@@ -1,7 +1,8 @@
 #pragma once
 
 // An enumeration of parameters
-enum EParameters {
+enum EParameters 
+{
 	InputGain,
 	OutputGain,
 	BandOneOverdrive,

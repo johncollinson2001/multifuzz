@@ -8,7 +8,8 @@ MultifuzzEditor::MultifuzzEditor(Multifuzz* plugin) :
 MultifuzzEditor::~MultifuzzEditor() { }
 
 // Receive a notification that the peak values have changed
-void MultifuzzEditor::NotifyOfPeakChange(double inPeakL, double inPeakR, double outPeakL, double outPeakR) {
+void MultifuzzEditor::NotifyOfPeakChange(double inPeakL, double inPeakR, double outPeakL, double outPeakR) 
+{
 	if (mPlugin->GetGUI())
 	{
 		mPlugin->GetGUI()->SetControlFromPlug(mInputPeakIdxL, inPeakL);
@@ -19,7 +20,8 @@ void MultifuzzEditor::NotifyOfPeakChange(double inPeakL, double inPeakR, double 
 }
 
 // Make the editor graphics
-IGraphics* MultifuzzEditor::Make(IGraphics* graphics) {
+IGraphics* MultifuzzEditor::Make(IGraphics* graphics) 
+{
 	// Make the component parts, order is essential
 	MakeBackground(graphics);
 	MakeHandles(graphics);
@@ -31,7 +33,8 @@ IGraphics* MultifuzzEditor::Make(IGraphics* graphics) {
 }
 
 // Make the background
-void MultifuzzEditor::MakeBackground(IGraphics* graphics) {
+void MultifuzzEditor::MakeBackground(IGraphics* graphics) 
+{
 	// Tile a bitmap across the view port, to support a resizeable gui
 	IBitmap bgBitmap = graphics->LoadIBitmap(BACKGROUND_ID, BACKGROUND_FN);
 	for (int i = 0; i <= ceil(LayoutConstants::kGuiWidth / bgBitmap.W); i++)
@@ -42,7 +45,8 @@ void MultifuzzEditor::MakeBackground(IGraphics* graphics) {
 }
 
 // Make the handles
-void MultifuzzEditor::MakeHandles(IGraphics* graphics) {
+void MultifuzzEditor::MakeHandles(IGraphics* graphics) 
+{
 	// Create a handle at the left and right of the gui window
 	IBitmap handleBitmap = graphics->LoadIBitmap(HANDLE_ID, HANDLE_FN);
 
@@ -55,7 +59,8 @@ void MultifuzzEditor::MakeHandles(IGraphics* graphics) {
 }
 
 // Make the title
-void MultifuzzEditor::MakeTitle(IGraphics* graphics) {
+void MultifuzzEditor::MakeTitle(IGraphics* graphics) 
+{
 	// Header 1
 	IText h1 = IText(40, &COLOR_WHITE, "Courier New", IText::EStyle::kStyleBold);
 	graphics->AttachControl(new ITextControl(mPlugin, IRECT(100, 36, 295, 61), &h1, "Multifuzz"));
@@ -66,7 +71,8 @@ void MultifuzzEditor::MakeTitle(IGraphics* graphics) {
 }
 
 // Make the gain controls
-void MultifuzzEditor::MakeGainControls(IGraphics* graphics) {
+void MultifuzzEditor::MakeGainControls(IGraphics* graphics) 
+{
 	// Add header labels
 	IText lblText = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()),
 		IText::EStyle::kStyleNormal, IText::EAlign::kAlignCenter);
@@ -91,7 +97,8 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics) {
 }
 
 // Make the distortion controls
-void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics) {
+void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics) 
+{
 	// Header text object
 	IText lblText = IText(18, &COLOR_WHITE, strdup(LayoutConstants::kGlobalFont.c_str()),
 		IText::EStyle::kStyleBold, IText::EAlign::kAlignCenter);
@@ -119,7 +126,8 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics) {
 }
 
 // Make a knob
-void MultifuzzEditor::MakeKnob(IGraphics* graphics, int x, int y, EParameters parameter, char* label) {
+void MultifuzzEditor::MakeKnob(IGraphics* graphics, int x, int y, EParameters parameter, char* label) 
+{
 	IBitmap knob = graphics->LoadIBitmap(KNOB_ID, KNOB_FN, LayoutConstants::kKnobFrames);
 	IText text = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()));
 	graphics->AttachControl(new MultifuzzKnob(mPlugin, IRECT(x, y, x + 64, y + 64 + 15), parameter, &knob, &text, label));

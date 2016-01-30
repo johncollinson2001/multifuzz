@@ -18,7 +18,8 @@ Multifuzz::Multifuzz(IPlugInstanceInfo instanceInfo)
 }
 
 // Destruct
-Multifuzz::~Multifuzz() {
+Multifuzz::~Multifuzz() 
+{
 	delete mMultifuzzParameterManager;
 	delete mMultifuzzPresets;
 	delete mMultifuzzEditor;
@@ -83,7 +84,8 @@ void Multifuzz::OnParamChange(int parameterIndex)
 }
 
 // Creates the parameters
-void Multifuzz::CreateParameters() {
+void Multifuzz::CreateParameters() 
+{
 	// Get the parameters
 	list<Parameter> parameters = mMultifuzzParameterManager->GetParameters();
 
@@ -106,7 +108,8 @@ void Multifuzz::CreateParameters() {
 }
 
 // Creates the presets
-void Multifuzz::CreatePresets() {
+void Multifuzz::CreatePresets() 
+{
 	// Get the presets
 	list<Preset>* presets = mMultifuzzPresets->GetPresets();
 
@@ -121,7 +124,8 @@ void Multifuzz::CreatePresets() {
 }
 
 // Creates the graphics
-void Multifuzz::CreateGraphics() {
+void Multifuzz::CreateGraphics() 
+{
 	IGraphics* graphics = MakeGraphics(this, LayoutConstants::kGuiWidth, LayoutConstants::kGuiHeight);
 	AttachGraphics(mMultifuzzEditor->Make(graphics));
 }

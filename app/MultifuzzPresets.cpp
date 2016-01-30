@@ -7,17 +7,20 @@ using namespace std;
 
 // Construct
 MultifuzzPresets::MultifuzzPresets(Multifuzz* plugin) :
-	mPlugin(plugin) {
+	mPlugin(plugin) 
+{
 	InitialisePresets();	
 }
 
 // Returns the private collection of presets
-list<Preset>* MultifuzzPresets::GetPresets() {
+list<Preset>* MultifuzzPresets::GetPresets() 
+{
 	return &mPresets;
 }
 
 // Initialises the presets into the member collection
-void MultifuzzPresets::InitialisePresets() {
+void MultifuzzPresets::InitialisePresets() 
+{
 	// Clean
 	Preset clean;
 	clean.Name = "Clean";

@@ -1,7 +1,8 @@
 #pragma once
 
 // An enumeration of filter types
-enum EFilterType {
+enum EFilterType 
+{
 	HighPass,
 	LowPass
 };

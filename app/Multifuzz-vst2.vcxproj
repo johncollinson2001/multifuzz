@@ -244,7 +244,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h" />
+    <ClInclude Include="BandDistortion.h" />
+    <ClInclude Include="BandPass.h" />
+    <ClInclude Include="Distortion.h" />
+    <ClInclude Include="EFilterType.h" />
     <ClInclude Include="EParameters.h" />
+    <ClInclude Include="Filter.h" />
     <ClInclude Include="GainController.h" />
     <ClInclude Include="IAudioProcessor.h" />
     <ClInclude Include="IParameterListener.h" />
@@ -261,6 +266,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\IPlug\IPlugVST.cpp" />
+    <ClCompile Include="BandDistortion.cpp" />
+    <ClCompile Include="BandPass.cpp" />
+    <ClCompile Include="Distortion.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="GainController.cpp" />
     <ClCompile Include="Multifuzz.cpp" />
     <ClCompile Include="MultifuzzEditor.cpp" />

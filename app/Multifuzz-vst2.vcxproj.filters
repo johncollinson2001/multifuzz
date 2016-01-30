@@ -17,6 +17,18 @@
     <ClCompile Include="GainController.cpp">
       <Filter>Dsp</Filter>
     </ClCompile>
+    <ClCompile Include="BandDistortion.cpp">
+      <Filter>Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="BandPass.cpp">
+      <Filter>Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="Distortion.cpp">
+      <Filter>Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="Filter.cpp">
+      <Filter>Dsp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h">
@@ -53,6 +65,21 @@
     </ClInclude>
     <ClInclude Include="IAudioProcessor.h">
       <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="BandDistortion.h">
+      <Filter>Dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="BandPass.h">
+      <Filter>Dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="Distortion.h">
+      <Filter>Dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="EFilterType.h">
+      <Filter>Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter.h">
+      <Filter>Dsp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

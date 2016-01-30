@@ -324,7 +324,12 @@ if exist "%programfiles(x86)%" (copy /y "$(TargetPath)" "$(VST3_64_PATH)\Multifu
     <ClInclude Include="..\wdl-ol\VST3_SDK\public.sdk\source\vst\vstparameters.h" />
     <ClInclude Include="..\wdl-ol\VST3_SDK\public.sdk\source\vst\vstsinglecomponenteffect.h" />
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST3.h" />
+    <ClInclude Include="BandDistortion.h" />
+    <ClInclude Include="BandPass.h" />
+    <ClInclude Include="Distortion.h" />
+    <ClInclude Include="EFilterType.h" />
     <ClInclude Include="EParameters.h" />
+    <ClInclude Include="Filter.h" />
     <ClInclude Include="GainController.h" />
     <ClInclude Include="IAudioProcessor.h" />
     <ClInclude Include="IParameterListener.h" />
@@ -353,6 +358,10 @@ if exist "%programfiles(x86)%" (copy /y "$(TargetPath)" "$(VST3_64_PATH)\Multifu
     <ClCompile Include="..\wdl-ol\VST3_SDK\public.sdk\source\vst\vstparameters.cpp" />
     <ClCompile Include="..\wdl-ol\VST3_SDK\public.sdk\source\vst\vstsinglecomponenteffect.cpp" />
     <ClCompile Include="..\wdl-ol\WDL\IPlug\IPlugVST3.cpp" />
+    <ClCompile Include="BandDistortion.cpp" />
+    <ClCompile Include="BandPass.cpp" />
+    <ClCompile Include="Distortion.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="GainController.cpp" />
     <ClCompile Include="Multifuzz.cpp" />
     <ClCompile Include="MultifuzzEditor.cpp" />

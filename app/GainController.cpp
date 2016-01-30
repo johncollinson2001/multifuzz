@@ -14,24 +14,28 @@ GainController::GainController(MultifuzzParameterManager* parameterManager, char
 GainController::~GainController() { }
 
 // Process audio
-void GainController::ProcessAudio(double* inL, double* inR, double* outL, double* outR) {
+void GainController::ProcessAudio(double* inL, double* inR, double* outL, double* outR) 
+{
 	// Value pointed to by output = value pointed to by input multiplied by mGain
 	*outL = *inL * mGain;
 	*outR = *inR * mGain;
 }
 
 // Handle parameter changes
-void GainController::OnParamChange(int parameterIndex, double newValue) {
+void GainController::OnParamChange(int parameterIndex, double newValue) 
+{
 	// Ensure the parameter that has changed is overdrive
-	if (parameterIndex == mParameter) {
+	if (parameterIndex == mParameter) 
+	{
 		// Set the gain member - convert db to amp
 		mGain = (float)pow(10, (newValue / 20));
 	}
 }
 
 // Initialise parameters
-void GainController::InitialiseParameters() {
-	// Input Gain
+void GainController::InitialiseParameters() 
+{
+	// Gain
 	Parameter gain;
 	gain.Id = mParameter;
 	gain.Name = mName;

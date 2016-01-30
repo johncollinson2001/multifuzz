@@ -4,26 +4,77 @@
 #include <math.h>
 
 // Construct
-Filter::Filter(EFilterType filterType, int sampleRate, double frequency, double resonance)
-	: mFilterType(filterType), mSampleRate(sampleRate), mFrequency(frequency), mResonance(resonance) {
-
-}
+Filter::Filter(EFilterType filterType, int sampleRate)
+	: mFilterType(filterType), mSampleRate(sampleRate) 
+{ }
 
 // Destruct
 Filter::~Filter() { }
 
 // Process audio
-void Filter::ProcessAudio(double* inL, double* inR, double* outL, double* outR) {
-
+void Filter::ProcessAudio(double* inL, double* inR, double* outL, double* outR) 
+{
+	// Process the left and right channels seperately
+	ProcessChannel(inL, outL, mInHistoryL, mOutHistoryL);
+	ProcessChannel(inL, outL, mInHistoryR, mOutHistoryR);
 }
 
 // Process a single channel
-void Filter::ProcessChannel(double* in, double* out, double inputHistory[], double outputHistory[]) {
+void Filter::ProcessChannel(double* in, double* out, double inHistory[], double outHistory[]) 
+{
+	// Calculate new sample
+	*out = mA0 * *in
+		+ mA1 * inHistory[0]
+		+ mA2 * inHistory[1]
+		- mA3 * outHistory[0]
+		- mA4 * outHistory[1];
 
+	// Shift along the in buffer
+	inHistory[1] = inHistory[0];
+	inHistory[0] = *in;
+
+	// Shift along the out buffer            
+	outHistory[1] = outHistory[0];
+	outHistory[0] = *out;
+}
+
+// Sets the sample rate member
+void Filter::SetSampleRate(int sampleRate) 
+{
+	mSampleRate = sampleRate;
+	UpdateCoefficients();
+}
+
+// Sets the frequency member
+void Filter::SetFrequency(double frequency) 
+{
+	// Ensure the frequency is set between the supported bounds
+	if (frequency < LowestFrequency) 
+	{
+		mFrequency = LowestFrequency;
+	} 
+	else if (frequency > HighestFrequency) 
+	{
+		mFrequency = HighestFrequency;
+	} 
+	else
+	{
+		mFrequency = frequency;
+	}
+	
+	UpdateCoefficients();
+}
+
+// Sets the resonance member
+void Filter::SetResonance(double resonance) 
+{
+	mResonance = resonance;
+	UpdateCoefficients();
 }
 
 // Updates the coefficients that process the audio
-void Filter::UpdateCoefficients() {
+void Filter::UpdateCoefficients() 
+{
 	double w0 = 2 * M_PI * mFrequency / mSampleRate;
 	double cosw0 = cos(w0);
 	double alpha = sin(w0) / (2 * mResonance);

@@ -5,7 +5,8 @@
 
 using namespace std;
 
-namespace LayoutConstants {
+namespace LayoutConstants 
+{
 	const int kGuiWidth = GUI_WIDTH;
 	const int kGuiHeight = GUI_HEIGHT;
 	const string kGlobalFont = "Courier New";
