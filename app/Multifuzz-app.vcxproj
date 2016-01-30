@@ -284,7 +284,7 @@
     <ClInclude Include="EParameters.h" />
     <ClInclude Include="Filter.h" />
     <ClInclude Include="GainController.h" />
-    <ClInclude Include="IAudioProcessor.h" />
+    <ClInclude Include="IDigitalSignalProcessor.h" />
     <ClInclude Include="IParameterListener.h" />
     <ClInclude Include="IPeakListener.h" />
     <ClInclude Include="LayoutConstants.h" />

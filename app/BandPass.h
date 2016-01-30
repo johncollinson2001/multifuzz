@@ -5,20 +5,20 @@
 #include "Parameter.h"
 #include "Filter.h"
 #include "IParameterListener.h"
-#include "IAudioProcessor.h"
+#include "IDigitalSignalProcessor.h"
 
 // Forward declarations
 class MultifuzzParameterManager;
 class Filter;
 
-class BandPass : IParameterListener, IAudioProcessor
+class BandPass : IParameterListener, IDigitalSignalProcessor
 {
 public:
 	BandPass(MultifuzzParameterManager* parameterManager, char* name,
 		double sampleRate, EParameters frequencyParameter, 
 		EParameters widthParameter, EParameters resonanceParameter);
 	virtual ~BandPass();
-	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
+	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);
 
 private:	

@@ -2,7 +2,7 @@
 
 #include "EParameters.h"
 #include "MultifuzzParameterManager.h"
-#include "IAudioProcessor.h"
+#include "IDigitalSignalProcessor.h"
 #include "BandPass.h"
 #include "Distortion.h"
 
@@ -11,14 +11,14 @@ class MultifuzzParameterManager;
 class BandPass;
 class Distortion;
 
-class BandDistortion : IAudioProcessor
+class BandDistortion : IDigitalSignalProcessor
 {
 public:
 	BandDistortion(MultifuzzParameterManager* parameterManager, char* name, double sampleRate,
 		EParameters overdriveParameter, EParameters frequencyParameter, 
 		EParameters widthParameter, EParameters resonanceParameter);
 	~BandDistortion();
-	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
+	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 
 private:
 	char* mName;

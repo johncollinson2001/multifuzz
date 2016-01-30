@@ -4,17 +4,17 @@
 #include "EParameters.h"
 #include "Parameter.h"
 #include "IParameterListener.h"
-#include "IAudioProcessor.h"
+#include "IDigitalSignalProcessor.h"
 
 // Forward declarations
 class MultifuzzParameterManager;
 
-class Distortion : IParameterListener, IAudioProcessor
+class Distortion : IParameterListener, IDigitalSignalProcessor
 {
 public:
 	Distortion(MultifuzzParameterManager* parameterManager, char* name, EParameters parameter);
 	virtual ~Distortion();
-	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
+	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);
 
 private:

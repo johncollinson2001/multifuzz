@@ -28,17 +28,17 @@ BandDistortion::~BandDistortion()
 }
 
 // Process audio
-void BandDistortion::ProcessAudio(double* inL, double* inR, double* outL, double* outR)
+void BandDistortion::ProcessAudio(double inL, double inR, double* outL, double* outR)
 {
-	double* l = inL;
-	double* r = inR;
+	double l = inL;
+	double r = inR;
 
 	// Send audio through the band pass
-	mBandPass->ProcessAudio(l, r, l, r);
+	mBandPass->ProcessAudio(l, r, &l, &r);
 
 	// Send audio through the distortion
-	//mDistortion->ProcessAudio(l, r, l, r);
+	mDistortion->ProcessAudio(l, r, &l, &r);
 
-	*outL = *l;
-	*outR = *r;
+	*outL = l;
+	*outR = r;
 }

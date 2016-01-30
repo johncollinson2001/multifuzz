@@ -14,11 +14,11 @@ GainController::GainController(MultifuzzParameterManager* parameterManager, char
 GainController::~GainController() { }
 
 // Process audio
-void GainController::ProcessAudio(double* inL, double* inR, double* outL, double* outR) 
+void GainController::ProcessAudio(double inL, double inR, double* outL, double* outR) 
 {
 	// Value pointed to by output = value pointed to by input multiplied by mGain
-	*outL = *inL * mGain;
-	*outR = *inR * mGain;
+	*outL = inL * mGain;
+	*outR = inR * mGain;
 }
 
 // Handle parameter changes

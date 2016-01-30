@@ -16,20 +16,23 @@ Distortion::Distortion(MultifuzzParameterManager* parameterManager, char* name, 
 Distortion::~Distortion() { }
 
 // Process audio
-void Distortion::ProcessAudio(double* inL, double* inR, double* outL, double* outR) 
+void Distortion::ProcessAudio(double inL, double inR, double* outL, double* outR) 
 {
-	// Value pointed to by output = value pointed to by input or overdrive
-	*outL = *inL >= 0
-		? fmin(*inL, mOverdrive)
-		: fmin(*inL, -mOverdrive);
+	// Get the value that we want to limit the amplitude by
+	double underdrive = 1 - mOverdrive;
 
-	*outR = *inR >= 0
-		? fmin(*inR, mOverdrive)
-		: fmin(*inR, -mOverdrive);
+	// Value pointed to by output = value pointed to by input or overdrive
+	*outL = inL >= 0
+		? fmin(inL, underdrive)
+		: fmax(inL, -underdrive);
+
+	*outR = inR >= 0
+		? fmin(inR, underdrive)
+		: fmax(inR, -underdrive);
 
 	// Increase the volumeof the saturated signal
-	*outL /= mOverdrive;
-	*outR /= mOverdrive;
+	*outL /= underdrive;
+	*outR /= underdrive;
 }
 
 // Handle parameter changes
@@ -50,9 +53,9 @@ void Distortion::InitialiseParameters()
 	Parameter overdrive;
 	overdrive.Id = mParameter;
 	overdrive.Name = string(mName) + " Overdrive";
-	overdrive.DefaultValue = 100.0;
-	overdrive.MinValue = 0.01;
-	overdrive.MaxValue = 100.0;
+	overdrive.DefaultValue = 0.0;
+	overdrive.MinValue = 0.0;
+	overdrive.MaxValue = 99.99;
 	overdrive.Step = 0.01;
 	overdrive.Label = "%";
 	overdrive.Group = "";

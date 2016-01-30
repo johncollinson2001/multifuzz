@@ -98,9 +98,6 @@
     <ClInclude Include="IParameterListener.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="IAudioProcessor.h">
-      <Filter>Interfaces</Filter>
-    </ClInclude>
     <ClInclude Include="BandDistortion.h">
       <Filter>Dsp</Filter>
     </ClInclude>
@@ -118,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="AudioProcessor.h" />
     <ClInclude Include="IPeakListener.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IDigitalSignalProcessor.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
   </ItemGroup>

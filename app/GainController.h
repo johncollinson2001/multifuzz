@@ -5,19 +5,19 @@
 #include "EParameters.h"
 #include "Parameter.h"
 #include "IParameterListener.h"
-#include "IAudioProcessor.h"
+#include "IDigitalSignalProcessor.h"
 
 // Forward declarations
 class MultifuzzParameterManager;
 
 using namespace std;
 
-class GainController : IParameterListener, IAudioProcessor
+class GainController : IParameterListener, IDigitalSignalProcessor
 {
 public:
 	GainController(MultifuzzParameterManager* parameterManager, char* name, EParameters parameter);
 	virtual ~GainController();
-	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
+	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);
 
 private:

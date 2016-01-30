@@ -1,14 +1,14 @@
 #pragma once
 
 #include "EFilterType.h"
-#include "IAudioProcessor.h"
+#include "IDigitalSignalProcessor.h"
 
-class Filter : IAudioProcessor
+class Filter : IDigitalSignalProcessor
 {
 public:
 	Filter(EFilterType filterType, double sampleRate);
 	virtual ~Filter();
-	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
+	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 	void SetSampleRate(double sampleRate);
 	void SetFrequency(double frequency);
 	void SetResonance(double resonance);
@@ -31,6 +31,6 @@ private:
 	// Coefficients
 	double mA0 = 0, mA1 = 0, mA2 = 0, mA3 = 0, mA4 = 0;
 
-	void ProcessChannel(double* in, double* out, double inHistory[], double outHistory[]);
+	void ProcessChannel(double in, double* out, double inHistory[], double outHistory[]);
 	void UpdateCoefficients();
 };

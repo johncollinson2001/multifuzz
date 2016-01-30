@@ -12,18 +12,18 @@ Filter::Filter(EFilterType filterType, double sampleRate)
 Filter::~Filter() { }
 
 // Process audio
-void Filter::ProcessAudio(double* inL, double* inR, double* outL, double* outR) 
+void Filter::ProcessAudio(double inL, double inR, double* outL, double* outR) 
 {
 	// Process the left and right channels seperately
 	ProcessChannel(inL, outL, mInHistoryL, mOutHistoryL);
-	ProcessChannel(inL, outL, mInHistoryR, mOutHistoryR);
+	ProcessChannel(inR, outR, mInHistoryR, mOutHistoryR);
 }
 
 // Process a single channel
-void Filter::ProcessChannel(double* in, double* out, double inHistory[], double outHistory[]) 
+void Filter::ProcessChannel(double in, double* out, double inHistory[], double outHistory[]) 
 {
 	// Calculate new sample
-	*out = mA0 * *in
+	*out = mA0 * in
 		+ mA1 * inHistory[0]
 		+ mA2 * inHistory[1]
 		- mA3 * outHistory[0]
@@ -31,7 +31,7 @@ void Filter::ProcessChannel(double* in, double* out, double inHistory[], double 
 
 	// Shift along the in buffer
 	inHistory[1] = inHistory[0];
-	inHistory[0] = *in;
+	inHistory[0] = in;
 
 	// Shift along the out buffer            
 	outHistory[1] = outHistory[0];

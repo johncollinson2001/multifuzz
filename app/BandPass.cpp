@@ -28,17 +28,17 @@ BandPass::~BandPass()
 }
 
 // Process audio
-void BandPass::ProcessAudio(double* inL, double* inR, double* outL, double* outR)
+void BandPass::ProcessAudio(double inL, double inR, double* outL, double* outR)
 {
-	double* l = inL;
-	double* r = inR;
+	double l = inL;
+	double r = inR;
 
 	// Send audio through the low then high filter
-	mLowPassFilter->ProcessAudio(l, r, l, r);
-	mHighPassFilter->ProcessAudio(l, r, l, r);
+	mLowPassFilter->ProcessAudio(l, r, &l, &r);
+	mHighPassFilter->ProcessAudio(l, r, &l, &r);
 
-	*outL = *l;
-	*outR = *r;
+	*outL = l;
+	*outR = r;
 }
 
 // Handle parameter changes
@@ -49,7 +49,7 @@ void BandPass::ReceiveParameterChangeNotification(int parameterIndex, double new
 	{
 		mFrequency = newValue;
 		mHighPassFilter->SetFrequency(HighPassFrequency());
-		mLowPassFilter->SetResonance(LowPassFrequency());
+		mLowPassFilter->SetFrequency(LowPassFrequency());
 	}
 	else if (parameterIndex == mResonanceParameter)
 	{
@@ -61,7 +61,7 @@ void BandPass::ReceiveParameterChangeNotification(int parameterIndex, double new
 	{
 		mWidth = newValue;
 		mHighPassFilter->SetFrequency(HighPassFrequency());
-		mLowPassFilter->SetResonance(LowPassFrequency());
+		mLowPassFilter->SetFrequency(LowPassFrequency());
 	}
 }
 
@@ -90,32 +90,32 @@ void BandPass::InitialiseParameters()
 	frequency.Step = 0.01;
 	frequency.Label = "hz";
 	frequency.Group = "";
-	frequency.Shape = 1.0;
+	frequency.Shape = 4.1;
 	mParameters.push_back(frequency);
 
 	// Width
 	Parameter width;
 	width.Id = mWidthParameter;
 	width.Name = string(mName) + " Width";
-	width.DefaultValue = 100.0;
+	width.DefaultValue = 1000;
 	width.MinValue = 0.1;
-	width.MaxValue = 1000.0;
+	width.MaxValue = 5000.0;
 	width.Step = 0.01;
 	width.Label = "hz";
 	width.Group = "";
-	width.Shape = 1.0;
+	width.Shape = 2.4;
 	mParameters.push_back(width);
 
 	// Resonance
 	Parameter resonance;
 	resonance.Id = mResonanceParameter;
 	resonance.Name = string(mName) + " Resonance";
-	resonance.DefaultValue = 1.0;
+	resonance.DefaultValue = 2.0;
 	resonance.MinValue = 0.1;
-	resonance.MaxValue = 10.0;
+	resonance.MaxValue = 5.0;
 	resonance.Step = 0.01;
 	resonance.Label = "q";
 	resonance.Group = "";
-	resonance.Shape = 1.0;
+	resonance.Shape = 1.4;
 	mParameters.push_back(resonance);
 }

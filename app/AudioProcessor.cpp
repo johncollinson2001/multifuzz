@@ -62,33 +62,35 @@ void AudioProcessor::ProcessDoubleReplacing(double **inputs, double **outputs, i
 
 	// Iterate samples
 	for (int s = 0; s < nFrames; ++s, ++inL, ++inR, ++outL, ++outR) {
-		// Grab the sample
-		double* sampleL = inL;
-		double* sampleR = inR;
+		//// Grab the sample
+		double sampleL = *inL;
+		double sampleR = *inR;
 
 		// Process input gain and capture peaks
-		mInputGainController->ProcessAudio(sampleL, sampleR, sampleL, sampleR);
-		inPeakL = IPMAX(inPeakL, fabs(*sampleL));
-		inPeakR = IPMAX(inPeakR, fabs(*sampleR));
+		mInputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
+		inPeakL = IPMAX(inPeakL, fabs(sampleL));
+		inPeakR = IPMAX(inPeakR, fabs(sampleR));
 
-		// Process band distortions
-		// Iterate over the band distortion pointers and process them
-		/*for (list<BandDistortion*>::iterator iterator = mBandDistortions.begin();
-		iterator != mBandDistortions.end();
-			iterator++)
-		{
-			BandDistortion* bandDistortion = (*iterator);
-			delete bandDistortion;
-		}
-*/
+		//// Process band distortions
+		//// Iterate over the band distortion pointers and process them
+		///*for (list<BandDistortion*>::iterator iterator = mBandDistortions.begin();
+		//iterator != mBandDistortions.end();
+		//	iterator++)
+		//{
+		//	BandDistortion* bandDistortion = (*iterator);
+		//	delete bandDistortion;
+		//}
+		//*/
+		mBandDistortions.front()->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
+
 		// Process output gain and capture peaks
-		mOutputGainController->ProcessAudio(sampleL, sampleR, sampleL, sampleR);
-		outPeakL = IPMAX(outPeakL, fabs(*sampleL));
-		outPeakR = IPMAX(outPeakR, fabs(*sampleR));
+		mOutputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
+		outPeakL = IPMAX(outPeakL, fabs(sampleL));
+		outPeakR = IPMAX(outPeakR, fabs(sampleR));
 
 		// Assign the sample to the output
-		*outL = *sampleL;
-		*outR = *sampleR;
+		*outL = sampleL;
+		*outR = sampleR;
 	}
 
 	// Send peak change notification
