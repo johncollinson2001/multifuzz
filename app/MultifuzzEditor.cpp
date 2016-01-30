@@ -1,14 +1,19 @@
 #include "MultifuzzEditor.h"
 
 // Construct
-MultifuzzEditor::MultifuzzEditor(Multifuzz* plugin) :
-	mPlugin(plugin) { }
+MultifuzzEditor::MultifuzzEditor(Multifuzz* plugin, AudioProcessor* audioProcessor) 
+	: mPlugin(plugin) 
+{ 
+	// Register as a peak listener with the audio processor so we receive notifications
+	// of peak changes and can update the peak meters
+	audioProcessor->RegisterPeakListener(this);
+}
 
 // Destruct
 MultifuzzEditor::~MultifuzzEditor() { }
 
 // Receive a notification that the peak values have changed
-void MultifuzzEditor::NotifyOfPeakChange(double inPeakL, double inPeakR, double outPeakL, double outPeakR) 
+void MultifuzzEditor::ReceivePeakChangeNotification(double inPeakL, double inPeakR, double outPeakL, double outPeakR) 
 {
 	if (mPlugin->GetGUI())
 	{

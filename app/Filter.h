@@ -6,10 +6,10 @@
 class Filter : IAudioProcessor
 {
 public:
-	Filter(EFilterType filterType, int sampleRate);
+	Filter(EFilterType filterType, double sampleRate);
 	virtual ~Filter();
 	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
-	void SetSampleRate(int sampleRate);
+	void SetSampleRate(double sampleRate);
 	void SetFrequency(double frequency);
 	void SetResonance(double resonance);
 
@@ -18,7 +18,7 @@ private:
 	const int HighestFrequency = 22000;
 	double mFrequency = LowestFrequency;
 	double mResonance = 0;
-	int mSampleRate = 0;
+	double mSampleRate = 0;
 	EFilterType mFilterType;
 
 	// Array of input values, latest are in front

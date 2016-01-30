@@ -116,6 +116,10 @@
     <ClInclude Include="EFilterType.h">
       <Filter>Enums</Filter>
     </ClInclude>
+    <ClInclude Include="AudioProcessor.h" />
+    <ClInclude Include="IPeakListener.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.cpp">
@@ -167,6 +171,7 @@
     <ClCompile Include="Distortion.cpp">
       <Filter>Dsp</Filter>
     </ClCompile>
+    <ClCompile Include="AudioProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Multifuzz.rc">

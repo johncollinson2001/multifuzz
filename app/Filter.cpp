@@ -4,7 +4,7 @@
 #include <math.h>
 
 // Construct
-Filter::Filter(EFilterType filterType, int sampleRate)
+Filter::Filter(EFilterType filterType, double sampleRate)
 	: mFilterType(filterType), mSampleRate(sampleRate) 
 { }
 
@@ -39,7 +39,7 @@ void Filter::ProcessChannel(double* in, double* out, double inHistory[], double 
 }
 
 // Sets the sample rate member
-void Filter::SetSampleRate(int sampleRate) 
+void Filter::SetSampleRate(double sampleRate) 
 {
 	mSampleRate = sampleRate;
 	UpdateCoefficients();

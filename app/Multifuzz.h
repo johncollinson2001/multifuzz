@@ -10,13 +10,13 @@
 #include "MultifuzzEditor.h"
 #include "LayoutConstants.h"
 #include "EParameters.h"
-#include "GainController.h"
+#include "AudioProcessor.h"
 
 // Forward declarations
 class MultifuzzEditor;
 class MultifuzzPresets;
 class MultifuzzParameterManager;
-class GainController;
+class AudioProcessor;
 
 class Multifuzz : public IPlug
 {
@@ -33,10 +33,7 @@ private:
 	MultifuzzParameterManager* mMultifuzzParameterManager;
 	MultifuzzPresets* mMultifuzzPresets;
 	MultifuzzEditor* mMultifuzzEditor;
-
-	// DSPs - TODO: move to audio processor class
-	GainController* mInputGainController;
-	GainController* mOutputGainController;
+	AudioProcessor* mAudioProcessor;
 
 	void CreateParameters();
 	void CreatePresets();

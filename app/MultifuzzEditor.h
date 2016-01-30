@@ -6,17 +6,20 @@
 #include "EParameters.h"
 #include "PeakMeter.h"
 #include "MultifuzzKnob.h"
+#include "AudioProcessor.h"
+#include "IPeakListener.h"
 
 // Forward declarations
 class Multifuzz;
+class AudioProcessor;
 
-class MultifuzzEditor
+class MultifuzzEditor : IPeakListener
 {
 public:
-	MultifuzzEditor(Multifuzz* plugin);
-	~MultifuzzEditor();
+	MultifuzzEditor(Multifuzz* plugin, AudioProcessor* audioProcessor);
+	virtual ~MultifuzzEditor();
 	IGraphics* Make(IGraphics* graphics);
-	void NotifyOfPeakChange(double inPeakL, double inPeakR, double outPeakL, double outPeakR);
+	virtual void ReceivePeakChangeNotification(double inPeakL, double inPeakR, double outPeakL, double outPeakR);
 
 private:
 	int mInputPeakIdxL = 0, mInputPeakIdxR = 0, mOutputPeakIdxL = 0, mOutputPeakIdxR = 0;

@@ -33,7 +33,7 @@ void Distortion::ProcessAudio(double* inL, double* inR, double* outL, double* ou
 }
 
 // Handle parameter changes
-void Distortion::OnParamChange(int parameterIndex, double newValue) 
+void Distortion::ReceiveParameterChangeNotification(int parameterIndex, double newValue) 
 {
 	// Ensure the parameter that has changed is overdrive
 	if (parameterIndex == mParameter) 

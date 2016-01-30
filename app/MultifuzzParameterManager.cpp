@@ -36,8 +36,8 @@ void MultifuzzParameterManager::RegisterParameterListener(IParameterListener* li
 	mParameterMap[listener] = parameters;
 }
 
-// Handles a parameter change
-void MultifuzzParameterManager::OnParamChange(int parameterIndex) 
+// Sends a paremeter change notification to all the listeners
+void MultifuzzParameterManager::SendParameterChangeNotification(int parameterIndex)
 {
 	// Iterate over the listeners in the map
 	for (map<IParameterListener*, list<Parameter>*>::iterator mapIterator = mParameterMap.begin();
@@ -55,7 +55,7 @@ void MultifuzzParameterManager::OnParamChange(int parameterIndex)
 			// If the listener is interested in this parameter index, then call the listener
 			Parameter parameter = (*paramIterator);
 			if (parameter.Id == parameterIndex) {
-				listener->OnParamChange(parameterIndex, mPlugin->GetParam(parameterIndex)->Value());
+				listener->ReceiveParameterChangeNotification(parameterIndex, mPlugin->GetParam(parameterIndex)->Value());
 			}
 		}
 	}

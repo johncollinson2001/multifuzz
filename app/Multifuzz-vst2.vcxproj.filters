@@ -29,6 +29,7 @@
     <ClCompile Include="Filter.cpp">
       <Filter>Dsp</Filter>
     </ClCompile>
+    <ClCompile Include="AudioProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h">
@@ -80,6 +81,10 @@
     </ClInclude>
     <ClInclude Include="Filter.h">
       <Filter>Dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioProcessor.h" />
+    <ClInclude Include="IPeakListener.h">
+      <Filter>Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

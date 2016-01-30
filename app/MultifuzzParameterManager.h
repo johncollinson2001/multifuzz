@@ -18,7 +18,7 @@ public:
 	MultifuzzParameterManager(Multifuzz* plugin);
 	~MultifuzzParameterManager();
 	list<Parameter> GetParameters();
-	void OnParamChange(int parameterIndex);
+	void SendParameterChangeNotification(int parameterIndex);
 	void RegisterParameterListener(IParameterListener* listener, list<Parameter>* parameters);
 
 private:

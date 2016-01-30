@@ -1,7 +1,7 @@
 #include "BandDistortion.h"
 
 // Construct
-BandDistortion::BandDistortion(MultifuzzParameterManager* parameterManager, char* name, int sampleRate,
+BandDistortion::BandDistortion(MultifuzzParameterManager* parameterManager, char* name, double sampleRate,
 	EParameters overdriveParameter, EParameters frequencyParameter,
 	EParameters widthParameter, EParameters resonanceParameter)
 	: mName(name)
@@ -37,7 +37,7 @@ void BandDistortion::ProcessAudio(double* inL, double* inR, double* outL, double
 	mBandPass->ProcessAudio(l, r, l, r);
 
 	// Send audio through the distortion
-	mDistortion->ProcessAudio(l, r, l, r);
+	//mDistortion->ProcessAudio(l, r, l, r);
 
 	*outL = *l;
 	*outR = *r;

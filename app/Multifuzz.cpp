@@ -3,14 +3,15 @@
 
 // Construct
 Multifuzz::Multifuzz(IPlugInstanceInfo instanceInfo)
-	: IPLUG_CTOR(EParameters::NumberOfParameters, MultifuzzPresets::kNumberOfPresets , instanceInfo),
-	mMultifuzzParameterManager(new MultifuzzParameterManager(this)),
-	mMultifuzzPresets(new MultifuzzPresets(this)),
-	mMultifuzzEditor(new MultifuzzEditor(this)),
-	mInputGainController(new GainController(mMultifuzzParameterManager, "Input Gain", EParameters::InputGain)),
-	mOutputGainController(new GainController(mMultifuzzParameterManager, "Output Gain", EParameters::OutputGain))
+	: IPLUG_CTOR(EParameters::NumberOfParameters, MultifuzzPresets::kNumberOfPresets , instanceInfo)	
 {
 	TRACE;	
+
+	// Create the component parts of the plugin
+	mMultifuzzParameterManager = new MultifuzzParameterManager(this);
+	mAudioProcessor = new AudioProcessor(this, mMultifuzzParameterManager, GetSampleRate());
+	mMultifuzzPresets = new MultifuzzPresets(this);
+	mMultifuzzEditor = new MultifuzzEditor(this, mAudioProcessor);
 
 	CreateParameters();
 	CreatePresets();
@@ -23,47 +24,16 @@ Multifuzz::~Multifuzz()
 	delete mMultifuzzParameterManager;
 	delete mMultifuzzPresets;
 	delete mMultifuzzEditor;
-	delete mInputGainController;
-	delete mOutputGainController;
+	delete mAudioProcessor;
 }
 
 // Processes audio information at the sample rate (nFrames)
 void Multifuzz::ProcessDoubleReplacing(double **inputs, double **outputs, int nFrames)
 {
 	// Mutex is already locked for us.
-	
-	// Pull out values 
-	double* inL = inputs[0];
-	double* inR = inputs[1];
-	double* outL = outputs[0];
-	double* outR = outputs[1];
-	double inPeakL = 0.0, inPeakR = 0.0, outPeakL = 0.0, outPeakR = 0.0;
-	
-	// Iterate samples
-	for (int s = 0; s < nFrames; ++s, ++inL, ++inR, ++outL, ++outR) {		
-		// Grab the sample
-		double* sampleL = inL;
-		double* sampleR = inR;
 
-		// Process input gain and capture peaks
-		mInputGainController->ProcessAudio(sampleL, sampleR, sampleL, sampleR);
-		inPeakL = IPMAX(inPeakL, fabs(*sampleL));
-		inPeakR = IPMAX(inPeakR, fabs(*sampleR));
-
-		// Process band distortions
-
-		// Process output gain and capture peaks
-		mOutputGainController->ProcessAudio(sampleL, sampleR, sampleL, sampleR);
-		outPeakL = IPMAX(outPeakL, fabs(*sampleL));
-		outPeakR = IPMAX(outPeakR, fabs(*sampleR));
-
-		// Assign the sample to the output
-		*outL = *sampleL;
-		*outR = *sampleR;			
-	}
-
-	// Send peaks to the 
-	mMultifuzzEditor->NotifyOfPeakChange(inPeakL, inPeakR, outPeakL, outPeakR);
+	// Call audio processor
+	mAudioProcessor->ProcessDoubleReplacing(inputs, outputs, nFrames);
 }
 
 // Triggered when sample rate changed
@@ -71,6 +41,8 @@ void Multifuzz::Reset()
 {
 	TRACE;
 	IMutexLock lock(this);
+
+	// TODO: Send sample rate change to the audio processor	
 }
 
 // Triggered when the parameters change
@@ -80,7 +52,7 @@ void Multifuzz::OnParamChange(int parameterIndex)
 	IMutexLock lock(this);
 
 	// Call the parameter class to handle the change
-	mMultifuzzParameterManager->OnParamChange(parameterIndex);
+	mMultifuzzParameterManager->SendParameterChangeNotification(parameterIndex);
 }
 
 // Creates the parameters

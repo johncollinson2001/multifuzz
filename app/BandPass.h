@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Multifuzz.h"
 #include "MultifuzzParameterManager.h"
 #include "EParameters.h"
 #include "Parameter.h"
@@ -8,20 +7,23 @@
 #include "IParameterListener.h"
 #include "IAudioProcessor.h"
 
+// Forward declarations
+class MultifuzzParameterManager;
+class Filter;
+
 class BandPass : IParameterListener, IAudioProcessor
 {
 public:
 	BandPass(MultifuzzParameterManager* parameterManager, char* name,
-		int sampleRate, EParameters frequencyParameter, 
+		double sampleRate, EParameters frequencyParameter, 
 		EParameters widthParameter, EParameters resonanceParameter);
 	virtual ~BandPass();
 	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
-	virtual void OnParamChange(int parameterIndex, double newValue);
+	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);
 
 private:	
 	MultifuzzParameterManager* mParameterManager;
 	char* mName;
-	int mSampleRate = 0;
 	EParameters mFrequencyParameter;
 	EParameters mWidthParameter;
 	EParameters mResonanceParameter;

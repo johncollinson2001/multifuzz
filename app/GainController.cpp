@@ -22,7 +22,7 @@ void GainController::ProcessAudio(double* inL, double* inR, double* outL, double
 }
 
 // Handle parameter changes
-void GainController::OnParamChange(int parameterIndex, double newValue) 
+void GainController::ReceiveParameterChangeNotification(int parameterIndex, double newValue) 
 {
 	// Ensure the parameter that has changed is overdrive
 	if (parameterIndex == mParameter) 

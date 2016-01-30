@@ -4,14 +4,14 @@ using namespace std;
 
 // Construct
 BandPass::BandPass(MultifuzzParameterManager* parameterManager, char* name,
-	int sampleRate, EParameters frequencyParameter,
+	double sampleRate, EParameters frequencyParameter,
 	EParameters widthParameter, EParameters resonanceParameter)
-	: mParameterManager(parameterManager), mName(name), mSampleRate(sampleRate),
-	mFrequencyParameter(frequencyParameter), mWidthParameter(widthParameter), mResonanceParameter(resonanceParameter)
+	: mParameterManager(parameterManager), mName(name), mFrequencyParameter(frequencyParameter), 
+	mWidthParameter(widthParameter), mResonanceParameter(resonanceParameter)
 {
 	// Create high and low pass
-	mHighPassFilter = new Filter(EFilterType::HighPass, mSampleRate);
-	mLowPassFilter = new Filter(EFilterType::LowPass, mSampleRate);
+	mHighPassFilter = new Filter(EFilterType::HighPass, sampleRate);
+	mLowPassFilter = new Filter(EFilterType::LowPass, sampleRate);
 
 	// Initialise the parameters
 	InitialiseParameters();
@@ -42,7 +42,7 @@ void BandPass::ProcessAudio(double* inL, double* inR, double* outL, double* outR
 }
 
 // Handle parameter changes
-void BandPass::OnParamChange(int parameterIndex, double newValue)
+void BandPass::ReceiveParameterChangeNotification(int parameterIndex, double newValue)
 {
 	// Find out which parameter has changed
 	if (parameterIndex == mFrequencyParameter)

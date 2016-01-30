@@ -1,7 +1,6 @@
 #pragma once
 
 #include <list>
-#include "Multifuzz.h"
 #include "MultifuzzParameterManager.h"
 #include "EParameters.h"
 #include "Parameter.h"
@@ -9,7 +8,6 @@
 #include "IAudioProcessor.h"
 
 // Forward declarations
-class Multifuzz;
 class MultifuzzParameterManager;
 
 using namespace std;
@@ -20,7 +18,7 @@ public:
 	GainController(MultifuzzParameterManager* parameterManager, char* name, EParameters parameter);
 	virtual ~GainController();
 	virtual void ProcessAudio(double* inL, double* inR, double* outL, double* outR);
-	virtual void OnParamChange(int parameterIndex, double newValue);
+	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);
 
 private:
 	double mGain = 0;
