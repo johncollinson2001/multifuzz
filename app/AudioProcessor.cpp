@@ -6,32 +6,32 @@ AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* par
 	mOutputGainController(new GainController(parameterManager, "Output Gain", EParameters::OutputGain))
 {
 	// Create band distortion units
-	mBandDistortions.push_back(new BandDistortion(
-		parameterManager, 
+	mBandDistortions[0] = new BandDistortion(
+		parameterManager,
 		"Band One",
 		sampleRate,
 		EParameters::BandOneOverdrive,
 		EParameters::BandOneFrequency,
 		EParameters::BandOneWidth,
-		EParameters::BandOneResonance));
+		EParameters::BandOneResonance);
 
-	mBandDistortions.push_back(new BandDistortion(
+	mBandDistortions[1] = new BandDistortion(
 		parameterManager,
 		"Band Two",
 		sampleRate,
 		EParameters::BandTwoOverdrive,
 		EParameters::BandTwoFrequency,
 		EParameters::BandTwoWidth,
-		EParameters::BandTwoResonance));
+		EParameters::BandTwoResonance);
 
-	mBandDistortions.push_back(new BandDistortion(
+	mBandDistortions[2] = new BandDistortion(
 		parameterManager,
 		"Band Three",
 		sampleRate,
 		EParameters::BandThreeOverdrive,
 		EParameters::BandThreeFrequency,
 		EParameters::BandThreeWidth,
-		EParameters::BandThreeResonance));
+		EParameters::BandThreeResonance);
 }
 
 // Destruct
@@ -41,12 +41,9 @@ AudioProcessor::~AudioProcessor()
 	delete mOutputGainController;
 
 	// Iterate overthe band distortion pointers and delete them
-	for (list<BandDistortion*>::iterator iterator = mBandDistortions.begin();
-		iterator != mBandDistortions.end();
-		iterator++)
+	for (int i = 0; i < NumberOfBandDistortions; i++)
 	{
-		BandDistortion* bandDistortion = (*iterator);
-		delete bandDistortion;
+		delete mBandDistortions[i];
 	}
 }
 
@@ -72,16 +69,7 @@ void AudioProcessor::ProcessDoubleReplacing(double **inputs, double **outputs, i
 		inPeakR = IPMAX(inPeakR, fabs(sampleR));
 
 		//// Process band distortions
-		//// Iterate over the band distortion pointers and process them
-		///*for (list<BandDistortion*>::iterator iterator = mBandDistortions.begin();
-		//iterator != mBandDistortions.end();
-		//	iterator++)
-		//{
-		//	BandDistortion* bandDistortion = (*iterator);
-		//	delete bandDistortion;
-		//}
-		//*/
-		mBandDistortions.front()->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
+		ProcessBandDistortions(sampleL, sampleR, &sampleL, &sampleR);
 
 		// Process output gain and capture peaks
 		mOutputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
@@ -103,12 +91,33 @@ void AudioProcessor::RegisterPeakListener(IPeakListener* listener)
 	mPeakListeners.push_back(listener);
 }
 
+// Processes the band distortions
+void AudioProcessor::ProcessBandDistortions(double inL, double inR, double* outL, double* outR)
+{
+	double mixL = 0;
+	double mixR = 0;
+
+	// Iterate over band distortions and add the output to the mix
+	for (int i = 0; i < NumberOfBandDistortions; i++)
+	{
+		double l = 0;
+		double r = 0;
+		mBandDistortions[i]->ProcessAudio(inL, inR, &l, &r);
+		mixL += l;
+		mixR += r;
+	}
+
+	// Assign the mix to the output
+	*outL = mixL;
+	*outR = mixR;
+}
+
 // Send a peak change notification to all the listeners
 void AudioProcessor::SendPeakChangeNotification(double inPeakL, double inPeakR, double outPeakL, double outPeakR)
 {
 	// Iterate over the listeners
 	for (list<IPeakListener*>::iterator iterator = mPeakListeners.begin();
-		iterator != mPeakListeners.end();
+	iterator != mPeakListeners.end();
 		iterator++)
 	{
 		// Send the notification to the listener

@@ -90,7 +90,7 @@ void BandPass::InitialiseParameters()
 	frequency.Step = 0.01;
 	frequency.Label = "hz";
 	frequency.Group = "";
-	frequency.Shape = 4.1;
+	frequency.Shape = 4.21933;
 	mParameters.push_back(frequency);
 
 	// Width
@@ -103,7 +103,7 @@ void BandPass::InitialiseParameters()
 	width.Step = 0.01;
 	width.Label = "hz";
 	width.Group = "";
-	width.Shape = 2.4;
+	width.Shape = 2.32204;
 	mParameters.push_back(width);
 
 	// Resonance
@@ -116,6 +116,6 @@ void BandPass::InitialiseParameters()
 	resonance.Step = 0.01;
 	resonance.Label = "q";
 	resonance.Group = "";
-	resonance.Shape = 1.4;
+	resonance.Shape = 1.36678;
 	mParameters.push_back(resonance);
 }
