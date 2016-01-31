@@ -24,5 +24,7 @@ private:
 	MultifuzzParameterManager* mParameterManager;
 	list<Parameter> mParameters = list<Parameter>();
 	void InitialiseParameters();
+	void ApplySaturation(double inL, double inR, double* outL, double* outR);
+	void ApplyWaveShaper(double inL, double inR, double* outL, double* outR);
 };
 

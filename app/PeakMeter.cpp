@@ -7,7 +7,7 @@ using namespace std;
 // Construct
 PeakMeter::PeakMeter(IPlugBase* plugin, IRECT rectangle)
 	: IControl(plugin, rectangle), mDbRange(abs(kDbLow - kDbHigh)), 
-	mDbRangePerBlock(mDbRange / kNumberOfBlocks) 
+	mDbRangePerBlock((double)mDbRange / (double)kNumberOfBlocks) 
 {
 	// Set the clamp so we can receive amplitudes above 0
 	Clamp(0, 10.0);
@@ -23,7 +23,7 @@ bool PeakMeter::Draw(IGraphics* graphics)
 	int meterHeight = mRECT.B - mRECT.T;
 	int fullBlockSize = meterHeight / kNumberOfBlocks;
 	int blockSize = (fullBlockSize / 3) * 2;
-	int gapSize = (fullBlockSize - blockSize);
+	int gapSize = fullBlockSize - blockSize;
 
 	// Calculate some position values that we'll use to track drawing locations
 	int blockB = mRECT.B - (gapSize / 2);
@@ -47,16 +47,9 @@ bool PeakMeter::Draw(IGraphics* graphics)
 				: COLOR_RED;
 
 		// See if the db is greater than the lower db value of the block
-		if (db > kDbLow + (mDbRangePerBlock * i)) 
-		{
-			// Set opacity of block to full if so
-			color.A = 255;
-		} 
-		else 
-		{
-			// Set opacity of the block to half if not
-			color.A = 50;
-		}
+		color.A = db > kDbLow + (mDbRangePerBlock * i)
+			? color.A = 255 // Set opacity of block to full if so
+			: color.A = 100; // Set opacity of the block to half if not
 		
 		// Fill the block with the color
 		graphics->FillIRect(&color, &block);

@@ -23,10 +23,10 @@ public:
 	void RegisterPeakListener(IPeakListener* listener);
 
 private:
-	static const int NumberOfBandDistortions = 3;
+	static const int kNumberOfBandDistortions = 3;
 	GainController* mInputGainController;
 	GainController* mOutputGainController;
-	BandDistortion* mBandDistortions[NumberOfBandDistortions];
+	BandDistortion* mBandDistortions[kNumberOfBandDistortions];
 	list<IPeakListener*> mPeakListeners = list<IPeakListener*>();
 
 	void SendPeakChangeNotification(double inPeakL, double inPeakR, double outPeakL, double outPeakR);

@@ -82,23 +82,23 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics)
 	IText lblText = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()),
 		IText::EStyle::kStyleNormal, IText::EAlign::kAlignCenter);
 
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(90, 125, 195, 150), &lblText, "Input"));
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(200, 125, 305, 150), &lblText, "Output"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(90, 123, 195, 150), &lblText, "Input"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(200, 123, 305, 150), &lblText, "Output"));
 	
 	// Attach the VU Meter bitmaps
 	IBitmap vuMeterBitmap = graphics->LoadIBitmap(VUMETER_ID, VUMETER_FN);
-	graphics->AttachControl(new IBitmapControl(mPlugin, 90, 152, &vuMeterBitmap));
-	graphics->AttachControl(new IBitmapControl(mPlugin, 200, 152, &vuMeterBitmap));
+	graphics->AttachControl(new IBitmapControl(mPlugin, 90, 150, &vuMeterBitmap));
+	graphics->AttachControl(new IBitmapControl(mPlugin, 200, 150, &vuMeterBitmap));
 
 	// Add the vu meters
-	mInputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(115, 158, 136, 340)));
-	mInputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(150, 158, 171, 340)));
-	mOutputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(225, 158, 246, 340)));
-	mOutputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(260, 158, 281, 340)));
+	mInputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(115, 143, 136, 320)));
+	mInputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(150, 143, 171, 320)));
+	mOutputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(225, 143, 246, 320)));
+	mOutputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(260, 143, 281, 320)));
 
 	// Add knobs
-	MakeKnob(graphics, 111, 380, EParameters::InputGain, "gain");
-	MakeKnob(graphics, 221, 380, EParameters::OutputGain, "gain");
+	MakeKnob(graphics, 111, 358, EParameters::InputGain, "gain");
+	MakeKnob(graphics, 221, 358, EParameters::OutputGain, "gain");
 }
 
 // Make the distortion controls

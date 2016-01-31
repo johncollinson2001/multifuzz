@@ -41,10 +41,10 @@ void GainController::InitialiseParameters()
 	gain.Name = mName;
 	gain.DefaultValue = 0.0;
 	gain.MinValue = -48.0;
-	gain.MaxValue = 10.0;
+	gain.MaxValue = 12.0;
 	gain.Step = 0.01;
 	gain.Label = "db";
 	gain.Group = "";
-	gain.Shape = 1.0;
+	gain.Shape = 0.321928;
 	mParameters.push_back(gain);
 }

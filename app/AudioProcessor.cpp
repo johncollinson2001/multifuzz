@@ -41,7 +41,7 @@ AudioProcessor::~AudioProcessor()
 	delete mOutputGainController;
 
 	// Iterate overthe band distortion pointers and delete them
-	for (int i = 0; i < NumberOfBandDistortions; i++)
+	for (int i = 0; i < kNumberOfBandDistortions; i++)
 	{
 		delete mBandDistortions[i];
 	}
@@ -98,7 +98,7 @@ void AudioProcessor::ProcessBandDistortions(double inL, double inR, double* outL
 	double mixR = 0;
 
 	// Iterate over band distortions and add the output to the mix
-	for (int i = 0; i < NumberOfBandDistortions; i++)
+	for (int i = 0; i < kNumberOfBandDistortions; i++)
 	{
 		double l = 0;
 		double r = 0;
