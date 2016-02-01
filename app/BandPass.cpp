@@ -98,12 +98,12 @@ void BandPass::InitialiseParameters()
 	width.Id = mWidthParameter;
 	width.Name = string(mName) + " Width";
 	width.DefaultValue = 1000;
-	width.MinValue = 0.1;
+	width.MinValue = 0.0;
 	width.MaxValue = 5000.0;
 	width.Step = 0.01;
 	width.Label = "hz";
 	width.Group = "";
-	width.Shape = 2.32204;
+	width.Shape = 2.32193;
 	mParameters.push_back(width);
 
 	// Resonance
@@ -111,11 +111,11 @@ void BandPass::InitialiseParameters()
 	resonance.Id = mResonanceParameter;
 	resonance.Name = string(mName) + " Resonance";
 	resonance.DefaultValue = 2.0;
-	resonance.MinValue = 0.1;
+	resonance.MinValue = 0.01;
 	resonance.MaxValue = 5.0;
 	resonance.Step = 0.01;
 	resonance.Label = "q";
 	resonance.Group = "";
-	resonance.Shape = 1.36678;
+	resonance.Shape = 1.32627;
 	mParameters.push_back(resonance);
 }

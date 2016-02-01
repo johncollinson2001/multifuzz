@@ -2,6 +2,10 @@
 
 #include <list>
 #include "Preset.h"
+#include "SweetyFuzzPreset.h"
+#include "MegaFuzzPreset.h"
+#include "FuzzyFuzzPreset.h"
+#include "MentalFuzzPreset.h"
 
 using namespace std;
 
@@ -21,33 +25,14 @@ list<Preset>* MultifuzzPresets::GetPresets()
 // Initialises the presets into the member collection
 void MultifuzzPresets::InitialisePresets() 
 {
-	// Clean
-	Preset clean;
-	clean.Name = "Clean";
-	clean.Overdrive = 100.0;
-	mPresets.push_back(clean);
+	// Add a default
+	Preset defaultPreset;
+	defaultPreset.Name = "Default";
+	mPresets.push_back(defaultPreset);
 
-	// Slightly distorted
-	Preset slightlyDistorted;
-	slightlyDistorted.Name = "Slightly distorted";
-	slightlyDistorted.Overdrive = 80.0;
-	mPresets.push_back(slightlyDistorted);
-
-	// Woo
-	Preset woo;
-	woo.Name = "Woo";
-	woo.Overdrive = 40.0;
-	mPresets.push_back(woo);
-
-	// Waa
-	Preset waa;
-	waa.Name = "Waa";
-	waa.Overdrive = 20.0;
-	mPresets.push_back(waa);
-
-	// Buzz
-	Preset buzz;
-	buzz.Name = "Buzz";
-	buzz.Overdrive = 0.01;
-	mPresets.push_back(buzz);	
+	// Add the custom presets defined in their own files
+	mPresets.push_back(SweetyFuzzPreset::Get());
+	mPresets.push_back(MegaFuzzPreset::Get());
+	mPresets.push_back(FuzzyFuzzPreset::Get());
+	mPresets.push_back(MentalFuzzPreset::Get());
 }

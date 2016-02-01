@@ -31,6 +31,9 @@
     <Filter Include="Interfaces">
       <UniqueIdentifier>{3e3c30d3-0109-4be6-b5b7-ce2fd0ab8956}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Presets">
+      <UniqueIdentifier>{71c7430d-02dc-4189-962c-d958c4be56f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.h">
@@ -119,6 +122,18 @@
     </ClInclude>
     <ClInclude Include="IDigitalSignalProcessor.h">
       <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="SweetyFuzzPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
+    <ClInclude Include="MegaFuzzPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
+    <ClInclude Include="FuzzyFuzzPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
+    <ClInclude Include="MentalFuzzPreset.h">
+      <Filter>Presets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

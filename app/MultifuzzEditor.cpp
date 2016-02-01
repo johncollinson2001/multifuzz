@@ -109,25 +109,25 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 		IText::EStyle::kStyleBold, IText::EAlign::kAlignCenter);
 
 	// Band 1 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(350, 24, 414, 40), &lblText, "Band 1"));
-	MakeKnob(graphics, 350, 80, EParameters::BandOneOverdrive, "overdrive");
-	MakeKnob(graphics, 350, 180, EParameters::BandOneFrequency, "frequency");
-	MakeKnob(graphics, 350, 280, EParameters::BandOneWidth, "width");
-	MakeKnob(graphics, 350, 380, EParameters::BandOneResonance, "resonance");
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(340, 24, 404, 40), &lblText, "Band 1"));
+	MakeKnob(graphics, 340, 80, EParameters::BandOneOverdrive, "overdrive");
+	MakeKnob(graphics, 340, 180, EParameters::BandOneFrequency, "frequency");
+	MakeKnob(graphics, 340, 280, EParameters::BandOneWidth, "width");
+	MakeKnob(graphics, 340, 380, EParameters::BandOneResonance, "resonance");
 
 	// Band 2 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(450, 24, 514, 40), &lblText, "Band 2"));
-	MakeKnob(graphics, 450, 80, EParameters::BandTwoOverdrive, "overdrive");
-	MakeKnob(graphics, 450, 180, EParameters::BandTwoFrequency, "frequency");
-	MakeKnob(graphics, 450, 280, EParameters::BandTwoWidth, "width");
-	MakeKnob(graphics, 450, 380, EParameters::BandTwoResonance, "resonance");
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(440, 24, 504, 40), &lblText, "Band 2"));
+	MakeKnob(graphics, 440, 80, EParameters::BandTwoOverdrive, "overdrive");
+	MakeKnob(graphics, 440, 180, EParameters::BandTwoFrequency, "frequency");
+	MakeKnob(graphics, 440, 280, EParameters::BandTwoWidth, "width");
+	MakeKnob(graphics, 440, 380, EParameters::BandTwoResonance, "resonance");
 
 	// Band 3 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(550, 24, 614, 40), &lblText, "Band 3"));
-	MakeKnob(graphics, 550, 80, EParameters::BandThreeOverdrive, "overdrive");
-	MakeKnob(graphics, 550, 180, EParameters::BandThreeFrequency, "frequency");
-	MakeKnob(graphics, 550, 280, EParameters::BandThreeWidth, "width");
-	MakeKnob(graphics, 550, 380, EParameters::BandThreeResonance, "resonance");
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(540, 24, 604, 40), &lblText, "Band 3"));
+	MakeKnob(graphics, 540, 80, EParameters::BandThreeOverdrive, "overdrive");
+	MakeKnob(graphics, 540, 180, EParameters::BandThreeFrequency, "frequency");
+	MakeKnob(graphics, 540, 280, EParameters::BandThreeWidth, "width");
+	MakeKnob(graphics, 540, 380, EParameters::BandThreeResonance, "resonance");
 }
 
 // Make a knob

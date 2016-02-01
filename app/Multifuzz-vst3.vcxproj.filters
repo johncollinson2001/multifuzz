@@ -215,6 +215,18 @@
     <ClInclude Include="IPeakListener.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="SweetyFuzzPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
+    <ClInclude Include="FuzzyFuzzPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
+    <ClInclude Include="MegaFuzzPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
+    <ClInclude Include="MentalFuzzPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="vst3">
@@ -267,6 +279,9 @@
     </Filter>
     <Filter Include="Dsp">
       <UniqueIdentifier>{b026ecc8-e00a-4b35-9b01-41092f60cfa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presets">
+      <UniqueIdentifier>{30889c67-4d35-4e12-a5c5-9c1d33d6c74a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

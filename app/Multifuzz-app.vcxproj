@@ -280,6 +280,10 @@
     <ClInclude Include="AudioProcessor.h" />
     <ClInclude Include="BandDistortion.h" />
     <ClInclude Include="BandPass.h" />
+    <ClInclude Include="FuzzyFuzzPreset.h" />
+    <ClInclude Include="MegaFuzzPreset.h" />
+    <ClInclude Include="MentalFuzzPreset.h" />
+    <ClInclude Include="SweetyFuzzPreset.h" />
     <ClInclude Include="EFilterType.h" />
     <ClInclude Include="EParameters.h" />
     <ClInclude Include="Filter.h" />

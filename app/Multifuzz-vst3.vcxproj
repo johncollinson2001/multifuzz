@@ -331,11 +331,14 @@ if exist "%programfiles(x86)%" (copy /y "$(TargetPath)" "$(VST3_64_PATH)\Multifu
     <ClInclude Include="EFilterType.h" />
     <ClInclude Include="EParameters.h" />
     <ClInclude Include="Filter.h" />
+    <ClInclude Include="FuzzyFuzzPreset.h" />
     <ClInclude Include="GainController.h" />
     <ClInclude Include="IAudioProcessor.h" />
     <ClInclude Include="IParameterListener.h" />
     <ClInclude Include="IPeakListener.h" />
     <ClInclude Include="LayoutConstants.h" />
+    <ClInclude Include="MegaFuzzPreset.h" />
+    <ClInclude Include="MentalFuzzPreset.h" />
     <ClInclude Include="Multifuzz.h" />
     <ClInclude Include="MultifuzzEditor.h" />
     <ClInclude Include="MultifuzzKnob.h" />
@@ -345,6 +348,7 @@ if exist "%programfiles(x86)%" (copy /y "$(TargetPath)" "$(VST3_64_PATH)\Multifu
     <ClInclude Include="PeakMeter.h" />
     <ClInclude Include="Preset.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SweetyFuzzPreset.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\VST3_SDK\pluginterfaces\base\funknown.cpp" />

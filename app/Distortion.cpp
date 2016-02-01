@@ -88,7 +88,7 @@ void Distortion::ApplySaturation(double inL, double inR, double* outL, double* o
 void Distortion::ApplyWaveShaper(double inL, double inR, double* outL, double* outR)
 {	
 	// Transform the overdrive value into the value we need to wave shape
-	double waveOverdrive = (mOverdrive / 10);
+	double waveOverdrive = mOverdrive / 10;
 	if (waveOverdrive - floor(waveOverdrive) == 0)
 	{
 		waveOverdrive -= 0.1;

@@ -91,7 +91,22 @@ void Multifuzz::CreatePresets()
 		iterator++)
 	{
 		Preset preset = (*iterator);
-		MakePreset(strdup(preset.Name.c_str()), preset.Overdrive);
+		MakePreset(
+			strdup(preset.Name.c_str()), 
+			preset.InputGain, 
+			preset.OutputGain,
+			preset.BandOneOverdrive,
+			preset.BandOneFrequency,
+			preset.BandOneWidth,
+			preset.BandOneResonance,
+			preset.BandTwoOverdrive,
+			preset.BandTwoFrequency,
+			preset.BandTwoWidth,
+			preset.BandTwoResonance,
+			preset.BandThreeOverdrive,
+			preset.BandThreeFrequency,
+			preset.BandThreeWidth,
+			preset.BandThreeResonance);
 	}
 }
 
