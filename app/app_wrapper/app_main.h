@@ -44,7 +44,7 @@
 #include <string>
 #include <vector>
 
-#include "../Multifuzz.h" // change this to match your iplug plugin .h file
+#include "../src/Multifuzz.h" // change this to match your iplug plugin .h file
 
 typedef unsigned short UInt16;
 

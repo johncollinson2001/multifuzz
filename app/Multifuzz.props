@@ -11,8 +11,8 @@
     <DEBUG_DEFS>_DEBUG;</DEBUG_DEFS>
     <RELEASE_DEFS>NDEBUG;</RELEASE_DEFS>
     <TRACER_DEFS>TRACER_BUILD;NDEBUG;</TRACER_DEFS>
-    <ADDITIONAL_INCLUDES>$(ProjectDir)\..\MyDSP\;</ADDITIONAL_INCLUDES>
-    <APP_INCLUDES>..\wdl-ol\ASIO_SDK;..\wdl-ol\WDL\rtaudiomidi;</APP_INCLUDES>
+    <ADDITIONAL_INCLUDES>$(ProjectDir)\..\MyDSP\;src\;</ADDITIONAL_INCLUDES>
+    <APP_INCLUDES>..\wdl-ol\ASIO_SDK;..\wdl-ol\WDL\rtaudiomidi;src\;</APP_INCLUDES>
     <APP_LIBS>dsound.lib;winmm.lib;</APP_LIBS>
     <VST3_INCLUDES>..\wdl-ol\VST3_SDK;</VST3_INCLUDES>
     <AAX_INCLUDES>.\..\wdl-ol\AAX_SDK\Interfaces;.\..\wdl-ol\AAX_SDK\Interfaces\ACF;.\..\wdl-ol\WDL\IPlug\AAX</AAX_INCLUDES>
