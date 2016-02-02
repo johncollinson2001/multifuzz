@@ -1,12 +1,13 @@
 #pragma once
 
 #include <string>
-#include "enums\EParameters.h"
+#include "enums\EParameter.h"
+#include "enums\EParameterType.h"
 
 using namespace std;
 
 struct Parameter {
-	EParameters Id;
+	EParameter Id;
 	string Name;
 	double DefaultValue;
 	double MinValue;
@@ -15,4 +16,5 @@ struct Parameter {
 	string Label;
 	string Group;
 	double Shape;
+	EParameterType Type;
 };

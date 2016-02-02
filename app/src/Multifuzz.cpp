@@ -3,7 +3,7 @@
 
 // Construct
 Multifuzz::Multifuzz(IPlugInstanceInfo instanceInfo)
-	: IPLUG_CTOR(EParameters::NumberOfParameters, MultifuzzPresets::kNumberOfPresets , instanceInfo)	
+	: IPLUG_CTOR(EParameter::NumberOfParameters, MultifuzzPresets::kNumberOfPresets , instanceInfo)	
 {
 	TRACE;	
 
@@ -67,15 +67,26 @@ void Multifuzz::CreateParameters()
 		iterator++)
 	{
 		Parameter parameter = (*iterator);
-		GetParam(parameter.Id)->InitDouble(
-			strdup(parameter.Name.c_str()),
-			parameter.DefaultValue,
-			parameter.MinValue,
-			parameter.MaxValue,
-			parameter.Step,
-			strdup(parameter.Label.c_str()),
-			strdup(parameter.Group.c_str()),
-			parameter.Shape);
+
+		switch (parameter.Type)
+		{
+		case EParameterType::Double:
+			GetParam(parameter.Id)->InitDouble(
+				strdup(parameter.Name.c_str()),
+				parameter.DefaultValue,
+				parameter.MinValue,
+				parameter.MaxValue,
+				parameter.Step,
+				strdup(parameter.Label.c_str()),
+				strdup(parameter.Group.c_str()),
+				parameter.Shape);
+			break;
+		case EParameterType::Bool:
+			GetParam(parameter.Id)->InitBool(
+				strdup(parameter.Name.c_str()),
+				parameter.DefaultValue);
+			break;
+		}
 	}
 }
 
@@ -95,14 +106,17 @@ void Multifuzz::CreatePresets()
 			strdup(preset.Name.c_str()), 
 			preset.InputGain, 
 			preset.OutputGain,
+			preset.BandOneBypass,
 			preset.BandOneOverdrive,
 			preset.BandOneFrequency,
 			preset.BandOneWidth,
 			preset.BandOneResonance,
+			preset.BandTwoBypass,
 			preset.BandTwoOverdrive,
 			preset.BandTwoFrequency,
 			preset.BandTwoWidth,
 			preset.BandTwoResonance,
+			preset.BandThreeBypass,
 			preset.BandThreeOverdrive,
 			preset.BandThreeFrequency,
 			preset.BandThreeWidth,

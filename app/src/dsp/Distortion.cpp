@@ -7,13 +7,13 @@
 using namespace std;
 
 // Construct
-Distortion::Distortion(MultifuzzParameterManager* parameterManager, char* name, EParameters parameter)
-	: mParameterManager(parameterManager), mParameter(parameter), mName(name)
+Distortion::Distortion(MultifuzzParameterManager* parameterManager, char* name, EParameter parameter)
+	: mParameter(parameter), mName(name)
 {
 	InitialiseParameters();
 
 	// Register parameters with the parameter manager
-	mParameterManager->RegisterParameterListener(this, &mParameters);
+	parameterManager->RegisterParameterListener(this, &mParameters);
 }
 
 // Destruct
@@ -55,6 +55,7 @@ void Distortion::InitialiseParameters()
 	overdrive.Label = "%";
 	overdrive.Group = "";
 	overdrive.Shape = 1.0;
+	overdrive.Type = EParameterType::Double;
 	mParameters.push_back(overdrive);
 }
 

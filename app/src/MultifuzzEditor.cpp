@@ -97,41 +97,46 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics)
 	mOutputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(260, 143, 281, 320)));
 
 	// Add knobs
-	MakeKnob(graphics, 111, 358, EParameters::InputGain, "gain");
-	MakeKnob(graphics, 221, 358, EParameters::OutputGain, "gain");
+	MakeKnob(graphics, 111, 358, EParameter::InputGain, "gain");
+	MakeKnob(graphics, 221, 358, EParameter::OutputGain, "gain");
 }
 
 // Make the distortion controls
 void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics) 
 {
 	// Header text object
-	IText lblText = IText(18, &COLOR_WHITE, strdup(LayoutConstants::kGlobalFont.c_str()),
+	IText headerText = IText(18, &COLOR_WHITE, strdup(LayoutConstants::kGlobalFont.c_str()),
 		IText::EStyle::kStyleBold, IText::EAlign::kAlignCenter);
+	// Switch bitmaps
+	IBitmap powerButtonBitmap = graphics->LoadIBitmap(POWER_ID, POWER_FN, LayoutConstants::kPowerSwitchFrames);
 
 	// Band 1 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(340, 24, 404, 40), &lblText, "Band 1"));
-	MakeKnob(graphics, 340, 80, EParameters::BandOneOverdrive, "overdrive");
-	MakeKnob(graphics, 340, 180, EParameters::BandOneFrequency, "frequency");
-	MakeKnob(graphics, 340, 280, EParameters::BandOneWidth, "width");
-	MakeKnob(graphics, 340, 380, EParameters::BandOneResonance, "resonance");
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(340, 24, 404, 40), &headerText, "Band 1"));
+	graphics->AttachControl(new ISwitchControl(mPlugin, 314, 26, EParameter::BandOneBypass, &powerButtonBitmap));
+	MakeKnob(graphics, 340, 80, EParameter::BandOneOverdrive, "overdrive");
+	MakeKnob(graphics, 340, 180, EParameter::BandOneFrequency, "frequency");
+	MakeKnob(graphics, 340, 280, EParameter::BandOneWidth, "width");
+	MakeKnob(graphics, 340, 380, EParameter::BandOneResonance, "resonance");
 
 	// Band 2 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(440, 24, 504, 40), &lblText, "Band 2"));
-	MakeKnob(graphics, 440, 80, EParameters::BandTwoOverdrive, "overdrive");
-	MakeKnob(graphics, 440, 180, EParameters::BandTwoFrequency, "frequency");
-	MakeKnob(graphics, 440, 280, EParameters::BandTwoWidth, "width");
-	MakeKnob(graphics, 440, 380, EParameters::BandTwoResonance, "resonance");
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(440, 24, 504, 40), &headerText, "Band 2"));
+	graphics->AttachControl(new ISwitchControl(mPlugin, 414, 26, EParameter::BandTwoBypass, &powerButtonBitmap));
+	MakeKnob(graphics, 440, 80, EParameter::BandTwoOverdrive, "overdrive");
+	MakeKnob(graphics, 440, 180, EParameter::BandTwoFrequency, "frequency");
+	MakeKnob(graphics, 440, 280, EParameter::BandTwoWidth, "width");
+	MakeKnob(graphics, 440, 380, EParameter::BandTwoResonance, "resonance");
 
 	// Band 3 ...
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(540, 24, 604, 40), &lblText, "Band 3"));
-	MakeKnob(graphics, 540, 80, EParameters::BandThreeOverdrive, "overdrive");
-	MakeKnob(graphics, 540, 180, EParameters::BandThreeFrequency, "frequency");
-	MakeKnob(graphics, 540, 280, EParameters::BandThreeWidth, "width");
-	MakeKnob(graphics, 540, 380, EParameters::BandThreeResonance, "resonance");
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(540, 24, 604, 40), &headerText, "Band 3"));
+	graphics->AttachControl(new ISwitchControl(mPlugin, 514, 26, EParameter::BandThreeBypass, &powerButtonBitmap));
+	MakeKnob(graphics, 540, 80, EParameter::BandThreeOverdrive, "overdrive");
+	MakeKnob(graphics, 540, 180, EParameter::BandThreeFrequency, "frequency");
+	MakeKnob(graphics, 540, 280, EParameter::BandThreeWidth, "width");
+	MakeKnob(graphics, 540, 380, EParameter::BandThreeResonance, "resonance");
 }
 
 // Make a knob
-void MultifuzzEditor::MakeKnob(IGraphics* graphics, int x, int y, EParameters parameter, char* label) 
+void MultifuzzEditor::MakeKnob(IGraphics* graphics, int x, int y, EParameter parameter, char* label) 
 {
 	IBitmap knob = graphics->LoadIBitmap(KNOB_ID, KNOB_FN, LayoutConstants::kKnobFrames);
 	IText text = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()));

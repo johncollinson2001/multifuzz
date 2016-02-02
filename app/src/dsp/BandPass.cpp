@@ -4,9 +4,9 @@ using namespace std;
 
 // Construct
 BandPass::BandPass(MultifuzzParameterManager* parameterManager, char* name,
-	double sampleRate, EParameters frequencyParameter,
-	EParameters widthParameter, EParameters resonanceParameter)
-	: mParameterManager(parameterManager), mName(name), mFrequencyParameter(frequencyParameter), 
+	double sampleRate, EParameter frequencyParameter,
+	EParameter widthParameter, EParameter resonanceParameter)
+	: mName(name), mFrequencyParameter(frequencyParameter), 
 	mWidthParameter(widthParameter), mResonanceParameter(resonanceParameter)
 {
 	// Create high and low pass
@@ -17,7 +17,7 @@ BandPass::BandPass(MultifuzzParameterManager* parameterManager, char* name,
 	InitialiseParameters();
 
 	// Register parameters with the parameter manager
-	mParameterManager->RegisterParameterListener(this, &mParameters);
+	parameterManager->RegisterParameterListener(this, &mParameters);
 }
 
 // Destruct
@@ -91,6 +91,7 @@ void BandPass::InitialiseParameters()
 	frequency.Label = "hz";
 	frequency.Group = "";
 	frequency.Shape = 4.21933;
+	frequency.Type = EParameterType::Double;
 	mParameters.push_back(frequency);
 
 	// Width
@@ -104,6 +105,7 @@ void BandPass::InitialiseParameters()
 	width.Label = "hz";
 	width.Group = "";
 	width.Shape = 2.32193;
+	width.Type = EParameterType::Double;
 	mParameters.push_back(width);
 
 	// Resonance
@@ -111,11 +113,12 @@ void BandPass::InitialiseParameters()
 	resonance.Id = mResonanceParameter;
 	resonance.Name = string(mName) + " Resonance";
 	resonance.DefaultValue = 2.0;
-	resonance.MinValue = 0.01;
+	resonance.MinValue = 1.0;
 	resonance.MaxValue = 5.0;
 	resonance.Step = 0.01;
 	resonance.Label = "q";
 	resonance.Group = "";
-	resonance.Shape = 1.32627;
+	resonance.Shape = 2;
+	resonance.Type = EParameterType::Double;
 	mParameters.push_back(resonance);
 }

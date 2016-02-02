@@ -3,7 +3,7 @@
 #include "IPlug_include_in_plug_hdr.h"
 #include "Multifuzz.h"
 #include "constants\LayoutConstants.h"
-#include "enums\EParameters.h"
+#include "enums\EParameter.h"
 #include "controls\PeakMeter.h"
 #include "controls\MultifuzzKnob.h"
 #include "AudioProcessor.h"
@@ -29,5 +29,5 @@ private:
 	void MakeTitle(IGraphics* graphics);
 	void MakeGainControls(IGraphics* graphics);
 	void MakeDistortionControls(IGraphics* graphics);
-	void MakeKnob(IGraphics* graphics, int x, int y, EParameters parameter, char* label);
+	void MakeKnob(IGraphics* graphics, int x, int y, EParameter parameter, char* label);
 };

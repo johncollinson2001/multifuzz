@@ -11,14 +11,17 @@ public:
 
 		p.Name = "Mental Fuzz";
 		p.InputGain = 0;
+		p.BandOneBypass = 0;
 		p.BandOneOverdrive = 95;
 		p.BandOneFrequency = 150;
 		p.BandOneWidth = 100;
 		p.BandOneResonance = 2;
+		p.BandTwoBypass = 0;
 		p.BandTwoOverdrive = 75;
 		p.BandTwoFrequency = 1200;
 		p.BandTwoWidth = 2500;
 		p.BandTwoResonance = 1;
+		p.BandThreeBypass = 0;
 		p.BandThreeOverdrive = 75;
 		p.BandThreeFrequency = 6000;
 		p.BandThreeWidth = 1000;

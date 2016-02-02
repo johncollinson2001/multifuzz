@@ -4,7 +4,7 @@
 #include <map>
 #include "Multifuzz.h"
 #include "structs\Parameter.h"
-#include "enums\EParameters.h"
+#include "enums\EParameter.h"
 #include "interfaces\IParameterListener.h"
 
 // Forward declarations

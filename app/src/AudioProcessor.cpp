@@ -2,36 +2,39 @@
 
 // Construct
 AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* parameterManager, double sampleRate)
-	: mInputGainController(new GainController(parameterManager, "Input Gain", EParameters::InputGain)),
-	mOutputGainController(new GainController(parameterManager, "Output Gain", EParameters::OutputGain))
+	: mInputGainController(new GainController(parameterManager, "Input Gain", EParameter::InputGain)),
+	mOutputGainController(new GainController(parameterManager, "Output Gain", EParameter::OutputGain))
 {
 	// Create band distortion units
 	mBandDistortions[0] = new BandDistortion(
 		parameterManager,
 		"Band One",
 		sampleRate,
-		EParameters::BandOneOverdrive,
-		EParameters::BandOneFrequency,
-		EParameters::BandOneWidth,
-		EParameters::BandOneResonance);
+		EParameter::BandOneBypass,
+		EParameter::BandOneOverdrive,
+		EParameter::BandOneFrequency,
+		EParameter::BandOneWidth,
+		EParameter::BandOneResonance);
 
 	mBandDistortions[1] = new BandDistortion(
 		parameterManager,
 		"Band Two",
 		sampleRate,
-		EParameters::BandTwoOverdrive,
-		EParameters::BandTwoFrequency,
-		EParameters::BandTwoWidth,
-		EParameters::BandTwoResonance);
+		EParameter::BandTwoBypass,
+		EParameter::BandTwoOverdrive,
+		EParameter::BandTwoFrequency,
+		EParameter::BandTwoWidth,
+		EParameter::BandTwoResonance);
 
 	mBandDistortions[2] = new BandDistortion(
 		parameterManager,
 		"Band Three",
 		sampleRate,
-		EParameters::BandThreeOverdrive,
-		EParameters::BandThreeFrequency,
-		EParameters::BandThreeWidth,
-		EParameters::BandThreeResonance);
+		EParameter::BandThreeBypass,
+		EParameter::BandThreeOverdrive,
+		EParameter::BandThreeFrequency,
+		EParameter::BandThreeWidth,
+		EParameter::BandThreeResonance);
 }
 
 // Destruct

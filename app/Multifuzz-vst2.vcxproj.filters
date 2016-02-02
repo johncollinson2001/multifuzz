@@ -35,9 +35,6 @@
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h">
       <Filter>vst2</Filter>
     </ClInclude>
-    <ClInclude Include="src\enums\EParameters.h">
-      <Filter>Enums</Filter>
-    </ClInclude>
     <ClInclude Include="src\src\LayoutConstants.h">
       <Filter>Constants</Filter>
     </ClInclude>
@@ -86,16 +83,22 @@
     <ClInclude Include="src\interfaces\IPeakListener.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="src\presets\FuzzyFuzz\Preset.h">
+    <ClInclude Include="src\enums\EParameterType.h">
+      <Filter>Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enums\EParameter.h">
+      <Filter>Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presets\SweetyFuzzPreset.h">
       <Filter>Presets</Filter>
     </ClInclude>
-    <ClInclude Include="src\presets\MegaFuzz\Preset.h">
+    <ClInclude Include="src\presets\FuzzyFuzzPreset.h">
       <Filter>Presets</Filter>
     </ClInclude>
-    <ClInclude Include="src\presets\MentalFuzz\Preset.h">
+    <ClInclude Include="src\presets\MegaFuzzPreset.h">
       <Filter>Presets</Filter>
     </ClInclude>
-    <ClInclude Include="src\presets\SweetyFuzz\Preset.h">
+    <ClInclude Include="src\presets\MentalFuzzPreset.h">
       <Filter>Presets</Filter>
     </ClInclude>
   </ItemGroup>

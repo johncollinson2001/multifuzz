@@ -1,7 +1,8 @@
 #pragma once
 
 #include "MultifuzzParameterManager.h"
-#include "enums\EParameters.h"
+#include "enums\EParameter.h"
+#include "enums\EParameterType.h"
 #include "structs\Parameter.h"
 #include "dsp\Filter.h"
 #include "interfaces\IParameterListener.h"
@@ -15,18 +16,17 @@ class BandPass : IParameterListener, IDigitalSignalProcessor
 {
 public:
 	BandPass(MultifuzzParameterManager* parameterManager, char* name,
-		double sampleRate, EParameters frequencyParameter, 
-		EParameters widthParameter, EParameters resonanceParameter);
+		double sampleRate, EParameter frequencyParameter, 
+		EParameter widthParameter, EParameter resonanceParameter);
 	virtual ~BandPass();
 	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);
 
 private:	
-	MultifuzzParameterManager* mParameterManager;
 	char* mName;
-	EParameters mFrequencyParameter;
-	EParameters mWidthParameter;
-	EParameters mResonanceParameter;
+	EParameter mFrequencyParameter;
+	EParameter mWidthParameter;
+	EParameter mResonanceParameter;
 	double mFrequency = 0;
 	double mWidth = 0;
 	double mResonance = 0;

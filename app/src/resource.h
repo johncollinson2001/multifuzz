@@ -58,12 +58,16 @@ instrument determined by PLUG _IS _INST
 #define BACKGROUND_ID 102
 #define HANDLE_ID 103
 #define VUMETER_ID 104
+#define POWER_ID 105
+#define BUTTON_ID 105
 
 // Image resource locations for this plug.
 #define KNOB_FN "resources/img/org_amp.png"
 #define BACKGROUND_FN "resources/img/background.png"
 #define HANDLE_FN "resources/img/handle.png"
 #define VUMETER_FN "resources/img/vumeter.png"
+#define POWER_FN "resources/img/power.png"
+#define BUTTON_FN "resources/img/button.png"
 
 // GUI default dimensions
 #define GUI_WIDTH 700

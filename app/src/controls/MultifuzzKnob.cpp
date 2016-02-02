@@ -1,7 +1,7 @@
 #include "MultifuzzKnob.h"
 
 // Construct
-MultifuzzKnob::MultifuzzKnob(IPlugBase* plugin, IRECT rectangle, EParameters parameter, IBitmap* bitmap, IText* text, char* label)
+MultifuzzKnob::MultifuzzKnob(IPlugBase* plugin, IRECT rectangle, EParameter parameter, IBitmap* bitmap, IText* text, char* label)
 	: IKnobControl(plugin, rectangle, parameter), mBitmap(*bitmap) 
 {
 	mText = *text;

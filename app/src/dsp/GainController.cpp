@@ -1,13 +1,13 @@
 #include "GainController.h"
 
 // Construct
-GainController::GainController(MultifuzzParameterManager* parameterManager, char* name, EParameters parameter) 
-	: mParameterManager(parameterManager), mParameter(parameter), mName(name)
+GainController::GainController(MultifuzzParameterManager* parameterManager, char* name, EParameter parameter) 
+	: mParameter(parameter), mName(name)
 {
 	InitialiseParameters();
 
 	// Register parameters with the parameter manager
-	mParameterManager->RegisterParameterListener(this, &mParameters);
+	parameterManager->RegisterParameterListener(this, &mParameters);
 }
 
 // Destruct
@@ -46,5 +46,6 @@ void GainController::InitialiseParameters()
 	gain.Label = "db";
 	gain.Group = "";
 	gain.Shape = 0.169925;
+	gain.Type = EParameterType::Double;
 	mParameters.push_back(gain);
 }

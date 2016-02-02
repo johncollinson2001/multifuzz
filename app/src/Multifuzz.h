@@ -9,7 +9,8 @@
 #include "MultifuzzPresets.h"
 #include "MultifuzzEditor.h"
 #include "constants\LayoutConstants.h"
-#include "enums\EParameters.h"
+#include "enums\EParameter.h"
+#include "enums\EParameterType.h"
 #include "AudioProcessor.h"
 
 // Forward declarations

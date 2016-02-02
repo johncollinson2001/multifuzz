@@ -3,7 +3,7 @@
 #include <list>
 #include "Multifuzz.h"
 #include "MultifuzzParameterManager.h"
-#include "enums\EParameters.h"
+#include "enums\EParameter.h"
 #include "dsp\GainController.h"
 #include "dsp\BandDistortion.h"
 #include "interfaces\IPeakListener.h"

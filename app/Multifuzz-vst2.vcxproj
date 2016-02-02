@@ -250,16 +250,18 @@
     <ClInclude Include="src\dsp\BandPass.h" />
     <ClInclude Include="src\dsp\Distortion.h" />
     <ClInclude Include="src\enums\EFilterType.h" />
-    <ClInclude Include="src\enums\EParameters.h" />
     <ClInclude Include="src\dsp\Filter.h" />
-    <ClInclude Include="src\presets\FuzzyFuzz\Preset.h" />
+    <ClInclude Include="src\enums\EParameter.h" />
+    <ClInclude Include="src\enums\EParameterType.h" />
     <ClInclude Include="src\dsp\GainController.h" />
     <ClInclude Include="src\interfaces\IAudioProcessor.h" />
     <ClInclude Include="src\interfaces\IParameterListener.h" />
     <ClInclude Include="src\interfaces\IPeakListener.h" />
+    <ClInclude Include="src\presets\FuzzyFuzzPreset.h" />
+    <ClInclude Include="src\presets\MegaFuzzPreset.h" />
+    <ClInclude Include="src\presets\MentalFuzzPreset.h" />
+    <ClInclude Include="src\presets\SweetyFuzzPreset.h" />
     <ClInclude Include="src\src\LayoutConstants.h" />
-    <ClInclude Include="src\presets\MegaFuzz\Preset.h" />
-    <ClInclude Include="src\presets\MentalFuzz\Preset.h" />
     <ClInclude Include="src\Multifuzz.h" />
     <ClInclude Include="src\MultifuzzEditor.h" />
     <ClInclude Include="src\controls\MultifuzzKnob.h" />
@@ -269,7 +271,6 @@
     <ClInclude Include="src\controls\PeakMeter.h" />
     <ClInclude Include="src\Preset.h" />
     <ClInclude Include="src\resource.h" />
-    <ClInclude Include="src\presets\SweetyFuzz\Preset.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\IPlug\IPlugVST.cpp" />
