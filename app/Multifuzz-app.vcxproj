@@ -282,6 +282,7 @@
     <ClInclude Include="src\constants\LayoutConstants.h" />
     <ClInclude Include="src\dsp\BandDistortion.h" />
     <ClInclude Include="src\dsp\BandPass.h" />
+    <ClInclude Include="src\enums\EDistortionType.h" />
     <ClInclude Include="src\enums\EParameterType.h" />
     <ClInclude Include="src\enums\EFilterType.h" />
     <ClInclude Include="src\enums\EParameter.h" />

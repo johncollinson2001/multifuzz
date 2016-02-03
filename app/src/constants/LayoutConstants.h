@@ -12,4 +12,5 @@ namespace LayoutConstants
 	const string kGlobalFont = "Courier New";
 	const int kKnobFrames = 31; // The number of frames in the knob sprite
 	const int kPowerSwitchFrames = 2;
+	const int kButtonFrames = 2;
 }

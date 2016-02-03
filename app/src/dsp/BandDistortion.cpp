@@ -2,8 +2,8 @@
 
 // Construct
 BandDistortion::BandDistortion(MultifuzzParameterManager* parameterManager, char* name, double sampleRate,
-	EParameter bypassParameter, EParameter overdriveParameter, EParameter frequencyParameter,
-	EParameter widthParameter, EParameter resonanceParameter)
+	EParameter bypassParameter, EParameter distortionTypeParameter, EParameter overdriveParameter,
+	EParameter frequencyParameter, EParameter widthParameter, EParameter resonanceParameter)
 	: mName(name), mBypassParameter(bypassParameter)
 {
 	// Setup band pass
@@ -17,7 +17,8 @@ BandDistortion::BandDistortion(MultifuzzParameterManager* parameterManager, char
 	mDistortion = new Distortion(
 		parameterManager,
 		strdup((string(mName) + " Distortion").c_str()),
-		overdriveParameter);
+		overdriveParameter,
+		distortionTypeParameter);
 
 	// Initialise the parameters
 	InitialiseParameters();

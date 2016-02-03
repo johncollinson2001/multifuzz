@@ -59,7 +59,7 @@ instrument determined by PLUG _IS _INST
 #define HANDLE_ID 103
 #define VUMETER_ID 104
 #define POWER_ID 105
-#define BUTTON_ID 105
+#define BUTTON_ID 106
 
 // Image resource locations for this plug.
 #define KNOB_FN "resources/img/org_amp.png"

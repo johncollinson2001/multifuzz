@@ -138,6 +138,9 @@
     <ClInclude Include="src\presets\FuzzyFuzzPreset.h">
       <Filter>Presets</Filter>
     </ClInclude>
+    <ClInclude Include="src\enums\EDistortionType.h">
+      <Filter>Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.cpp">

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "structs\Preset.h"
+#include "enums\EDistortionType.h"
 
 class FuzzyFuzzPreset
 {
@@ -12,16 +13,19 @@ public:
 		p.Name = "Fuzzy Fuzz";
 		p.InputGain = 0;
 		p.BandOneBypass = 0;
+		p.BandOneDistortionType = EDistortionType::WaveShaper;
 		p.BandOneOverdrive = 40;
 		p.BandOneFrequency = 130;
 		p.BandOneWidth = 50;
 		p.BandOneResonance = 1.5;
 		p.BandTwoBypass = 0;
+		p.BandTwoDistortionType = EDistortionType::Overdrive;
 		p.BandTwoOverdrive = 70;
 		p.BandTwoFrequency = 2400;
 		p.BandTwoWidth = 500;
 		p.BandTwoResonance = 1;
 		p.BandThreeBypass = 0;
+		p.BandThreeDistortionType = EDistortionType::WaveShaper;
 		p.BandThreeOverdrive = 40;
 		p.BandThreeFrequency = 11500;
 		p.BandThreeWidth = 50;

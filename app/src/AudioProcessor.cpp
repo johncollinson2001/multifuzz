@@ -11,6 +11,7 @@ AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* par
 		"Band One",
 		sampleRate,
 		EParameter::BandOneBypass,
+		EParameter::BandOneDistortionType,
 		EParameter::BandOneOverdrive,
 		EParameter::BandOneFrequency,
 		EParameter::BandOneWidth,
@@ -21,6 +22,7 @@ AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* par
 		"Band Two",
 		sampleRate,
 		EParameter::BandTwoBypass,
+		EParameter::BandTwoDistortionType,
 		EParameter::BandTwoOverdrive,
 		EParameter::BandTwoFrequency,
 		EParameter::BandTwoWidth,
@@ -31,6 +33,7 @@ AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* par
 		"Band Three",
 		sampleRate,
 		EParameter::BandThreeBypass,
+		EParameter::BandThreeDistortionType,
 		EParameter::BandThreeOverdrive,
 		EParameter::BandThreeFrequency,
 		EParameter::BandThreeWidth,
@@ -71,7 +74,7 @@ void AudioProcessor::ProcessDoubleReplacing(double **inputs, double **outputs, i
 		inPeakL = IPMAX(inPeakL, fabs(sampleL));
 		inPeakR = IPMAX(inPeakR, fabs(sampleR));
 
-		//// Process band distortions
+		// Process band distortions
 		ProcessBandDistortions(sampleL, sampleR, &sampleL, &sampleR);
 
 		// Process output gain and capture peaks

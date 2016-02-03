@@ -86,6 +86,13 @@ void Multifuzz::CreateParameters()
 				strdup(parameter.Name.c_str()),
 				parameter.DefaultValue);
 			break;
+			case EParameterType::Int:
+				GetParam(parameter.Id)->InitInt(
+					strdup(parameter.Name.c_str()),
+					parameter.DefaultValue,
+					parameter.MinValue,
+					parameter.MaxValue);
+			break;
 		}
 	}
 }
@@ -107,16 +114,19 @@ void Multifuzz::CreatePresets()
 			preset.InputGain, 
 			preset.OutputGain,
 			preset.BandOneBypass,
+			preset.BandOneDistortionType,
 			preset.BandOneOverdrive,
 			preset.BandOneFrequency,
 			preset.BandOneWidth,
 			preset.BandOneResonance,
 			preset.BandTwoBypass,
+			preset.BandTwoDistortionType,
 			preset.BandTwoOverdrive,
 			preset.BandTwoFrequency,
 			preset.BandTwoWidth,
 			preset.BandTwoResonance,
 			preset.BandThreeBypass,
+			preset.BandThreeDistortionType,
 			preset.BandThreeOverdrive,
 			preset.BandThreeFrequency,
 			preset.BandThreeWidth,

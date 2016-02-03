@@ -3,6 +3,7 @@
 // An enumeration of parameter types
 enum EParameterType
 {
+	Bool,
 	Double,
-	Bool
+	Int
 };

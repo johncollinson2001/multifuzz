@@ -18,8 +18,8 @@ class BandDistortion : IParameterListener, IDigitalSignalProcessor
 {
 public:
 	BandDistortion(MultifuzzParameterManager* parameterManager, char* name, double sampleRate,
-		EParameter bypassParameter, EParameter overdriveParameter, EParameter frequencyParameter,
-		EParameter widthParameter, EParameter resonanceParameter);
+		EParameter bypassParameter, EParameter distortionTypeParameter, EParameter overdriveParameter, 
+		EParameter frequencyParameter, EParameter widthParameter, EParameter resonanceParameter);
 	~BandDistortion();
 	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);

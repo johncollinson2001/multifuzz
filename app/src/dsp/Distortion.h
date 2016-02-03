@@ -3,6 +3,7 @@
 #include "MultifuzzParameterManager.h"
 #include "enums\EParameter.h"
 #include "enums\EParameterType.h"
+#include "enums\EDistortionType.h"
 #include "structs\Parameter.h"
 #include "interfaces\IParameterListener.h"
 #include "interfaces\IDigitalSignalProcessor.h"
@@ -13,18 +14,20 @@ class MultifuzzParameterManager;
 class Distortion : IParameterListener, IDigitalSignalProcessor
 {
 public:
-	Distortion(MultifuzzParameterManager* parameterManager, char* name, EParameter parameter);
+	Distortion(MultifuzzParameterManager* parameterManager, char* name, EParameter overdriveParameter, EParameter distortionTypeParameter);
 	virtual ~Distortion();
 	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);
 
 private:
-	double mOverdrive = 0;
-	EParameter mParameter;
 	char* mName;
+	double mOverdrive = 0;
+	EDistortionType mDistortionType;
+	EParameter mOverdriveParameter;
+	EParameter mDistortionTypeParameter;
 	list<Parameter> mParameters = list<Parameter>();
 	void InitialiseParameters();
-	void ApplySaturation(double inL, double inR, double* outL, double* outR);
+	void ApplyOverdrive(double inL, double inR, double* outL, double* outR);
 	void ApplyWaveShaper(double inL, double inR, double* outL, double* outR);
 };
 

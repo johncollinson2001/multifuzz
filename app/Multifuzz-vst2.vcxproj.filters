@@ -101,6 +101,9 @@
     <ClInclude Include="src\presets\MentalFuzzPreset.h">
       <Filter>Presets</Filter>
     </ClInclude>
+    <ClInclude Include="src\enums\EDistortionType.h">
+      <Filter>Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="vst2">

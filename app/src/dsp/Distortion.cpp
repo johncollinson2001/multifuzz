@@ -7,8 +7,9 @@
 using namespace std;
 
 // Construct
-Distortion::Distortion(MultifuzzParameterManager* parameterManager, char* name, EParameter parameter)
-	: mParameter(parameter), mName(name)
+Distortion::Distortion(MultifuzzParameterManager* parameterManager, char* name, 
+	EParameter overdriveParameter, EParameter distortionTypeParameter)
+	: mOverdriveParameter(overdriveParameter), mDistortionTypeParameter(distortionTypeParameter), mName(name)
 {
 	InitialiseParameters();
 
@@ -25,19 +26,32 @@ void Distortion::ProcessAudio(double inL, double inR, double* outL, double* outR
 	// Ensure overdrive has been specified
 	if (mOverdrive > 0)
 	{
-		//ApplySaturation(inL, inR, outL, outR);
-		ApplyWaveShaper(inL, inR, outL, outR);
+		switch(mDistortionType)
+		{
+		case EDistortionType::Overdrive:
+			ApplyOverdrive(inL, inR, outL, outR);
+			break;
+		case EDistortionType::WaveShaper:
+			ApplyWaveShaper(inL, inR, outL, outR);
+			break;
+		case EDistortionType::GuitarAmp:
+			//ApplyWaveShaper(inL, inR, outL, outR);
+			break;
+		}
 	}
 }
 
 // Handle parameter changes
 void Distortion::ReceiveParameterChangeNotification(int parameterIndex, double newValue) 
 {
-	// Ensure the parameter that has changed is overdrive
-	if (parameterIndex == mParameter) 
+	// Find out what parameter has changed
+	if (parameterIndex == mOverdriveParameter) 
 	{
-		// Set overdrive
 		mOverdrive = newValue;
+	}
+	else if (parameterIndex == mDistortionTypeParameter)
+	{
+		mDistortionType = (EDistortionType)((int)newValue);
 	}
 }
 
@@ -46,7 +60,7 @@ void Distortion::InitialiseParameters()
 {
 	// Overdrive
 	Parameter overdrive;
-	overdrive.Id = mParameter;
+	overdrive.Id = mOverdriveParameter;
 	overdrive.Name = string(mName) + " Overdrive";
 	overdrive.DefaultValue = 0.0;
 	overdrive.MinValue = 0.0;
@@ -57,10 +71,20 @@ void Distortion::InitialiseParameters()
 	overdrive.Shape = 1.0;
 	overdrive.Type = EParameterType::Double;
 	mParameters.push_back(overdrive);
+
+	// Distortion Type
+	Parameter distortionType;
+	distortionType.Id = mDistortionTypeParameter;
+	distortionType.Name = string(mName) + " Distortion Type";
+	distortionType.DefaultValue = 0;
+	distortionType.MinValue = 0;
+	distortionType.MaxValue = 2;
+	distortionType.Type = EParameterType::Int;
+	mParameters.push_back(distortionType);
 }
 
 // Apply saturation to an audio signal
-void Distortion::ApplySaturation(double inL, double inR, double* outL, double* outR)
+void Distortion::ApplyOverdrive(double inL, double inR, double* outL, double* outR)
 {
 	// Get the value that we want to limit the amplitude by
 	double underdrive = 1 - (mOverdrive / 100);

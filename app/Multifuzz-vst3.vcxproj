@@ -328,6 +328,7 @@ if exist "%programfiles(x86)%" (copy /y "$(TargetPath)" "$(VST3_64_PATH)\Multifu
     <ClInclude Include="src\dsp\BandDistortion.h" />
     <ClInclude Include="src\dsp\BandPass.h" />
     <ClInclude Include="src\dsp\Distortion.h" />
+    <ClInclude Include="src\enums\EDistortionType.h" />
     <ClInclude Include="src\enums\EFilterType.h" />
     <ClInclude Include="src\dsp\Filter.h" />
     <ClInclude Include="src\enums\EParameter.h" />

@@ -107,12 +107,20 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 	// Header text object
 	IText headerText = IText(18, &COLOR_WHITE, strdup(LayoutConstants::kGlobalFont.c_str()),
 		IText::EStyle::kStyleBold, IText::EAlign::kAlignCenter);
+	IText distortionTypeText = IText(14, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()),
+		IText::EStyle::kStyleNormal, IText::EAlign::kAlignCenter);
 	// Switch bitmaps
 	IBitmap powerButtonBitmap = graphics->LoadIBitmap(POWER_ID, POWER_FN, LayoutConstants::kPowerSwitchFrames);
+	IBitmap buttonBitmap = graphics->LoadIBitmap(BUTTON_ID, BUTTON_FN, LayoutConstants::kButtonFrames);
 
 	// Band 1 ...
 	graphics->AttachControl(new ITextControl(mPlugin, IRECT(340, 24, 404, 40), &headerText, "Band 1"));
-	graphics->AttachControl(new ISwitchControl(mPlugin, 314, 26, EParameter::BandOneBypass, &powerButtonBitmap));
+	graphics->AttachControl(new ISwitchControl(mPlugin, 316, 26, EParameter::BandOneBypass, &powerButtonBitmap));
+	graphics->AttachControl(new IRadioButtonsControl(
+		mPlugin, IRECT(316, 82, 338, 142), EParameter::BandOneDistortionType, 3, &buttonBitmap, EDirection::kVertical));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(327, 80, 327, 93), &distortionTypeText, "ws"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(327, 103, 327, 116), &distortionTypeText, "ov"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(327, 126, 327, 139), &distortionTypeText, "ga"));
 	MakeKnob(graphics, 340, 80, EParameter::BandOneOverdrive, "overdrive");
 	MakeKnob(graphics, 340, 180, EParameter::BandOneFrequency, "frequency");
 	MakeKnob(graphics, 340, 280, EParameter::BandOneWidth, "width");
@@ -120,7 +128,12 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 
 	// Band 2 ...
 	graphics->AttachControl(new ITextControl(mPlugin, IRECT(440, 24, 504, 40), &headerText, "Band 2"));
-	graphics->AttachControl(new ISwitchControl(mPlugin, 414, 26, EParameter::BandTwoBypass, &powerButtonBitmap));
+	graphics->AttachControl(new ISwitchControl(mPlugin, 416, 26, EParameter::BandTwoBypass, &powerButtonBitmap));
+	graphics->AttachControl(new IRadioButtonsControl(
+		mPlugin, IRECT(416, 82, 438, 142), EParameter::BandTwoDistortionType, 3, &buttonBitmap, EDirection::kVertical));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(427, 80, 427, 93), &distortionTypeText, "ws"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(427, 103, 427, 116), &distortionTypeText, "ov"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(427, 126, 427, 139), &distortionTypeText, "ga")); 
 	MakeKnob(graphics, 440, 80, EParameter::BandTwoOverdrive, "overdrive");
 	MakeKnob(graphics, 440, 180, EParameter::BandTwoFrequency, "frequency");
 	MakeKnob(graphics, 440, 280, EParameter::BandTwoWidth, "width");
@@ -128,7 +141,12 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 
 	// Band 3 ...
 	graphics->AttachControl(new ITextControl(mPlugin, IRECT(540, 24, 604, 40), &headerText, "Band 3"));
-	graphics->AttachControl(new ISwitchControl(mPlugin, 514, 26, EParameter::BandThreeBypass, &powerButtonBitmap));
+	graphics->AttachControl(new ISwitchControl(mPlugin, 516, 26, EParameter::BandThreeBypass, &powerButtonBitmap));
+	graphics->AttachControl(new IRadioButtonsControl(
+		mPlugin, IRECT(516, 82, 538, 142), EParameter::BandThreeDistortionType, 3, &buttonBitmap, EDirection::kVertical));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(527, 80, 527, 93), &distortionTypeText, "ws"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(527, 103, 527, 116), &distortionTypeText, "ov"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(527, 126, 527, 139), &distortionTypeText, "ga"));
 	MakeKnob(graphics, 540, 80, EParameter::BandThreeOverdrive, "overdrive");
 	MakeKnob(graphics, 540, 180, EParameter::BandThreeFrequency, "frequency");
 	MakeKnob(graphics, 540, 280, EParameter::BandThreeWidth, "width");
