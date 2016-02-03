@@ -35,7 +35,7 @@ void Distortion::ProcessAudio(double inL, double inR, double* outL, double* outR
 			ApplyWaveShaper(inL, inR, outL, outR);
 			break;
 		case EDistortionType::GuitarAmp:
-			//ApplyWaveShaper(inL, inR, outL, outR);
+			ApplyGuitarAmp(inL, inR, outL, outR);
 			break;
 		}
 	}
@@ -130,4 +130,34 @@ void Distortion::ApplyWaveShaper(double inL, double inR, double* outL, double* o
 	*outR = inR > b
 		? 1
 		: sin(z * inR) * s;
+}
+
+// Apply guitar amp to an audio signal
+void Distortion::ApplyGuitarAmp(double inL, double inR, double* outL, double* outR)
+{
+	double saturation = 0.5;
+
+	// apply drive
+	*outL = inL * mOverdrive;
+	*outL /= 16;
+
+	// apply sat
+	if ((*outL - mInputHistory[0]) > saturation)
+		*outL = mInputHistory[0] + saturation;
+	else if ((mInputHistory[0] - *outL) > saturation)
+		*outL = mInputHistory[0] - saturation;
+
+
+	// apply drive
+	*outR = inR *= mOverdrive;
+	*outR /= 16;
+
+	// apply sat
+	if ((*outR - mInputHistory[1]) > saturation)
+		*outR = mInputHistory[1] + saturation;
+	else if ((mInputHistory[1] - *outR) > saturation)
+		*outR = mInputHistory[1] - saturation;
+
+	mInputHistory[0] = *outL;
+	mInputHistory[1] = *outR;
 }
