@@ -158,9 +158,9 @@ void MultifuzzEditor::MakeBandDistortion(IGraphics* graphics, char* name, int x,
 	graphics->AttachControl(new ISwitchControl(mPlugin, btnL, 26, parameters.Bypass, &powerButtonBitmap));
 	graphics->AttachControl(new IRadioButtonsControl(
 		mPlugin, IRECT(btnL, 82, btnR, 142), parameters.DistortionType, 3, &buttonBitmap, EDirection::kVertical));
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(btnCtr, 80, btnCtr, 93), &distortionTypeText, "ws"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(btnCtr, 80, btnCtr, 93), &distortionTypeText, "ga"));
 	graphics->AttachControl(new ITextControl(mPlugin, IRECT(btnCtr, 103, btnCtr, 116), &distortionTypeText, "ov"));
-	graphics->AttachControl(new ITextControl(mPlugin, IRECT(btnCtr, 126, btnCtr, 139), &distortionTypeText, "ga"));
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(btnCtr, 126, btnCtr, 139), &distortionTypeText, "ws"));
 	MakeKnob(graphics, colL, 80, parameters.Overdrive, "overdrive");
 	MakeKnob(graphics, colL, 180, parameters.Frequency, "frequency");
 	MakeKnob(graphics, colL, 280, parameters.Width, "width");

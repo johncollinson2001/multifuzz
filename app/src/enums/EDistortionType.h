@@ -3,7 +3,7 @@
 // An enumeration of distortion types
 enum EDistortionType
 {
-	WaveShaper,
+	GuitarAmp,
 	Overdrive,
-	GuitarAmp
+	WaveShaper
 };
