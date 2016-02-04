@@ -7,6 +7,8 @@ using namespace std;
 
 struct Preset {
 	string Name;
+	bool MasterBypass;
+	double MasterWetDry;
 	double InputGain;
 	bool BandOneBypass;
 	EDistortionType BandOneDistortionType;

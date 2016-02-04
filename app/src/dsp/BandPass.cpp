@@ -86,11 +86,11 @@ void BandPass::InitialiseParameters()
 	frequency.Name = string(mName) + " Frequency";
 	frequency.DefaultValue = 1200.0;
 	frequency.MinValue = 20.0;
-	frequency.MaxValue = 22000.0;
+	frequency.MaxValue = 22500.0;
 	frequency.Step = 0.01;
 	frequency.Label = "hz";
 	frequency.Group = "";
-	frequency.Shape = 4.21933;
+	frequency.Shape = 4.25178;
 	frequency.Type = EParameterType::Double;
 	mParameters.push_back(frequency);
 
@@ -100,11 +100,11 @@ void BandPass::InitialiseParameters()
 	width.Name = string(mName) + " Width";
 	width.DefaultValue = 1000;
 	width.MinValue = 0.0;
-	width.MaxValue = 5000.0;
+	width.MaxValue = 12500.0;
 	width.Step = 0.01;
 	width.Label = "hz";
 	width.Group = "";
-	width.Shape = 2.32193;
+	width.Shape = 3.64386;
 	width.Type = EParameterType::Double;
 	mParameters.push_back(width);
 

@@ -10,34 +10,46 @@ AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* par
 		parameterManager,
 		"Band One",
 		sampleRate,
-		EParameter::BandOneBypass,
-		EParameter::BandOneDistortionType,
-		EParameter::BandOneOverdrive,
-		EParameter::BandOneFrequency,
-		EParameter::BandOneWidth,
-		EParameter::BandOneResonance);
+		{
+			EParameter::BandOneBypass,
+			EParameter::BandOneDistortionType,
+			EParameter::BandOneOverdrive,
+			EParameter::BandOneFrequency,
+			EParameter::BandOneWidth,
+			EParameter::BandOneResonance 
+		});
 
 	mBandDistortions[1] = new BandDistortion(
 		parameterManager,
 		"Band Two",
 		sampleRate,
-		EParameter::BandTwoBypass,
-		EParameter::BandTwoDistortionType,
-		EParameter::BandTwoOverdrive,
-		EParameter::BandTwoFrequency,
-		EParameter::BandTwoWidth,
-		EParameter::BandTwoResonance);
+		{
+			EParameter::BandTwoBypass,
+			EParameter::BandTwoDistortionType,
+			EParameter::BandTwoOverdrive,
+			EParameter::BandTwoFrequency,
+			EParameter::BandTwoWidth,
+			EParameter::BandTwoResonance
+		});
 
 	mBandDistortions[2] = new BandDistortion(
 		parameterManager,
 		"Band Three",
 		sampleRate,
-		EParameter::BandThreeBypass,
-		EParameter::BandThreeDistortionType,
-		EParameter::BandThreeOverdrive,
-		EParameter::BandThreeFrequency,
-		EParameter::BandThreeWidth,
-		EParameter::BandThreeResonance);
+		{
+			EParameter::BandThreeBypass,
+			EParameter::BandThreeDistortionType,
+			EParameter::BandThreeOverdrive,
+			EParameter::BandThreeFrequency,
+			EParameter::BandThreeWidth,
+			EParameter::BandThreeResonance
+		});
+
+	// Initialise the parameters
+	InitialiseParameters();
+
+	// Register parameters with the parameter manager
+	parameterManager->RegisterParameterListener(this, &mParameters);
 }
 
 // Destruct
@@ -62,29 +74,38 @@ void AudioProcessor::ProcessDoubleReplacing(double **inputs, double **outputs, i
 	double* outL = outputs[0];
 	double* outR = outputs[1];
 	double inPeakL = 0.0, inPeakR = 0.0, outPeakL = 0.0, outPeakR = 0.0;
-
+		
 	// Iterate samples
 	for (int s = 0; s < nFrames; ++s, ++inL, ++inR, ++outL, ++outR) {
-		//// Grab the sample
-		double sampleL = *inL;
-		double sampleR = *inR;
+		// If by pass, set the outputs to the inputs
+		if (mBypass)
+		{
+			*outL = *inL;
+			*outR = *inR;
+		}
+		else
+		{
+			// Grab the sample
+			double sampleL = *inL;
+			double sampleR = *inR;
 
-		// Process input gain and capture peaks
-		mInputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
-		inPeakL = IPMAX(inPeakL, fabs(sampleL));
-		inPeakR = IPMAX(inPeakR, fabs(sampleR));
+			// Process input gain and capture peaks
+			mInputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
+			inPeakL = IPMAX(inPeakL, fabs(sampleL));
+			inPeakR = IPMAX(inPeakR, fabs(sampleR));
 
-		// Process band distortions
-		ProcessBandDistortions(sampleL, sampleR, &sampleL, &sampleR);
+			// Process band distortions
+			ProcessBandDistortions(sampleL, sampleR, &sampleL, &sampleR);
 
-		// Process output gain and capture peaks
-		mOutputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
-		outPeakL = IPMAX(outPeakL, fabs(sampleL));
-		outPeakR = IPMAX(outPeakR, fabs(sampleR));
+			// Process output gain and capture peaks
+			mOutputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
+			outPeakL = IPMAX(outPeakL, fabs(sampleL));
+			outPeakR = IPMAX(outPeakR, fabs(sampleR));
 
-		// Assign the sample to the output
-		*outL = sampleL;
-		*outR = sampleR;
+			// Assign the sample to the output
+			*outL = sampleL;
+			*outR = sampleR;
+		}
 	}
 
 	// Send peak change notification
@@ -95,6 +116,26 @@ void AudioProcessor::ProcessDoubleReplacing(double **inputs, double **outputs, i
 void AudioProcessor::RegisterPeakListener(IPeakListener* listener)
 {
 	mPeakListeners.push_back(listener);
+}
+
+// Handle parameter changes
+void AudioProcessor::ReceiveParameterChangeNotification(int parameterIndex, double newValue)
+{
+	if (parameterIndex == EParameter::MasterBypass)
+	{
+		mBypass = newValue;
+	}
+}
+
+void AudioProcessor::InitialiseParameters()
+{
+	// Bypass
+	Parameter bypass;
+	bypass.Id = EParameter::MasterBypass;
+	bypass.Name = "Master Bypass";
+	bypass.DefaultValue = 1;
+	bypass.Type = EParameterType::Bool;
+	mParameters.push_back(bypass);
 }
 
 // Processes the band distortions

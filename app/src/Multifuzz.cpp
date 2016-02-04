@@ -16,6 +16,8 @@ Multifuzz::Multifuzz(IPlugInstanceInfo instanceInfo)
 	CreateParameters();
 	CreatePresets();
 	CreateGraphics();
+
+	RestorePreset("Sweety Fuzz");
 }
 
 // Destruct
@@ -111,6 +113,8 @@ void Multifuzz::CreatePresets()
 		Preset preset = (*iterator);
 		MakePreset(
 			strdup(preset.Name.c_str()), 
+			preset.MasterBypass,
+			preset.MasterWetDry,
 			preset.InputGain, 
 			preset.OutputGain,
 			preset.BandOneBypass,

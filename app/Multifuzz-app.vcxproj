@@ -303,6 +303,7 @@
     <ClInclude Include="src\presets\SweetyFuzzPreset.h" />
     <ClInclude Include="src\resource.h" />
     <ClInclude Include="src\dsp\Distortion.h" />
+    <ClInclude Include="src\structs\BandDistortionParameterSet.h" />
     <ClInclude Include="src\structs\Parameter.h" />
     <ClInclude Include="src\structs\Preset.h" />
   </ItemGroup>

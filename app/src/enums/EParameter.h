@@ -3,6 +3,8 @@
 // An enumeration of parameters
 enum EParameter
 {
+	MasterBypass,
+	MasterWetDry,
 	InputGain,
 	OutputGain,
 	BandOneBypass,

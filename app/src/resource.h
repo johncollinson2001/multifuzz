@@ -60,6 +60,7 @@ instrument determined by PLUG _IS _INST
 #define VUMETER_ID 104
 #define POWER_ID 105
 #define BUTTON_ID 106
+#define MASTER_POWER_ID 107
 
 // Image resource locations for this plug.
 #define KNOB_FN "resources/img/org_amp.png"
@@ -68,9 +69,10 @@ instrument determined by PLUG _IS _INST
 #define VUMETER_FN "resources/img/vumeter.png"
 #define POWER_FN "resources/img/power.png"
 #define BUTTON_FN "resources/img/button.png"
+#define MASTER_POWER_FN "resources/img/master-power.png"
 
 // GUI default dimensions
-#define GUI_WIDTH 700
+#define GUI_WIDTH 775
 #define GUI_HEIGHT 480
 
 // on MSVC, you must define SA_API in the resource editor preprocessor macros as well as the c++ ones

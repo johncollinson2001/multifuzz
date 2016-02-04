@@ -1,24 +1,25 @@
 #include "BandDistortion.h"
 
 // Construct
-BandDistortion::BandDistortion(MultifuzzParameterManager* parameterManager, char* name, double sampleRate,
-	EParameter bypassParameter, EParameter distortionTypeParameter, EParameter overdriveParameter,
-	EParameter frequencyParameter, EParameter widthParameter, EParameter resonanceParameter)
-	: mName(name), mBypassParameter(bypassParameter)
+BandDistortion::BandDistortion(MultifuzzParameterManager* parameterManager, char* name,
+	double sampleRate, BandDistortionParameterSet parameters)
+	: mName(name), mBypassParameter(parameters.Bypass)
 {
 	// Setup band pass
 	mBandPass = new BandPass(
 		parameterManager,
 		strdup((string(mName) + " Band Pass").c_str()),
 		sampleRate,
-		frequencyParameter, widthParameter, resonanceParameter);
+		parameters.Frequency,
+		parameters.Width,
+		parameters.Resonance);
 
 	// Setup distortion
 	mDistortion = new Distortion(
 		parameterManager,
 		strdup((string(mName) + " Distortion").c_str()),
-		overdriveParameter,
-		distortionTypeParameter);
+		parameters.Overdrive,
+		parameters.DistortionType);
 
 	// Initialise the parameters
 	InitialiseParameters();
@@ -65,7 +66,7 @@ void BandDistortion::ReceiveParameterChangeNotification(int parameterIndex, doub
 // Initialise parameters
 void BandDistortion::InitialiseParameters()
 {
-	// Frequency
+	// Bypass
 	Parameter bypass;
 	bypass.Id = mBypassParameter;
 	bypass.Name = string(mName) + " Bypass";

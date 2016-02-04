@@ -10,6 +10,8 @@ public:
 		Preset p;
 
 		p.Name = "Sweety Fuzz";
+		p.MasterBypass = 0;
+		p.MasterWetDry = 100;
 		p.InputGain = 0;
 		p.BandOneBypass = 0;
 		p.BandOneDistortionType = EDistortionType::Overdrive;

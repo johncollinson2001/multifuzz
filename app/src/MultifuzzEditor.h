@@ -4,6 +4,7 @@
 #include "Multifuzz.h"
 #include "constants\LayoutConstants.h"
 #include "enums\EParameter.h"
+#include "structs\BandDistortionParameterSet.h"
 #include "controls\PeakMeter.h"
 #include "controls\MultifuzzKnob.h"
 #include "AudioProcessor.h"
@@ -29,5 +30,6 @@ private:
 	void MakeTitle(IGraphics* graphics);
 	void MakeGainControls(IGraphics* graphics);
 	void MakeDistortionControls(IGraphics* graphics);
+	void MakeBandDistortion(IGraphics* graphics, char* name, int x, BandDistortionParameterSet parameters);
 	void MakeKnob(IGraphics* graphics, int x, int y, EParameter parameter, char* label);
 };

@@ -141,6 +141,9 @@
     <ClInclude Include="src\enums\EDistortionType.h">
       <Filter>Enums</Filter>
     </ClInclude>
+    <ClInclude Include="src\structs\BandDistortionParameterSet.h">
+      <Filter>Structs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.cpp">

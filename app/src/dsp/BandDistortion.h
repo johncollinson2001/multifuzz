@@ -6,6 +6,7 @@
 #include "interfaces\IDigitalSignalProcessor.h"
 #include "interfaces\IParameterListener.h"
 #include "structs\Parameter.h"
+#include "structs\BandDistortionParameterSet.h"
 #include "dsp\BandPass.h"
 #include "dsp\Distortion.h"
 
@@ -17,9 +18,8 @@ class Distortion;
 class BandDistortion : IParameterListener, IDigitalSignalProcessor
 {
 public:
-	BandDistortion(MultifuzzParameterManager* parameterManager, char* name, double sampleRate,
-		EParameter bypassParameter, EParameter distortionTypeParameter, EParameter overdriveParameter, 
-		EParameter frequencyParameter, EParameter widthParameter, EParameter resonanceParameter);
+	BandDistortion(MultifuzzParameterManager* parameterManager, char* name, 
+		double sampleRate, BandDistortionParameterSet parameters);
 	~BandDistortion();
 	virtual void ProcessAudio(double inL, double inR, double* outL, double* outR);
 	virtual void ReceiveParameterChangeNotification(int parameterIndex, double newValue);
