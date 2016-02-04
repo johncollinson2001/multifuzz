@@ -2,6 +2,7 @@
 
 #include <list>
 #include "structs\Preset.h"
+#include "presets\DefaultPreset.h"
 #include "presets\SweetyFuzzPreset.h"
 #include "presets\MegaFuzzPreset.h"
 #include "presets\FuzzyFuzzPreset.h"
@@ -26,11 +27,8 @@ list<Preset>* MultifuzzPresets::GetPresets()
 void MultifuzzPresets::InitialisePresets() 
 {
 	// Add a default
-	Preset defaultPreset;
-	defaultPreset.Name = "Default";
-	mPresets.push_back(defaultPreset);
-
-	// Add the custom presets defined in their own files
+	mPresets.push_back(DefaultPreset::Get());
+	// Add the custom presets
 	mPresets.push_back(SweetyFuzzPreset::Get());
 	mPresets.push_back(MegaFuzzPreset::Get());
 	mPresets.push_back(FuzzyFuzzPreset::Get());

@@ -14,10 +14,11 @@ Multifuzz::Multifuzz(IPlugInstanceInfo instanceInfo)
 	mMultifuzzEditor = new MultifuzzEditor(this, mAudioProcessor);
 
 	CreateParameters();
-	CreatePresets();
 	CreateGraphics();
+	CreatePresets();
 
-	RestorePreset("Sweety Fuzz");
+	// Ensure the default preset is fully loaded when the vst opens
+	RestorePreset("Default");
 }
 
 // Destruct

@@ -144,6 +144,9 @@
     <ClInclude Include="src\structs\BandDistortionParameterSet.h">
       <Filter>Structs</Filter>
     </ClInclude>
+    <ClInclude Include="src\presets\DefaultPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.cpp">

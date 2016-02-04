@@ -297,6 +297,7 @@
     <ClInclude Include="src\MultifuzzParameterManager.h" />
     <ClInclude Include="src\MultifuzzPresets.h" />
     <ClInclude Include="src\controls\PeakMeter.h" />
+    <ClInclude Include="src\presets\DefaultPreset.h" />
     <ClInclude Include="src\presets\FuzzyFuzzPreset.h" />
     <ClInclude Include="src\presets\MegaFuzzPreset.h" />
     <ClInclude Include="src\presets\MentalFuzzPreset.h" />
