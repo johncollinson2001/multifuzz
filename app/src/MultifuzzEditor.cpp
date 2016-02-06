@@ -76,7 +76,7 @@ void MultifuzzEditor::MakeTitle(IGraphics* graphics)
 
 	// Power Button
 	IBitmap buttonBitmap = graphics->LoadIBitmap(MASTER_POWER_ID, MASTER_POWER_FN, LayoutConstants::kMasterPowerSwitchFrames);
-	graphics->AttachControl(new ISwitchControl(mPlugin, 68, 20, EParameter::MasterBypass, &buttonBitmap));
+	graphics->AttachControl(new ISwitchControl(mPlugin, 66, 20, EParameter::MasterBypass, &buttonBitmap));
 
 }
 

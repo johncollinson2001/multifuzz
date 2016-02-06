@@ -6,6 +6,7 @@
 #include "enums\EParameter.h"
 #include "dsp\GainController.h"
 #include "dsp\BandDistortion.h"
+#include "dsp\WetDryController.h"
 #include "interfaces\IPeakListener.h"
 #include "interfaces\IParameterListener.h"
 
@@ -14,6 +15,7 @@ class Multifuzz;
 class MultifuzzParameterManager;
 class GainController;
 class BandDistortion;
+class WetDryController;
 
 class AudioProcessor : IParameterListener
 {
@@ -29,6 +31,7 @@ private:
 	bool mBypass;
 	GainController* mInputGainController;
 	GainController* mOutputGainController;
+	WetDryController* mWetDryController;
 	BandDistortion* mBandDistortions[kNumberOfBandDistortions];
 	list<IPeakListener*> mPeakListeners = list<IPeakListener*>();
 	list<Parameter> mParameters = list<Parameter>();

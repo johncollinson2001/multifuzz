@@ -282,6 +282,7 @@
     <ClInclude Include="src\constants\LayoutConstants.h" />
     <ClInclude Include="src\dsp\BandDistortion.h" />
     <ClInclude Include="src\dsp\BandPass.h" />
+    <ClInclude Include="src\dsp\WetDryController.h" />
     <ClInclude Include="src\enums\EDistortionType.h" />
     <ClInclude Include="src\enums\EParameterType.h" />
     <ClInclude Include="src\enums\EFilterType.h" />
@@ -322,6 +323,7 @@
     <ClCompile Include="src\dsp\BandPass.cpp" />
     <ClCompile Include="src\dsp\Filter.cpp" />
     <ClCompile Include="src\dsp\GainController.cpp" />
+    <ClCompile Include="src\dsp\WetDryController.cpp" />
     <ClCompile Include="src\Multifuzz.cpp" />
     <ClCompile Include="src\MultifuzzEditor.cpp" />
     <ClCompile Include="src\controls\MultifuzzKnob.cpp" />

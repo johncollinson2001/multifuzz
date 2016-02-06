@@ -3,7 +3,8 @@
 // Construct
 AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* parameterManager, double sampleRate)
 	: mInputGainController(new GainController(parameterManager, "Input Gain", EParameter::InputGain)),
-	mOutputGainController(new GainController(parameterManager, "Output Gain", EParameter::OutputGain))
+	mOutputGainController(new GainController(parameterManager, "Output Gain", EParameter::OutputGain)),
+	mWetDryController(new WetDryController(parameterManager, "Master Wet/Dry", EParameter::MasterWetDry))
 {
 	// Create band distortion units
 	mBandDistortions[0] = new BandDistortion(
@@ -85,26 +86,30 @@ void AudioProcessor::ProcessDoubleReplacing(double **inputs, double **outputs, i
 		}
 		else
 		{
-			// Grab the sample
-			double sampleL = *inL;
-			double sampleR = *inR;
+			double dryL = *inL;
+			double dryR = *inR;
 
 			// Process input gain and capture peaks
-			mInputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
-			inPeakL = IPMAX(inPeakL, fabs(sampleL));
-			inPeakR = IPMAX(inPeakR, fabs(sampleR));
+			mInputGainController->ProcessAudio(dryL, dryR, &dryL, &dryR);
+			inPeakL = IPMAX(inPeakL, fabs(dryL));
+			inPeakR = IPMAX(inPeakR, fabs(dryR));
 
 			// Process band distortions
-			ProcessBandDistortions(sampleL, sampleR, &sampleL, &sampleR);
+			double wetL, wetR;
+			ProcessBandDistortions(dryL, dryR, &wetL, &wetR);
+
+			// Process wet/dry
+			double mixedL, mixedR;
+			mWetDryController->ProcessAudio(dryL, dryR, wetL, wetR, &mixedL, &mixedR);
 
 			// Process output gain and capture peaks
-			mOutputGainController->ProcessAudio(sampleL, sampleR, &sampleL, &sampleR);
-			outPeakL = IPMAX(outPeakL, fabs(sampleL));
-			outPeakR = IPMAX(outPeakR, fabs(sampleR));
+			mOutputGainController->ProcessAudio(mixedL, mixedR, &mixedL, &mixedR);
+			outPeakL = IPMAX(outPeakL, fabs(mixedL));
+			outPeakR = IPMAX(outPeakR, fabs(mixedR));
 
 			// Assign the sample to the output
-			*outL = sampleL;
-			*outR = sampleR;
+			*outL = mixedL;
+			*outR = mixedR;
 		}
 	}
 

@@ -30,6 +30,9 @@
       <Filter>Dsp</Filter>
     </ClCompile>
     <ClCompile Include="src\AudioProcessor.cpp" />
+    <ClCompile Include="src\dsp\WetDryController.cpp">
+      <Filter>Dsp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h">
@@ -42,12 +45,6 @@
     <ClInclude Include="src\Multifuzz.h" />
     <ClInclude Include="src\MultifuzzEditor.h" />
     <ClInclude Include="src\MultifuzzPresets.h" />
-    <ClInclude Include="src\Preset.h">
-      <Filter>Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Parameter.h">
-      <Filter>Structs</Filter>
-    </ClInclude>
     <ClInclude Include="src\controls\PeakMeter.h">
       <Filter>Controls</Filter>
     </ClInclude>
@@ -103,6 +100,21 @@
     </ClInclude>
     <ClInclude Include="src\enums\EDistortionType.h">
       <Filter>Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\structs\BandDistortionParameterSet.h">
+      <Filter>Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presets\DefaultPreset.h">
+      <Filter>Presets</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dsp\WetDryController.h">
+      <Filter>Dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\structs\Preset.h">
+      <Filter>Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\structs\Parameter.h">
+      <Filter>Structs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
