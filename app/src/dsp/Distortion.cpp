@@ -29,7 +29,8 @@ void Distortion::ProcessAudio(double inL, double inR, double* outL, double* outR
 		switch(mDistortionType)
 		{
 		case EDistortionType::Overdrive:
-			ApplyOverdrive(inL, inR, outL, outR);
+		//	ApplyOverdrive(inL, inR, outL, outR);
+			ApplyWsTest(inL, inR, outL, outR);
 			break;
 		case EDistortionType::WaveShaper:
 			ApplyWaveShaper(inL, inR, outL, outR);
@@ -37,7 +38,7 @@ void Distortion::ProcessAudio(double inL, double inR, double* outL, double* outR
 		case EDistortionType::GuitarAmp:
 			ApplyGuitarAmp(inL, inR, outL, outR);
 			break;
-		}
+		}		
 	}
 }
 
@@ -160,4 +161,25 @@ void Distortion::ApplyGuitarAmp(double inL, double inR, double* outL, double* ou
 
 	mInputHistory[0] = *outL;
 	mInputHistory[1] = *outR;
+}
+
+// Apply guitar amp to an audio signal
+void Distortion::ApplyWsTest(double inL, double inR, double* outL, double* outR)
+{
+	double saturation = 
+		 (mOverdrive / 10);
+
+	/**outL = inL / (saturation + abs(inL));
+	*outR = inR / (saturation + abs(inR));*/
+
+	/**outL = inL / (sin(saturation) + abs(inL));
+	*outR = inR / (sin(saturation) + abs(inR));*/
+
+	/**outL = inL / (pow(inL, 2) + saturation);
+	*outR = inR / (pow(inR, 2) + saturation);*/
+
+	*outL = pow(inL, 2) * saturation;
+	*outR = pow(inR, 2) * saturation;
+
+	
 }

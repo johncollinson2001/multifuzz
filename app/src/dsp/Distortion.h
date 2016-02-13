@@ -31,5 +31,6 @@ private:
 	void ApplyOverdrive(double inL, double inR, double* outL, double* outR);
 	void ApplyWaveShaper(double inL, double inR, double* outL, double* outR);
 	void ApplyGuitarAmp(double inL, double inR, double* outL, double* outR);
+	void ApplyWsTest(double inL, double inR, double* outL, double* outR);
 };
 
