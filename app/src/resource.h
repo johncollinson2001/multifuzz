@@ -23,7 +23,7 @@
 // 4 chars, single quotes. At least one capital letter
 #define PLUG_UNIQUE_ID 'Mfzz'
 // make sure this is not the same as BUNDLE_MFR
-#define PLUG_MFR_ID 'Acme'
+#define PLUG_MFR_ID 'JCol'
 
 // ProTools stuff
 
@@ -33,7 +33,7 @@ const int PLUG_TYPE_IDS[2] = { 'EFN1', 'EFN2' };
 const int PLUG_TYPE_IDS_AS[2] = { 'EFA1', 'EFA2' }; // AudioSuite
 #endif
 
-#define PLUG_MFR_PT "JohnCollinson\nJohnCollinson\nAcme"
+#define PLUG_MFR_PT "JohnCollinson\nJohnCollinson\nJCol"
 #define PLUG_NAME_PT "Multifuzz\nIPEF"
 #define PLUG_TYPE_PT "Effect"
 #define PLUG_DOES_AUDIOSUITE 1
@@ -54,26 +54,34 @@ instrument determined by PLUG _IS _INST
 #define PLUG_DOES_STATE_CHUNKS 0
 
 // Unique IDs for each image resource.
-#define KNOB_ID 101
-#define BACKGROUND_ID 102
-#define HANDLE_ID 103
-#define VUMETER_ID 104
-#define POWER_ID 105
-#define BUTTON_ID 106
-#define MASTER_POWER_ID 107
+#define BACKGROUND_METAL_ID 101
+#define BACKGROUND_YELLOW_ID 102
+#define LED_PANEL_ID 103
+#define ON_OFF_BUTTON_ID 104
+#define POWER_SWITCH_ID 105
+#define KNOB_46X46_ID 106
+#define KNOB_60X60_ID 107
+#define KNOB_84X84_ID 108
+#define KNOB_100X100_ID 109
+#define VU_METER_BLACK_ID 110
+#define VU_METER_BLUE_ID 111
 
 // Image resource locations for this plug.
-#define KNOB_FN "resources/img/org_amp.png"
-#define BACKGROUND_FN "resources/img/background.png"
-#define HANDLE_FN "resources/img/handle.png"
-#define VUMETER_FN "resources/img/vumeter.png"
-#define POWER_FN "resources/img/power.png"
-#define BUTTON_FN "resources/img/button.png"
-#define MASTER_POWER_FN "resources/img/master-power.png"
+#define BACKGROUND_METAL_FN "resources/img/bg-metal-807x400.png"
+#define BACKGROUND_YELLOW_FN "resources/img/bg-yellow-807x400.png"
+#define LED_PANEL_FN "resources/img/led-panel-130x26.png"
+#define ON_OFF_BUTTON_FN "resources/img/on-off-btn-50x50-2f.png"
+#define POWER_SWITCH_FN "resources/img/power-switch-72x72-2f.png"
+#define KNOB_46X46_FN "resources/img/silver-knob-46x46-101f.png"
+#define KNOB_60X60_FN "resources/img/silver-knob-60x60-101f.png"
+#define KNOB_84X84_FN "resources/img/silver-knob-84x84-101f.png"
+#define KNOB_100X100_FN "resources/img/silver-knob-100x100-101f.png"
+#define VU_METER_BLACK_FN "resources/img/vu-meter-black-113x113-50f.png"
+#define VU_METER_BLUE_FN "resources/img/vu-meter-blue-144x100-50f.png"
 
 // GUI default dimensions
-#define GUI_WIDTH 775
-#define GUI_HEIGHT 480
+#define GUI_WIDTH 807
+#define GUI_HEIGHT 400
 
 // on MSVC, you must define SA_API in the resource editor preprocessor macros as well as the c++ ones
 #if defined(SA_API) && !defined(OS_IOS)
