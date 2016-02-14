@@ -29,9 +29,8 @@ IGraphics* MultifuzzEditor::Make(IGraphics* graphics)
 {
 	// Make the component parts
 	MakeBackground(graphics);
-	/*MakeHandles(graphics);
-	MakeTitle(graphics);
-	MakeGainControls(graphics);
+	MakePowerSwitch(graphics);
+	/*MakeGainControls(graphics);
 	MakeDistortionControls(graphics);*/
 
 	return graphics;
@@ -44,34 +43,10 @@ void MultifuzzEditor::MakeBackground(IGraphics* graphics)
 }
 
 // Make the handles
-void MultifuzzEditor::MakeHandles(IGraphics* graphics) 
+void MultifuzzEditor::MakePowerSwitch(IGraphics* graphics) 
 {
-	//// Create a handle at the left and right of the gui window
-	//IBitmap handleBitmap = graphics->LoadIBitmap(HANDLE_ID, HANDLE_FN);
-
-	//// Left
-	//graphics->AttachControl(new IBitmapControl(mPlugin, 0, 0, &handleBitmap));
-
-	//// Right
-	//int rightHandleX = (graphics->Width() - handleBitmap.W);
-	//graphics->AttachControl(new IBitmapControl(mPlugin, rightHandleX, 0, &handleBitmap));
-}
-
-// Make the title
-void MultifuzzEditor::MakeTitle(IGraphics* graphics) 
-{
-	//// Header 1
-	//IText h1 = IText(40, &COLOR_WHITE, "Courier New", IText::EStyle::kStyleBold);
-	//graphics->AttachControl(new ITextControl(mPlugin, IRECT(120, 36, 312, 61), &h1, "Multifuzz"));
-
-	//// Header 2
-	//IText h2 = IText(15, &COLOR_WHITE, "Courier New");
-	//graphics->AttachControl(new ITextControl(mPlugin, IRECT(120, 68, 312, 83), &h2, "multi-band distortion unit"));
-
-	//// Power Button
-	//IBitmap buttonBitmap = graphics->LoadIBitmap(MASTER_POWER_ID, MASTER_POWER_FN, LayoutConstants::kMasterPowerSwitchFrames);
-	//graphics->AttachControl(new ISwitchControl(mPlugin, 66, 20, EParameter::MasterBypass, &buttonBitmap));
-
+	IBitmap buttonBitmap = graphics->LoadIBitmap(POWER_SWITCH_ID, POWER_SWITCH_FN, LayoutConstants::kPowerSwitchFrames);
+	graphics->AttachControl(new ISwitchControl(mPlugin, 38, 25, EParameter::MasterBypass, &buttonBitmap));
 }
 
 // Make the gain controls

@@ -9,9 +9,12 @@ namespace LayoutConstants
 {
 	const int kGuiWidth = GUI_WIDTH;
 	const int kGuiHeight = GUI_HEIGHT;
-	const string kGlobalFont = "Courier New";
-	const int kKnobFrames = 31; // The number of frames in the knob sprite
+
+	const string kCourierNewFont = "Courier New";
+	const string kTahomaFont = "Tahoma";
+
+	const int kKnobFrames = 101;
+	const int kOnOffButtonFrames = 2;
 	const int kPowerSwitchFrames = 2;
-	const int kMasterPowerSwitchFrames = 2;
-	const int kButtonFrames = 2;
+	const int kVuMeterFrames = 50;
 }
