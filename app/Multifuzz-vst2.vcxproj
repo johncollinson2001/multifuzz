@@ -246,6 +246,7 @@
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h" />
     <ClInclude Include="src\AudioProcessor.h" />
+    <ClInclude Include="src\controls\VuMeter.h" />
     <ClInclude Include="src\dsp\BandDistortion.h" />
     <ClInclude Include="src\dsp\BandPass.h" />
     <ClInclude Include="src\dsp\Distortion.h" />
@@ -279,6 +280,7 @@
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\IPlug\IPlugVST.cpp" />
     <ClCompile Include="src\AudioProcessor.cpp" />
+    <ClCompile Include="src\controls\VuMeter.cpp" />
     <ClCompile Include="src\dsp\BandDistortion.cpp" />
     <ClCompile Include="src\dsp\BandPass.cpp" />
     <ClCompile Include="src\dsp\Distortion.cpp" />

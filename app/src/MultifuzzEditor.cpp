@@ -1,4 +1,8 @@
 #include "MultifuzzEditor.h"
+#include <math.h>
+#include <algorithm>
+
+using namespace std;
 
 // Construct
 MultifuzzEditor::MultifuzzEditor(Multifuzz* plugin, AudioProcessor* audioProcessor) 
@@ -17,10 +21,8 @@ void MultifuzzEditor::ReceivePeakChangeNotification(double inPeakL, double inPea
 {
 	if (mPlugin->GetGUI())
 	{
-		mPlugin->GetGUI()->SetControlFromPlug(mInputPeakIdxL, inPeakL);
-		mPlugin->GetGUI()->SetControlFromPlug(mInputPeakIdxR, inPeakR);
-		mPlugin->GetGUI()->SetControlFromPlug(mOutputPeakIdxL, outPeakL);
-		mPlugin->GetGUI()->SetControlFromPlug(mOutputPeakIdxR, outPeakR);
+		mPlugin->GetGUI()->SetControlFromPlug(mInputVuMeterIdx, max(inPeakL, inPeakR));
+		mPlugin->GetGUI()->SetControlFromPlug(mOutputVuMeterIdx, max(outPeakL, outPeakR));
 	}
 }
 
@@ -30,8 +32,8 @@ IGraphics* MultifuzzEditor::Make(IGraphics* graphics)
 	// Make the component parts
 	MakeBackground(graphics);
 	MakePowerSwitch(graphics);
-	/*MakeGainControls(graphics);
-	MakeDistortionControls(graphics);*/
+	MakeGainControls(graphics);
+	/*MakeDistortionControls(graphics);*/
 
 	return graphics;
 }
@@ -52,28 +54,35 @@ void MultifuzzEditor::MakePowerSwitch(IGraphics* graphics)
 // Make the gain controls
 void MultifuzzEditor::MakeGainControls(IGraphics* graphics) 
 {
-	// Add header labels
-	//IText lblText = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()),
-	//	IText::EStyle::kStyleNormal, IText::EAlign::kAlignCenter);
+	// Make in/out gain
+	MakeGain(graphics, "Input", 55, EParameter::InputGain, &mInputVuMeterIdx);
+	MakeGain(graphics, "Output", 230, EParameter::OutputGain, &mOutputVuMeterIdx);
 
-	//graphics->AttachControl(new ITextControl(mPlugin, IRECT(89, 123, 194, 150), &lblText, "Input"));
-	//graphics->AttachControl(new ITextControl(mPlugin, IRECT(238, 123, 343, 150), &lblText, "Output"));
-	//
-	//// Attach the VU Meter bitmaps
-	//IBitmap vuMeterBitmap = graphics->LoadIBitmap(VUMETER_ID, VUMETER_FN);
-	//graphics->AttachControl(new IBitmapControl(mPlugin, 89, 150, &vuMeterBitmap));
-	//graphics->AttachControl(new IBitmapControl(mPlugin, 238, 150, &vuMeterBitmap));
-
-	//// Add the vu meters
-	//mInputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(114, 143, 135, 320)));
-	//mInputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(149, 143, 170, 320)));
-	//mOutputPeakIdxL = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(263, 143, 284, 320)));
-	//mOutputPeakIdxR = graphics->AttachControl(new PeakMeter(mPlugin, IRECT(298, 143, 319, 320)));
-
-	//// Add knobs
-	//MakeKnob(graphics, 110, 358, EParameter::InputGain, "gain");
+	// Make wet/dry
 	//MakeKnob(graphics, 185, 380, EParameter::MasterWetDry, "wet/dry");
-	//MakeKnob(graphics, 260, 358, EParameter::OutputGain, "gain");
+}
+
+// Make a single gain control
+void MultifuzzEditor::MakeGain(IGraphics* graphics, char* name, int x, EParameter gainParameter, int* vuIdx)
+{	
+	int left = x, right = x + 113;	// Change this value to 144 for blue vu
+	int labelTop = 115, labelBottom = 140;
+	int vuMeterX = x, vuMeterY = 140;	
+	int knobWidth = 52, knobHeight = 52;
+	int knobX = x + (((right - left) - knobWidth) / 2), knobY = 275;
+
+	// Add header label
+	IText lblText = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kCourierNewFont.c_str()),
+		IText::EStyle::kStyleNormal, IText::EAlign::kAlignCenter);
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(left, labelTop, right, labelBottom), &lblText, name));
+
+	// Attach the VU Meter
+	IBitmap vuMeterBitmap = graphics->LoadIBitmap(VU_METER_BLACK_ID, VU_METER_BLACK_FN, LayoutConstants::kVuMeterFrames);
+	*vuIdx = graphics->AttachControl(new VuMeter(mPlugin, vuMeterX, vuMeterY, &vuMeterBitmap));
+
+	// Add knob
+	IRECT knobRectangle = IRECT(knobX, knobY - 15, knobX + knobWidth, knobY + knobHeight + 15);
+	MakeKnob(graphics, KNOB_MEDIUM_ID, KNOB_MEDIUM_FN, knobRectangle, 14, gainParameter, "gain");	
 }
 
 // Make the distortion controls
@@ -138,9 +147,9 @@ void MultifuzzEditor::MakeBandDistortion(IGraphics* graphics, char* name, int x,
 }
 
 // Make a knob
-void MultifuzzEditor::MakeKnob(IGraphics* graphics, int x, int y, EParameter parameter, char* label) 
+void MultifuzzEditor::MakeKnob(IGraphics* graphics, int bitmapId, const char* bitmapName, IRECT rect, int textSize, EParameter parameter, char* label)
 {
-	/*IBitmap knob = graphics->LoadIBitmap(KNOB_ID, KNOB_FN, LayoutConstants::kKnobFrames);
-	IText text = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()));
-	graphics->AttachControl(new MultifuzzKnob(mPlugin, IRECT(x, y, x + 64, y + 64 + 15), parameter, &knob, &text, label));*/
+	IBitmap knob = graphics->LoadIBitmap(bitmapId, bitmapName, LayoutConstants::kKnobFrames);
+	IText text = IText(textSize, &COLOR_BLACK, strdup(LayoutConstants::kCourierNewFont.c_str()));
+	graphics->AttachControl(new MultifuzzKnob(mPlugin, rect, parameter, &knob, &text, label));
 }

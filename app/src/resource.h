@@ -59,10 +59,10 @@ instrument determined by PLUG _IS _INST
 #define LED_PANEL_ID 103
 #define ON_OFF_BUTTON_ID 104
 #define POWER_SWITCH_ID 105
-#define KNOB_46X46_ID 106
-#define KNOB_60X60_ID 107
-#define KNOB_84X84_ID 108
-#define KNOB_100X100_ID 109
+#define KNOB_MINI_ID 106
+#define KNOB_SMALL_ID 107
+#define KNOB_MEDIUM_ID 108
+#define KNOB_LARGE_ID 109
 #define VU_METER_BLACK_ID 110
 #define VU_METER_BLUE_ID 111
 
@@ -72,10 +72,10 @@ instrument determined by PLUG _IS _INST
 #define LED_PANEL_FN "resources/img/led-panel-130x26.png"
 #define ON_OFF_BUTTON_FN "resources/img/on-off-btn-50x50-2f.png"
 #define POWER_SWITCH_FN "resources/img/power-switch-72x72-2f.png"
-#define KNOB_46X46_FN "resources/img/silver-knob-46x46-101f.png"
-#define KNOB_60X60_FN "resources/img/silver-knob-60x60-101f.png"
-#define KNOB_84X84_FN "resources/img/silver-knob-84x84-101f.png"
-#define KNOB_100X100_FN "resources/img/silver-knob-100x100-101f.png"
+#define KNOB_MINI_FN "resources/img/silver-knob-28x28-101f.png"
+#define KNOB_SMALL_FN "resources/img/silver-knob-36x36-101f.png"
+#define KNOB_MEDIUM_FN "resources/img/silver-knob-52x52-101f.png"
+#define KNOB_LARGE_FN "resources/img/silver-knob-65x65-101f.png"
 #define VU_METER_BLACK_FN "resources/img/vu-meter-black-113x113-50f.png"
 #define VU_METER_BLUE_FN "resources/img/vu-meter-blue-144x100-50f.png"
 

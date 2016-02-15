@@ -150,6 +150,9 @@
     <ClInclude Include="src\dsp\WetDryController.h">
       <Filter>Dsp</Filter>
     </ClInclude>
+    <ClInclude Include="src\controls\VuMeter.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\wdl-ol\WDL\rtaudiomidi\RtAudio.cpp">
@@ -204,6 +207,9 @@
     </ClCompile>
     <ClCompile Include="src\dsp\WetDryController.cpp">
       <Filter>Dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controls\VuMeter.cpp">
+      <Filter>Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

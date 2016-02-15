@@ -7,10 +7,14 @@ MultifuzzKnob::MultifuzzKnob(IPlugBase* plugin, IRECT rectangle, EParameter para
 	mText = *text;
 	mDisablePrompt = false;
 
+	// Work out the top and lower buffers allowed for the label and value, this
+	// assumes the width is the exact width of the image
+	int textBuffer = ((mRECT.B - mRECT.T) - (mRECT.R - mRECT.L)) / 2;
+
 	mLabel = label;
-	mLabelRectangle = IRECT(mRECT.L, mRECT.T - 20, mRECT.R, mRECT.B);
-	mValueRectangle = IRECT(mRECT.L, mRECT.B - 20, mRECT.R, mRECT.B);
-	mImageRectangle = IRECT(mRECT.L, mRECT.T, &mBitmap);
+	mLabelRectangle = IRECT(mRECT.L, mRECT.T, mRECT.R, mRECT.B);
+	mValueRectangle = IRECT(mRECT.L, mRECT.B - textBuffer, mRECT.R, mRECT.B);
+	mImageRectangle = IRECT(mRECT.L, mRECT.T + textBuffer, &mBitmap);
 }
 
 // Destruct
@@ -29,10 +33,10 @@ bool MultifuzzKnob::Draw(IGraphics* graphics)
 
 	// Draw the value text
 	char knobValue[20];
-	mPlug->GetParam(mParamIdx)->GetDisplayForHost(knobValue);
+	mPlug->GetParam(mParamIdx)->GetDisplayForHost(knobValue);	
 	if (CSTR_NOT_EMPTY(knobValue))
 	{		
-		return graphics->DrawIText(&mText, knobValue, &mValueRectangle);
+		graphics->DrawIText(&mText, knobValue, &mValueRectangle);
 	}
 
 	return true;

@@ -33,6 +33,9 @@
     <ClCompile Include="src\dsp\WetDryController.cpp">
       <Filter>Dsp</Filter>
     </ClCompile>
+    <ClCompile Include="src\controls\VuMeter.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h">
@@ -115,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="src\structs\Parameter.h">
       <Filter>Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controls\VuMeter.h">
+      <Filter>Controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
