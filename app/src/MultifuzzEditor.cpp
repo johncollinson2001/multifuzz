@@ -59,9 +59,15 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics)
 	MakeGain(graphics, "Output", 230, EParameter::OutputGain, &mOutputVuMeterIdx);
 
 	// Make wet/dry
-//	IRECT knobRectangle = IRECT(185, 380 - 15, 185 + knobWidth, knobY + knobHeight + 15);
-	//MakeKnob(graphics, KNOB_MEDIUM_ID, KNOB_MEDIUM_FN, knobRectangle, 14, EParameter::MasterWetDry, "wet/dry");
-	//MakeKnob(graphics, 185, 380, EParameter::MasterWetDry, "wet/dry");
+	int knobX = 165, knobY = 290;
+	int knobLabelPadding = 15;
+	int knobLabelFontSize = 16;
+	IRECT knobRectangle = IRECT(
+		knobX,
+		knobY - knobLabelPadding,
+		knobX + LayoutConstants::kKnobLargeWidth,
+		knobY + LayoutConstants::kKnobLargeHeight + knobLabelPadding);
+	MakeKnob(graphics, KNOB_LARGE_ID, KNOB_LARGE_FN, knobRectangle, knobLabelFontSize, EParameter::MasterWetDry, "wet/dry");
 }
 
 // Make a single gain control
@@ -71,9 +77,12 @@ void MultifuzzEditor::MakeGain(IGraphics* graphics, char* name, int x, EParamete
 	int labelTop = 115, labelBottom = 140;
 	int vuMeterX = x, vuMeterY = 140;	
 	int knobX = x + (((right - left) - LayoutConstants::kKnobMediumWidth) / 2), knobY = 275;
+	int knobLabelPadding = 15;
+	int headerLabelFontSize = 16;
+	int knobLabelFontSize = 14;
 
 	// Add header label
-	IText lblText = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kCourierNewFont.c_str()),
+	IText lblText = IText(headerLabelFontSize, &COLOR_BLACK, strdup(LayoutConstants::kCourierNewFont.c_str()),
 		IText::EStyle::kStyleNormal, IText::EAlign::kAlignCenter);
 	graphics->AttachControl(new ITextControl(mPlugin, IRECT(left, labelTop, right, labelBottom), &lblText, name));
 
@@ -82,8 +91,12 @@ void MultifuzzEditor::MakeGain(IGraphics* graphics, char* name, int x, EParamete
 	*vuIdx = graphics->AttachControl(new VuMeter(mPlugin, vuMeterX, vuMeterY, &vuMeterBitmap));
 
 	// Add knob
-	IRECT knobRectangle = IRECT(knobX, knobY - 15, knobX + LayoutConstants::kKnobMediumWidth, knobY + LayoutConstants::kKnobMediumHeight + 15);
-	MakeKnob(graphics, KNOB_MEDIUM_ID, KNOB_MEDIUM_FN, knobRectangle, 14, gainParameter, "gain");	
+	IRECT knobRectangle = IRECT(
+		knobX, 
+		knobY - knobLabelPadding, 
+		knobX + LayoutConstants::kKnobMediumWidth, 
+		knobY + LayoutConstants::kKnobMediumHeight + knobLabelPadding);
+	MakeKnob(graphics, KNOB_MEDIUM_ID, KNOB_MEDIUM_FN, knobRectangle, knobLabelFontSize, gainParameter, "gain");	
 }
 
 // Make the distortion controls

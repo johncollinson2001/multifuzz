@@ -23,7 +23,13 @@ namespace LayoutConstants
 	const int kVuDbLow = -50; // Change according to vu sections in VU meter blue
 	const int kVuDbHigh = 10; // Change according to vu sections in VU meter blue
 
+	const int kKnobMiniWidth = 28;
+	const int kKnobMiniHeight = 28;
+	const int kKnobSmallWidth = 36;
+	const int kKnobSmallHeight = 36;
 	const int kKnobMediumWidth = 52;
 	const int kKnobMediumHeight = 52;
+	const int kKnobLargeWidth = 65;
+	const int kKnobLargeHeight = 65;
 
 }
