@@ -3,8 +3,8 @@
 // Construct
 VuMeter::VuMeter(IPlugBase* plugin, int x, int y, IBitmap* bitmap)
 	: IBitmapControl(plugin, x, y, bitmap),
-	mBitmapsPerSection((double)mBitmap.N / (double)kNumberOfVuSections),
-	mDbPerSection(abs(kDbLow - kDbHigh) / kNumberOfVuSections)
+	mBitmapsPerSection((double)mBitmap.N / (double)LayoutConstants::kNumberOfVuSections),
+	mDbPerSection(abs(LayoutConstants::kVuDbLow - LayoutConstants::kVuDbHigh) / (double)LayoutConstants::kNumberOfVuSections)
 { 
 	// Set the clamp so we can receive amplitudes above 0
 	Clamp(0, 10.0);
@@ -23,23 +23,23 @@ bool VuMeter::Draw(IGraphics* graphics)
 	double bitMapIndex = 0;
 
 	// If the db is below the lower bound, set bitmap index to 1
-	if (db <= kDbLow)
+	if (db <= LayoutConstants::kVuDbLow)
 	{
 		bitMapIndex = 1;
 	}
 	// If the db is above the upper bound, set bitmap index to number of frames
-	else if (db >= kDbHigh)
+	else if (db >= LayoutConstants::kVuDbHigh)
 	{
 		bitMapIndex = mBitmap.N;
 	}
 	else
 	{
 		// Iterate over the VU sections
-		for (int i = 0; i < kNumberOfVuSections; i++)
+		for (int i = 0; i < LayoutConstants::kNumberOfVuSections; i++)
 		{
 			// Work out upper/lower limit of the vu section
-			double dbSectionLowerLimit = kDbLow + (mDbPerSection * i);
-			double dbSectionUpperLimit = kDbLow + (mDbPerSection * (i + 1));
+			double dbSectionLowerLimit = LayoutConstants::kVuDbLow + (mDbPerSection * i);
+			double dbSectionUpperLimit = LayoutConstants::kVuDbLow + (mDbPerSection * (i + 1));
 
 			// If the db was less than the upper limit of the section
 			if (db <= dbSectionUpperLimit)

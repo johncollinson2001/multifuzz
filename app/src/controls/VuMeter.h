@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IControl.h"
+#include "constants\LayoutConstants.h"
 
 class VuMeter : public IBitmapControl
 {
@@ -10,10 +11,6 @@ public:
 	virtual bool Draw(IGraphics* graphics);
 
 private:
-	const int kDbLow = -50;
-	const int kDbHigh = 10;
-	const int kNumberOfVuSections = 6;
-
 	// Some coefficients to use when calculating the bitmap frame during draw
 	double mDbPerSection, mBitmapsPerSection;
 };

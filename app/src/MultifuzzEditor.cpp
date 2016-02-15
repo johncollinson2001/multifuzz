@@ -59,17 +59,18 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics)
 	MakeGain(graphics, "Output", 230, EParameter::OutputGain, &mOutputVuMeterIdx);
 
 	// Make wet/dry
+//	IRECT knobRectangle = IRECT(185, 380 - 15, 185 + knobWidth, knobY + knobHeight + 15);
+	//MakeKnob(graphics, KNOB_MEDIUM_ID, KNOB_MEDIUM_FN, knobRectangle, 14, EParameter::MasterWetDry, "wet/dry");
 	//MakeKnob(graphics, 185, 380, EParameter::MasterWetDry, "wet/dry");
 }
 
 // Make a single gain control
 void MultifuzzEditor::MakeGain(IGraphics* graphics, char* name, int x, EParameter gainParameter, int* vuIdx)
 {	
-	int left = x, right = x + 113;	// Change this value to 144 for blue vu
+	int left = x, right = x + LayoutConstants::kVuMeterWidth;	// Change this value to 144 for blue vu
 	int labelTop = 115, labelBottom = 140;
 	int vuMeterX = x, vuMeterY = 140;	
-	int knobWidth = 52, knobHeight = 52;
-	int knobX = x + (((right - left) - knobWidth) / 2), knobY = 275;
+	int knobX = x + (((right - left) - LayoutConstants::kKnobMediumWidth) / 2), knobY = 275;
 
 	// Add header label
 	IText lblText = IText(16, &COLOR_BLACK, strdup(LayoutConstants::kCourierNewFont.c_str()),
@@ -81,7 +82,7 @@ void MultifuzzEditor::MakeGain(IGraphics* graphics, char* name, int x, EParamete
 	*vuIdx = graphics->AttachControl(new VuMeter(mPlugin, vuMeterX, vuMeterY, &vuMeterBitmap));
 
 	// Add knob
-	IRECT knobRectangle = IRECT(knobX, knobY - 15, knobX + knobWidth, knobY + knobHeight + 15);
+	IRECT knobRectangle = IRECT(knobX, knobY - 15, knobX + LayoutConstants::kKnobMediumWidth, knobY + LayoutConstants::kKnobMediumHeight + 15);
 	MakeKnob(graphics, KNOB_MEDIUM_ID, KNOB_MEDIUM_FN, knobRectangle, 14, gainParameter, "gain");	
 }
 
