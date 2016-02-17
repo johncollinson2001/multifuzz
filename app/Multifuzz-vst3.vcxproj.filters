@@ -72,6 +72,9 @@
     <ClCompile Include="src\controls\VuMeter.cpp">
       <Filter>Controls</Filter>
     </ClCompile>
+    <ClCompile Include="src\controls\DistortionTypeSelector.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\VST3_SDK\pluginterfaces\base\falignpop.h">
@@ -249,6 +252,9 @@
       <Filter>Dsp</Filter>
     </ClInclude>
     <ClInclude Include="src\controls\VuMeter.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controls\DistortionTypeSelector.h">
       <Filter>Controls</Filter>
     </ClInclude>
   </ItemGroup>

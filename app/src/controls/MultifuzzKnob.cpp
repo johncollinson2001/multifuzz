@@ -11,10 +11,14 @@ MultifuzzKnob::MultifuzzKnob(IPlugBase* plugin, IRECT rectangle, EParameter para
 	// assumes the width is the exact width of the image
 	int textBuffer = ((mRECT.B - mRECT.T) - (mRECT.R - mRECT.L)) / 2;
 
+	// Bodge fix, add 10 to each side of the rect to ensure the value does not get truncated
+	mRECT.L = mRECT.L - 10;
+	mRECT.R = mRECT.R + 10;	
+
 	mLabel = label;
 	mLabelRectangle = IRECT(mRECT.L, mRECT.T, mRECT.R, mRECT.B);
 	mValueRectangle = IRECT(mRECT.L, mRECT.B - textBuffer, mRECT.R, mRECT.B);
-	mImageRectangle = IRECT(mRECT.L, mRECT.T + textBuffer, &mBitmap);
+	mImageRectangle = IRECT(mRECT.L + 10, mRECT.T + textBuffer, &mBitmap);
 }
 
 // Destruct

@@ -36,6 +36,9 @@
     <ClCompile Include="src\controls\VuMeter.cpp">
       <Filter>Controls</Filter>
     </ClCompile>
+    <ClCompile Include="src\controls\DistortionTypeSelector.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST.h">
@@ -120,6 +123,9 @@
       <Filter>Structs</Filter>
     </ClInclude>
     <ClInclude Include="src\controls\VuMeter.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controls\DistortionTypeSelector.h">
       <Filter>Controls</Filter>
     </ClInclude>
   </ItemGroup>

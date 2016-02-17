@@ -28,9 +28,12 @@ private:
 	int mInputHistory[2] = { 0, 0 }; // L&R channels
 	list<Parameter> mParameters = list<Parameter>();
 	void InitialiseParameters();
-	void ApplyOverdrive(double inL, double inR, double* outL, double* outR);
-	void ApplyWaveShaper(double inL, double inR, double* outL, double* outR);
-	void ApplyGuitarAmp(double inL, double inR, double* outL, double* outR);
-	void ApplyWsTest(double inL, double inR, double* outL, double* outR);
+	void ApplyFuzzFace(double inL, double inR, double* outL, double* outR);
+	void ApplyFuzzFactorTen(double inL, double inR, double* outL, double* outR);
+	void ApplyFurryFuzz(double inL, double inR, double* outL, double* outR);
+	void ApplyInYourFuzz(double inL, double inR, double* outL, double* outR);
+	void ApplyFuzzyFuzz(double inL, double inR, double* outL, double* outR);
+	void ApplyFuzzyBoots(double inL, double inR, double* outL, double* outR);
+	void ApplyFuzzingAtTheMouth(double inL, double inR, double* outL, double* outR);
 };
 

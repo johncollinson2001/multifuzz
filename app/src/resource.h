@@ -70,7 +70,7 @@ instrument determined by PLUG _IS _INST
 #define BACKGROUND_METAL_FN "resources/img/bg-metal-807x400.png"
 #define BACKGROUND_YELLOW_FN "resources/img/bg-yellow-807x400.png"
 #define LED_PANEL_FN "resources/img/led-panel-130x26.png"
-#define ON_OFF_BUTTON_FN "resources/img/on-off-btn-50x50-2f.png"
+#define ON_OFF_BUTTON_FN "resources/img/on-off-btn-52x52-2f.png"
 #define POWER_SWITCH_FN "resources/img/power-switch-72x72-2f.png"
 #define KNOB_MINI_FN "resources/img/silver-knob-28x28-101f.png"
 #define KNOB_SMALL_FN "resources/img/silver-knob-36x36-101f.png"

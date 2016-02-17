@@ -28,15 +28,26 @@ void Distortion::ProcessAudio(double inL, double inR, double* outL, double* outR
 	{
 		switch(mDistortionType)
 		{
-		case EDistortionType::Overdrive:
-		//	ApplyOverdrive(inL, inR, outL, outR);
-			ApplyWsTest(inL, inR, outL, outR);
+		case EDistortionType::FuzzFace:
+			ApplyFuzzFace(inL, inR, outL, outR);
 			break;
-		case EDistortionType::WaveShaper:
-			ApplyWaveShaper(inL, inR, outL, outR);
+		case EDistortionType::FuzzFactorTen:
+			ApplyFuzzFactorTen(inL, inR, outL, outR);
 			break;
-		case EDistortionType::GuitarAmp:
-			ApplyGuitarAmp(inL, inR, outL, outR);
+		case EDistortionType::FurryFuzz:
+			ApplyFurryFuzz(inL, inR, outL, outR);
+			break;
+		case EDistortionType::FuzzingAtTheMouth:
+			ApplyFuzzingAtTheMouth(inL, inR, outL, outR);
+			break;
+		case EDistortionType::FuzzyBoots:
+			ApplyFuzzyBoots(inL, inR, outL, outR);
+			break;
+		case EDistortionType::FuzzyFuzz:
+			ApplyFuzzyFuzz(inL, inR, outL, outR);
+			break;
+		case EDistortionType::InYourFuzz:
+			ApplyInYourFuzz(inL, inR, outL, outR);
 			break;
 		}		
 	}
@@ -79,13 +90,13 @@ void Distortion::InitialiseParameters()
 	distortionType.Name = string(mName) + " Distortion Type";
 	distortionType.DefaultValue = 0;
 	distortionType.MinValue = 0;
-	distortionType.MaxValue = 2;
+	distortionType.MaxValue = EDistortionType::NumberOfDistortionTypes - 1;
 	distortionType.Type = EParameterType::Int;
 	mParameters.push_back(distortionType);
 }
 
 // Apply saturation to an audio signal
-void Distortion::ApplyOverdrive(double inL, double inR, double* outL, double* outR)
+void Distortion::ApplyFuzzFace(double inL, double inR, double* outL, double* outR)
 {
 	// Get the value that we want to limit the amplitude by
 	double underdrive = 1 - (mOverdrive / 100);
@@ -110,8 +121,8 @@ void Distortion::ApplyOverdrive(double inL, double inR, double* outL, double* ou
 	*outR /= underdrive;
 }
 
-// Apply waveshaper to an audio signal
-void Distortion::ApplyWaveShaper(double inL, double inR, double* outL, double* outR)
+// Apply FuzzFactorTen to an audio signal
+void Distortion::ApplyFuzzFactorTen(double inL, double inR, double* outL, double* outR)
 {	
 	// Transform the overdrive value into the value we need to wave shape
 	double waveOverdrive = mOverdrive / 10;
@@ -134,7 +145,7 @@ void Distortion::ApplyWaveShaper(double inL, double inR, double* outL, double* o
 }
 
 // Apply guitar amp to an audio signal
-void Distortion::ApplyGuitarAmp(double inL, double inR, double* outL, double* outR)
+void Distortion::ApplyFurryFuzz(double inL, double inR, double* outL, double* outR)
 {
 	double saturation = 0.5;
 
@@ -164,22 +175,51 @@ void Distortion::ApplyGuitarAmp(double inL, double inR, double* outL, double* ou
 }
 
 // Apply guitar amp to an audio signal
-void Distortion::ApplyWsTest(double inL, double inR, double* outL, double* outR)
+void Distortion::ApplyInYourFuzz(double inL, double inR, double* outL, double* outR)
 {
 	double saturation = 
 		 (mOverdrive / 10);
 
-	/**outL = inL / (saturation + abs(inL));
-	*outR = inR / (saturation + abs(inR));*/
-
-	/**outL = inL / (sin(saturation) + abs(inL));
-	*outR = inR / (sin(saturation) + abs(inR));*/
-
-	/**outL = inL / (pow(inL, 2) + saturation);
-	*outR = inR / (pow(inR, 2) + saturation);*/
-
 	*outL = pow(inL, 2) * saturation;
 	*outR = pow(inR, 2) * saturation;
+}
 
-	
+// Apply guitar amp to an audio signal
+void Distortion::ApplyFuzzyFuzz(double inL, double inR, double* outL, double* outR)
+{
+	// Get the value that we want to limit the amplitude by
+	double saturation = 1 - (mOverdrive / 100);
+
+	// If underdrive = 0, then set it to 0.1 - we want sound to come out!
+	if (saturation == 0)
+	{
+		saturation = 0.1;
+	}
+
+	*outL = inL / (saturation + abs(inL));
+	*outR = inR / (saturation + abs(inR));
+}
+
+void Distortion::ApplyFuzzyBoots(double inL, double inR, double* outL, double* outR)
+{
+	double saturation =
+		(mOverdrive / 10);
+
+	*outL = inL / (sin(saturation) + abs(inL));
+	*outR = inR / (sin(saturation) + abs(inR));
+}
+
+void Distortion::ApplyFuzzingAtTheMouth(double inL, double inR, double* outL, double* outR)
+{
+	// Get the value that we want to limit the amplitude by
+	double saturation = 1 - (mOverdrive / 100);
+
+	// If underdrive = 0, then set it to 0.1 - we want sound to come out!
+	if (saturation == 0)
+	{
+		saturation = 0.1;
+	}
+
+	*outL = inL / (pow(inL, 2) + saturation);
+	*outR = inR / (pow(inR, 2) + saturation);
 }

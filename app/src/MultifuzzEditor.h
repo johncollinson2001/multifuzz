@@ -7,6 +7,7 @@
 #include "structs\BandDistortionParameterSet.h"
 #include "controls\MultifuzzKnob.h"
 #include "controls\VuMeter.h"
+#include "controls\DistortionTypeSelector.h"
 #include "AudioProcessor.h"
 #include "interfaces\IPeakListener.h"
 
@@ -30,6 +31,6 @@ private:
 	void MakeGainControls(IGraphics* graphics);
 	void MakeGain(IGraphics* graphics, char* name, int x, EParameter gainParameter, int* vuIdx);
 	void MakeDistortionControls(IGraphics* graphics);
-	void MakeBandDistortion(IGraphics* graphics, char* name, int x, BandDistortionParameterSet parameters);
+	void MakeBandDistortion(IGraphics* graphics, char* name, int y, BandDistortionParameterSet parameters);
 	void MakeKnob(IGraphics* graphics, int bitmapId, const char* bitmapName, IRECT rect, int textSize, EParameter parameter, char* label);
 };

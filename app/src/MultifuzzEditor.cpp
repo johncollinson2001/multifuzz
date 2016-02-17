@@ -33,7 +33,7 @@ IGraphics* MultifuzzEditor::Make(IGraphics* graphics)
 	MakeBackground(graphics);
 	MakePowerSwitch(graphics);
 	MakeGainControls(graphics);
-	/*MakeDistortionControls(graphics);*/
+	MakeDistortionControls(graphics);
 
 	return graphics;
 }
@@ -56,10 +56,11 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics)
 {
 	// Make in/out gain
 	MakeGain(graphics, "Input", 55, EParameter::InputGain, &mInputVuMeterIdx);
-	MakeGain(graphics, "Output", 230, EParameter::OutputGain, &mOutputVuMeterIdx);
+	MakeGain(graphics, "Output", 215, EParameter::OutputGain, &mOutputVuMeterIdx);
 
 	// Make wet/dry
-	int knobX = 165, knobY = 290;
+	int knobX = 159; 
+	int knobY = 290;
 	int knobLabelPadding = 15;
 	int knobLabelFontSize = 16;
 	IRECT knobRectangle = IRECT(
@@ -73,10 +74,14 @@ void MultifuzzEditor::MakeGainControls(IGraphics* graphics)
 // Make a single gain control
 void MultifuzzEditor::MakeGain(IGraphics* graphics, char* name, int x, EParameter gainParameter, int* vuIdx)
 {	
-	int left = x, right = x + LayoutConstants::kVuMeterWidth;	// Change this value to 144 for blue vu
-	int labelTop = 115, labelBottom = 140;
-	int vuMeterX = x, vuMeterY = 140;	
-	int knobX = x + (((right - left) - LayoutConstants::kKnobMediumWidth) / 2), knobY = 275;
+	int left = x;
+	int right = x + LayoutConstants::kVuMeterWidth;
+	int labelTop = 115; 
+	int labelBottom = 140;
+	int vuMeterX = x;
+	int vuMeterY = 140;
+	int knobX = x + (((right - left) - LayoutConstants::kKnobMediumWidth) / 2);
+	int knobY = 275;
 	int knobLabelPadding = 15;
 	int headerLabelFontSize = 16;
 	int knobLabelFontSize = 14;
@@ -102,7 +107,7 @@ void MultifuzzEditor::MakeGain(IGraphics* graphics, char* name, int x, EParamete
 // Make the distortion controls
 void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics) 
 {
-	/*MakeBandDistortion(graphics, "Band 1", 425, { 
+	MakeBandDistortion(graphics, "Band 1", 78, { 
 		EParameter::BandOneBypass,
 		EParameter::BandOneDistortionType,
 		EParameter::BandOneOverdrive,
@@ -110,7 +115,7 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 		EParameter::BandOneWidth,
 		EParameter::BandOneResonance
 	});
-	MakeBandDistortion(graphics, "Band 2", 540, {
+	MakeBandDistortion(graphics, "Band 2", 207, {
 		EParameter::BandTwoBypass,
 		EParameter::BandTwoDistortionType,
 		EParameter::BandTwoOverdrive,
@@ -118,46 +123,105 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 		EParameter::BandTwoWidth,
 		EParameter::BandTwoResonance
 	});
-	MakeBandDistortion(graphics, "Band 3", 655, {
+	MakeBandDistortion(graphics, "Band 3", 336, {
 		EParameter::BandThreeBypass,
 		EParameter::BandThreeDistortionType,
 		EParameter::BandThreeOverdrive,
 		EParameter::BandThreeFrequency,
 		EParameter::BandThreeWidth,
 		EParameter::BandThreeResonance
-	});*/
+	});
 }
 
 // Make a band distortion control unit
-void MultifuzzEditor::MakeBandDistortion(IGraphics* graphics, char* name, int x, BandDistortionParameterSet parameters)
+void MultifuzzEditor::MakeBandDistortion(IGraphics* graphics, char* name, int y, BandDistortionParameterSet parameters)
 {
-	//int colL = x - 32;
-	//int colR = x + 32;
-	//int btnL = colL - 30;
-	//int btnR = colL - 4;
-	//int btnCtr = btnL + 11;
+	int bandY = y;
+	int bandX = 350;
+	int headerTextL = bandX;
+	int headerTextR = bandX + 70;
+	int headerTextT = bandY + 7;
+	int headerTextB = bandY - 7;
+	int headerLabelFontSize = 17;
+	int bypassX = (bandX + ((headerTextR - headerTextL) / 2)) - (LayoutConstants::kOnOffButtonWidth / 2);
+	int bypassY = headerTextT - LayoutConstants::kOnOffButtonHeight;
 
-	//// Header text object
-	//IText headerText = IText(18, &COLOR_WHITE, strdup(LayoutConstants::kGlobalFont.c_str()),
-	//	IText::EStyle::kStyleBold, IText::EAlign::kAlignCenter);
-	//IText distortionTypeText = IText(14, &COLOR_BLACK, strdup(LayoutConstants::kGlobalFont.c_str()),
-	//	IText::EStyle::kStyleNormal, IText::EAlign::kAlignCenter);
-	//// Switch bitmaps
-	//IBitmap powerButtonBitmap = graphics->LoadIBitmap(POWER_ID, POWER_FN, LayoutConstants::kPowerSwitchFrames);
-	//IBitmap buttonBitmap = graphics->LoadIBitmap(BUTTON_ID, BUTTON_FN, LayoutConstants::kButtonFrames);
+	// Header text object	
+	IText headerText = IText(headerLabelFontSize, &COLOR_BLACK, strdup(LayoutConstants::kCourierNewFont.c_str()),
+		IText::EStyle::kStyleBold, IText::EAlign::kAlignCenter);
+	graphics->AttachControl(new ITextControl(mPlugin, IRECT(headerTextL, headerTextT, headerTextR, headerTextB), &headerText, name));
 
-	//graphics->AttachControl(new ITextControl(mPlugin, IRECT(colL, 24, colR, 40), &headerText, name));
-	//graphics->AttachControl(new ISwitchControl(mPlugin, btnL, 26, parameters.Bypass, &powerButtonBitmap));
-	//graphics->AttachControl(new IRadioButtonsControl(
-	//	mPlugin, IRECT(btnL, 62, btnR, 158), parameters.DistortionType, 5, &buttonBitmap, EDirection::kVertical));
+	// On/Off button
+	IBitmap powerButtonBitmap = graphics->LoadIBitmap(ON_OFF_BUTTON_ID, ON_OFF_BUTTON_FN, LayoutConstants::kOnOffButtonFrames);	
+	graphics->AttachControl(new ISwitchControl(mPlugin, bypassX, bypassY, parameters.Bypass, &powerButtonBitmap));
 
-	//graphics->AttachControl(new ITextControl(mPlugin, IRECT(btnCtr, 59, btnCtr, 72), &distortionTypeText, "ga"));
-	///*graphics->AttachControl(new ITextControl(mPlugin, IRECT(btnCtr, 90, btnCtr, 103), &distortionTypeText, "ov"));
-	//graphics->AttachControl(new ITextControl(mPlugin, IRECT(btnCtr, 107, btnCtr, 120), &distortionTypeText, "ws"));*/
-	//MakeKnob(graphics, colL, 80, parameters.Overdrive, "overdrive");
-	//MakeKnob(graphics, colL, 180, parameters.Frequency, "frequency");
-	//MakeKnob(graphics, colL, 280, parameters.Width, "width");
-	//MakeKnob(graphics, colL, 380, parameters.Resonance, "resonance");
+	// Make overdrive
+	int overdriveX = headerTextR + 5;
+	int overdriveY = headerTextT - 50;
+	int overdriveLabelPadding = 15;
+	int overdriveLabelFontSize = 16;
+	IRECT overdriveRectangle = IRECT(
+		overdriveX,
+		overdriveY - overdriveLabelPadding,
+		overdriveX + LayoutConstants::kKnobLargeWidth,
+		overdriveY + LayoutConstants::kKnobLargeHeight + overdriveLabelPadding);
+	MakeKnob(graphics, KNOB_LARGE_ID, KNOB_LARGE_FN, overdriveRectangle, overdriveLabelFontSize, parameters.Overdrive, "overdrive");
+	
+	// Make frequency/width/res/gain
+	int freqRowY = headerTextB + 5;
+	int freqRowX = overdriveX + LayoutConstants::kKnobLargeWidth + 10;
+	int freqRowCellWidth = 67;
+	int freqRowLabelPadding = 13;
+	int freqRowLabelFontSize = 13;
+
+	// Frequency
+	int freqX = freqRowX + ((freqRowCellWidth - LayoutConstants::kKnobSmallWidth) / 2);
+	IRECT freqRectangle = IRECT(
+		freqX,
+		freqRowY - freqRowLabelPadding,
+		freqX + LayoutConstants::kKnobSmallWidth,
+		freqRowY + LayoutConstants::kKnobSmallHeight + freqRowLabelPadding);
+	MakeKnob(graphics, KNOB_SMALL_ID, KNOB_SMALL_FN, freqRectangle, freqRowLabelFontSize, parameters.Frequency, "freq");
+
+	// Width
+	int widthX = (freqRowX + freqRowCellWidth) + ((freqRowCellWidth - LayoutConstants::kKnobSmallWidth) / 2);
+	IRECT widthRectangle = IRECT(
+		widthX,
+		freqRowY - freqRowLabelPadding,
+		widthX + LayoutConstants::kKnobSmallWidth,
+		freqRowY + LayoutConstants::kKnobSmallHeight + freqRowLabelPadding);
+	MakeKnob(graphics, KNOB_SMALL_ID, KNOB_SMALL_FN, widthRectangle, freqRowLabelFontSize, parameters.Width, "width");
+
+	// Res
+	int resX = (freqRowX + (freqRowCellWidth * 2)) + ((freqRowCellWidth - LayoutConstants::kKnobSmallWidth) / 2);
+	IRECT resRectangle = IRECT(
+		resX,
+		freqRowY - freqRowLabelPadding,
+		resX + LayoutConstants::kKnobSmallWidth,
+		freqRowY + LayoutConstants::kKnobSmallHeight + freqRowLabelPadding);
+	MakeKnob(graphics, KNOB_SMALL_ID, KNOB_SMALL_FN, resRectangle, freqRowLabelFontSize, parameters.Resonance, "res");
+
+	// Gain
+	int gainX = (freqRowX + (freqRowCellWidth * 3)) + ((freqRowCellWidth - LayoutConstants::kKnobSmallWidth) / 2);
+	IRECT gainRectangle = IRECT(
+		gainX,
+		freqRowY - freqRowLabelPadding,
+		gainX + LayoutConstants::kKnobSmallWidth,
+		freqRowY + LayoutConstants::kKnobSmallHeight + freqRowLabelPadding);
+	MakeKnob(graphics, KNOB_SMALL_ID, KNOB_SMALL_FN, gainRectangle, freqRowLabelFontSize, parameters.Resonance, "gain");	
+
+	// Distortion Type
+	int panelX = bandX + 242;
+	int panelY = bandY - 50;
+	IRECT typeKnobRectangle = IRECT(
+		panelX,
+		panelY,
+		panelX + LayoutConstants::kLedPanelWidth + LayoutConstants::kKnobMiniWidth,
+		panelY + LayoutConstants::kKnobMiniHeight);
+
+	IBitmap knob = graphics->LoadIBitmap(KNOB_MINI_ID, KNOB_MINI_FN, LayoutConstants::kKnobFrames);
+	IBitmap ledPanel = graphics->LoadIBitmap(LED_PANEL_ID, LED_PANEL_FN);	
+	graphics->AttachControl(new DistortionTypeSelector(mPlugin, typeKnobRectangle, parameters.DistortionType, &knob, &ledPanel));
 }
 
 // Make a knob

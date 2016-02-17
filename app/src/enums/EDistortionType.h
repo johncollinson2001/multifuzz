@@ -3,7 +3,12 @@
 // An enumeration of distortion types
 enum EDistortionType
 {
-	GuitarAmp,
-	Overdrive,
-	WaveShaper
+	FurryFuzz,
+	FuzzFace,
+	FuzzingAtTheMouth,
+	InYourFuzz,
+	FuzzyFuzz,
+	FuzzyBoots,
+	FuzzFactorTen,
+	NumberOfDistortionTypes
 };

@@ -280,6 +280,7 @@
     <ClInclude Include="app_wrapper\app_resource.h" />
     <ClInclude Include="src\AudioProcessor.h" />
     <ClInclude Include="src\constants\LayoutConstants.h" />
+    <ClInclude Include="src\controls\DistortionTypeSelector.h" />
     <ClInclude Include="src\controls\VuMeter.h" />
     <ClInclude Include="src\dsp\BandDistortion.h" />
     <ClInclude Include="src\dsp\BandPass.h" />
@@ -320,6 +321,7 @@
     <ClCompile Include="app_wrapper\app_dialog.cpp" />
     <ClCompile Include="app_wrapper\app_main.cpp" />
     <ClCompile Include="src\AudioProcessor.cpp" />
+    <ClCompile Include="src\controls\DistortionTypeSelector.cpp" />
     <ClCompile Include="src\controls\VuMeter.cpp" />
     <ClCompile Include="src\dsp\BandDistortion.cpp" />
     <ClCompile Include="src\dsp\BandPass.cpp" />

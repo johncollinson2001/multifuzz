@@ -325,6 +325,7 @@ if exist "%programfiles(x86)%" (copy /y "$(TargetPath)" "$(VST3_64_PATH)\Multifu
     <ClInclude Include="..\wdl-ol\VST3_SDK\public.sdk\source\vst\vstsinglecomponenteffect.h" />
     <ClInclude Include="..\wdl-ol\WDL\IPlug\IPlugVST3.h" />
     <ClInclude Include="src\AudioProcessor.h" />
+    <ClInclude Include="src\controls\DistortionTypeSelector.h" />
     <ClInclude Include="src\controls\VuMeter.h" />
     <ClInclude Include="src\dsp\BandDistortion.h" />
     <ClInclude Include="src\dsp\BandPass.h" />
@@ -371,6 +372,7 @@ if exist "%programfiles(x86)%" (copy /y "$(TargetPath)" "$(VST3_64_PATH)\Multifu
     <ClCompile Include="..\wdl-ol\VST3_SDK\public.sdk\source\vst\vstsinglecomponenteffect.cpp" />
     <ClCompile Include="..\wdl-ol\WDL\IPlug\IPlugVST3.cpp" />
     <ClCompile Include="src\AudioProcessor.cpp" />
+    <ClCompile Include="src\controls\DistortionTypeSelector.cpp" />
     <ClCompile Include="src\controls\VuMeter.cpp" />
     <ClCompile Include="src\dsp\BandDistortion.cpp" />
     <ClCompile Include="src\dsp\BandPass.cpp" />
