@@ -124,18 +124,21 @@ void Multifuzz::CreatePresets()
 			preset.BandOneFrequency,
 			preset.BandOneWidth,
 			preset.BandOneResonance,
+			preset.BandOneGain,
 			preset.BandTwoBypass,
 			preset.BandTwoDistortionType,
 			preset.BandTwoOverdrive,
 			preset.BandTwoFrequency,
 			preset.BandTwoWidth,
 			preset.BandTwoResonance,
+			preset.BandTwoGain,
 			preset.BandThreeBypass,
 			preset.BandThreeDistortionType,
 			preset.BandThreeOverdrive,
 			preset.BandThreeFrequency,
 			preset.BandThreeWidth,
-			preset.BandThreeResonance);
+			preset.BandThreeResonance,
+			preset.BandThreeGain);
 	}
 }
 

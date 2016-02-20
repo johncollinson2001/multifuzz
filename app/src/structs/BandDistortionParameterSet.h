@@ -9,4 +9,5 @@ struct BandDistortionParameterSet {
 	EParameter Frequency;
 	EParameter Width;
 	EParameter Resonance;
+	EParameter Gain;
 };

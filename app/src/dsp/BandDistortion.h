@@ -14,6 +14,7 @@
 class MultifuzzParameterManager;
 class BandPass;
 class Distortion;
+class GainController;
 
 class BandDistortion : IParameterListener, IDigitalSignalProcessor
 {
@@ -30,6 +31,7 @@ private:
 	EParameter mBypassParameter;
 	BandPass* mBandPass;
 	Distortion* mDistortion;
+	GainController* mGainController;
 	list<Parameter> mParameters = list<Parameter>();
 	void InitialiseParameters();
 };

@@ -17,7 +17,8 @@ AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* par
 			EParameter::BandOneOverdrive,
 			EParameter::BandOneFrequency,
 			EParameter::BandOneWidth,
-			EParameter::BandOneResonance 
+			EParameter::BandOneResonance,
+			EParameter::BandOneGain
 		});
 
 	mBandDistortions[1] = new BandDistortion(
@@ -30,7 +31,8 @@ AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* par
 			EParameter::BandTwoOverdrive,
 			EParameter::BandTwoFrequency,
 			EParameter::BandTwoWidth,
-			EParameter::BandTwoResonance
+			EParameter::BandTwoResonance,
+			EParameter::BandTwoGain
 		});
 
 	mBandDistortions[2] = new BandDistortion(
@@ -43,7 +45,8 @@ AudioProcessor::AudioProcessor(Multifuzz* plugin, MultifuzzParameterManager* par
 			EParameter::BandThreeOverdrive,
 			EParameter::BandThreeFrequency,
 			EParameter::BandThreeWidth,
-			EParameter::BandThreeResonance
+			EParameter::BandThreeResonance,
+			EParameter::BandThreeGain
 		});
 
 	// Initialise the parameters

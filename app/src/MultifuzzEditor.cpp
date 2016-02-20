@@ -113,7 +113,8 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 		EParameter::BandOneOverdrive,
 		EParameter::BandOneFrequency,
 		EParameter::BandOneWidth,
-		EParameter::BandOneResonance
+		EParameter::BandOneResonance,
+		EParameter::BandOneGain
 	});
 	MakeBandDistortion(graphics, "Band 2", 207, {
 		EParameter::BandTwoBypass,
@@ -121,7 +122,8 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 		EParameter::BandTwoOverdrive,
 		EParameter::BandTwoFrequency,
 		EParameter::BandTwoWidth,
-		EParameter::BandTwoResonance
+		EParameter::BandTwoResonance,
+		EParameter::BandTwoGain
 	});
 	MakeBandDistortion(graphics, "Band 3", 336, {
 		EParameter::BandThreeBypass,
@@ -129,7 +131,8 @@ void MultifuzzEditor::MakeDistortionControls(IGraphics* graphics)
 		EParameter::BandThreeOverdrive,
 		EParameter::BandThreeFrequency,
 		EParameter::BandThreeWidth,
-		EParameter::BandThreeResonance
+		EParameter::BandThreeResonance,
+		EParameter::BandThreeGain
 	});
 }
 
@@ -208,7 +211,7 @@ void MultifuzzEditor::MakeBandDistortion(IGraphics* graphics, char* name, int y,
 		freqRowY - freqRowLabelPadding,
 		gainX + LayoutConstants::kKnobSmallWidth,
 		freqRowY + LayoutConstants::kKnobSmallHeight + freqRowLabelPadding);
-	MakeKnob(graphics, KNOB_SMALL_ID, KNOB_SMALL_FN, gainRectangle, freqRowLabelFontSize, parameters.Resonance, "gain");	
+	MakeKnob(graphics, KNOB_SMALL_ID, KNOB_SMALL_FN, gainRectangle, freqRowLabelFontSize, parameters.Gain, "gain");	
 
 	// Distortion Type
 	int panelX = bandX + 242;

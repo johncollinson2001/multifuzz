@@ -21,6 +21,12 @@ BandDistortion::BandDistortion(MultifuzzParameterManager* parameterManager, char
 		parameters.Overdrive,
 		parameters.DistortionType);
 
+	// Setup gain controller
+	mGainController = new GainController(
+		parameterManager,
+		strdup((string(mName) + " Gain").c_str()),
+		parameters.Gain);
+
 	// Initialise the parameters
 	InitialiseParameters();
 
@@ -33,6 +39,7 @@ BandDistortion::~BandDistortion()
 {
 	delete mBandPass;
 	delete mDistortion;
+	delete mGainController;
 }
 
 // Process audio
@@ -48,6 +55,9 @@ void BandDistortion::ProcessAudio(double inL, double inR, double* outL, double* 
 
 		// Send audio through the distortion
 		mDistortion->ProcessAudio(l, r, &l, &r);
+
+		// Send audio through the gain controller
+		mGainController->ProcessAudio(l, r, &l, &r);
 
 		*outL = l;
 		*outR = r;

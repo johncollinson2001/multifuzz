@@ -19,18 +19,21 @@ public:
 		p.BandOneFrequency = 200;
 		p.BandOneWidth = 100;
 		p.BandOneResonance = 1;
+		p.BandOneGain = 0;
 		p.BandTwoBypass = 0;
 		p.BandTwoDistortionType = EDistortionType::FuzzFactorTen;
 		p.BandTwoOverdrive = 30;
 		p.BandTwoFrequency = 1200;
 		p.BandTwoWidth = 100;
 		p.BandTwoResonance = 2;
+		p.BandTwoGain = -6;
 		p.BandThreeBypass = 0;
 		p.BandThreeDistortionType = EDistortionType::FuzzFace;
 		p.BandThreeOverdrive = 90;
 		p.BandThreeFrequency = 10000;
 		p.BandThreeWidth = 100;
 		p.BandThreeResonance = 1.5;
+		p.BandThreeGain = 0;
 		p.OutputGain = -18;
 
 		return p;
