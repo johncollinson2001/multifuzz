@@ -2,6 +2,10 @@
 
 Multifuzz is a multiband distortion unit, for use in hosts that support VST technology, such as Cubase and Ableton. The plugin contains three distortion bands, which allow you to fine tune the frequency ranges using a band pass filter technique. You can then apply different types of overdrive and saturation to the filtered signal and mix them back together at the end. It leads to some highliy interesting textures and sounds, often allowing you to warp a sound in new and exciting ways.
 
+If you want to download the built DLL (VST2) to try in your host, you can download a copy here:
+
+http://johncollinson.info/downloads/Multifuzz.zip
+
 # User Interface
 
 The interface looks like....
