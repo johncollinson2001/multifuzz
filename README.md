@@ -2,7 +2,7 @@
 
 Multifuzz is a multiband distortion unit, for use in hosts that support VST technology, such as Cubase and Ableton. The plugin contains three distortion bands, which allow you to fine tune the frequency ranges using a band pass filter technique. You can then apply different types of overdrive and saturation to the filtered signal and mix them back together at the end. It leads to some highliy interesting textures and sounds, often allowing you to warp a sound in new and exciting ways.
 
-If you want to download the built DLL (VST2) to try in your host, you can download a copy here:
+If you want to download the compiled DLL (VST2) to try in your host, download a copy here:
 
 http://johncollinson.info/downloads/Multifuzz.zip
 
@@ -16,6 +16,8 @@ The in/outs are on the left, with a wet/dry mix. The three distortion bands are 
 
 # Technical stuff
 
-The project was built using Visual C++ and a VST library called wdl-ol. Pull the repository and open the solution file in VC++. Build the solution which will place a dll in a folder called build-win, with a build for both VST2 and VST3 platforms. 
+The project was built using Visual C++ and a VST library called wdl-ol. You need to clone wdl-ol and link the solution to the location that you've cloned into. wdl-ol can be cloned here https://github.com/olilarkin/wdl-ol.
+
+To build the solution, pull the repository, open the solution in Visual Studio, link to wdl-ol then build. This will place a dll in a folder called build-win, with a build for both VST2 and VST3 platforms. 
 
 As mentioned above the plugin will open in any host that supports VST technology, but included in the repo for testing purposes is a free lightweight host called savihost. Open savihost and you will be prompted for the dll of the plugin to test - so navigate to the VST2 sub folder of the build-win directory and find the built dll. You may need to search the web for some instructions on savihost, but essentially you can play a wave file through the plugin and wire up your PC's microphone in order to test it out.
